@@ -3,7 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
-export default function UpdateProfile() {
+export default function BeneficiaryUpdateProfile() {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const usernameRef = useRef();
@@ -55,22 +55,21 @@ export default function UpdateProfile() {
           <Form onSubmit={handleSubmit}>
             <Form.Group id="firstName">
               <Form.Label>First Name</Form.Label>
-              <Form.Control type="firstName" ref={firstNameRef} required />
+              <Form.Control type="firstName" ref={firstNameRef} />
             </Form.Group>
             <Form.Group id="lastName">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control type="lastNameRef" ref={lastNameRef} required />
+              <Form.Control type="lastNameRef" ref={lastNameRef} />
             </Form.Group>
             <Form.Group id="username">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="username" ref={usernameRef} required />
+              <Form.Control type="username" ref={usernameRef} />
             </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
                 ref={emailRef}
-                required
                 defaultValue={currentUser.email}
               />
             </Form.Group>
@@ -79,7 +78,7 @@ export default function UpdateProfile() {
               <Form.Control
                 type="password"
                 ref={passwordRef}
-                placeholder="Leave blasnk to keep the same"
+                placeholder="Leave blank to keep the same"
               />
             </Form.Group>
             <Form.Group id="confirmpassword">
@@ -92,20 +91,20 @@ export default function UpdateProfile() {
             </Form.Group>
             <Form.Group id="contact">
               <Form.Label>Contact</Form.Label>
-              <Form.Control type="contact" ref={contactRef} required />
+              <Form.Control type="contact" ref={contactRef} />
             </Form.Group>
             <Form.Group id="dob" className="mb-4">
               <Form.Label>D.O.B</Form.Label>
-              <Form.Control type="dob" ref={dobRef} required />
+              <Form.Control type="dob" ref={dobRef} />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
-              Update Profile
+              Update my profile!
             </Button>
           </Form>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        <Link to="/">Cancel Changes</Link>
+        <Link to="/">Cancel my changes</Link>
       </div>
     </>
   );

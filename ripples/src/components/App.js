@@ -1,13 +1,18 @@
 import React from "react";
-import Signup from "./Signup";
+import SignupDiversion from "./SignupDiversion";
 import { Container } from "react-bootstrap";
 import { AuthProvider } from "../contexts/AuthContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import VolunteerDashboard from "./VolunteerDashboard";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
-import UpdateProfile from "./UpdateProfile";
+import VolunteerSignup from "./VolunteerSignup";
+import BeneficiarySignup from "./BeneficiarySignup";
+import OrganisationSignup from "./OrganisationSignup";
+import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
+import BeneficiaryUpdateProfile from "./BeneficiaryUpdateProfile";
+import OrganisationUpdateProfile from "./OrganisationUpdateProfile";
 
 function App() {
   return (
@@ -19,9 +24,26 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
-              <PrivateRoute exact path="/" component={Dashboard} />
-              <PrivateRoute path="/updateProfile" component={UpdateProfile} />
-              <Route path="/signup" component={Signup} />
+              <PrivateRoute exact path="/" component={VolunteerDashboard} />
+              <PrivateRoute
+                path="/VolunteerUpdateProfile"
+                component={VolunteerUpdateProfile}
+              />
+              <PrivateRoute
+                path="/BeneficiaryUpdateProfile"
+                component={BeneficiaryUpdateProfile}
+              />
+              <PrivateRoute
+                path="/OrganisationUpdateProfile"
+                component={OrganisationUpdateProfile}
+              />
+              <Route path="/signupDiversion" component={SignupDiversion} />
+              <Route path="/volunteerSignup" component={VolunteerSignup} />
+              <Route path="/beneficiarySignup" component={BeneficiarySignup} />
+              <Route
+                path="/organisationSignUp"
+                component={OrganisationSignup}
+              />
               <Route path="/login" component={Login} />
               <Route path="/forgotPassword" component={ForgotPassword} />
             </Switch>
