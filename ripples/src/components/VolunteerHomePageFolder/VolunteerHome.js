@@ -23,12 +23,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const sections = [
-  { title: "Home", url: "/VolunteerHome" },
+  { title: "Home", url: "/" },
   { title: "Search", url: "#" },
   { title: "Committments", url: "#" },
   { title: "History", url: "#" },
   { title: "Settings", url: "/VolunteerUpdateProfile" },
-  { title: "Logout", url: "/Login" },
 ];
 
 const mainFeaturedPost = {
@@ -92,7 +91,7 @@ export default function VolunteerHome() {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Blog" sections={sections} />
+        <Header title="Ripples" sections={sections} />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>

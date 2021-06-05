@@ -79,7 +79,7 @@ export default function Header(props) {
             noWrap
             key={section.title}
             variant="body2"
-            href={section.url}
+            to={section.url}
             className={classes.toolbarLink}
           >
             {section.title}

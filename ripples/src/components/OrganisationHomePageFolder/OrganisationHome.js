@@ -28,7 +28,6 @@ const sections = [
   { title: "Committments", url: "#" },
   { title: "History", url: "#" },
   { title: "Settings", url: "/OrganisationUpdateProfile" },
-  { title: "Logout", url: "/Login" },
 ];
 
 const mainFeaturedPost = {

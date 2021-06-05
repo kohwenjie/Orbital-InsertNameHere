@@ -48,7 +48,8 @@ export default function Header(props) {
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
-        Email: {currentUser.email}
+        <b>Welcome! </b> {currentUser.email}
+        {/* WE ARE GOING TO MAKE THIS BUTTON BELOW LINK TO THE PROFILE PAGE AND THE SAME FOR BENE AND ORG*/}
         <Button size="small">Subscribe</Button>
         <Typography
           component="h2"
@@ -79,7 +80,7 @@ export default function Header(props) {
             noWrap
             key={section.title}
             variant="body2"
-            href={section.url}
+            to={section.url}
             className={classes.toolbarLink}
           >
             {section.title}

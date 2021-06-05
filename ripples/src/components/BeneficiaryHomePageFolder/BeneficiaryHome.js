@@ -28,7 +28,6 @@ const sections = [
   { title: "History", url: "#" },
   { title: "Organisations", url: "#" },
   { title: "Settings", url: "/BeneficiaryUpdateProfile" },
-  { title: "Logout", url: "/Login" },
 ];
 
 const mainFeaturedPost = {
