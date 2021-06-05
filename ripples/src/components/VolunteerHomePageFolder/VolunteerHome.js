@@ -23,12 +23,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const sections = [
-  { title: "Home", url: "#" },
-  { title: "Events", url: "#" },
-  { title: "Beneficiaries", url: "#" },
+  { title: "Home", url: "/VolunteerHome" },
+  { title: "Search", url: "#" },
+  { title: "Committments", url: "#" },
   { title: "History", url: "#" },
-  { title: "Settings", url: "#" },
-  { title: "Logout", url: "#" },
+  { title: "Settings", url: "/VolunteerUpdateProfile" },
+  { title: "Logout", url: "/Login" },
 ];
 
 const mainFeaturedPost = {
@@ -85,7 +85,7 @@ const sidebar = {
   ],
 };
 
-export default function Blog() {
+export default function VolunteerHome() {
   const classes = useStyles();
 
   return (
