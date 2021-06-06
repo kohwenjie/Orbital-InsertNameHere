@@ -83,7 +83,7 @@ export default function OrganisationUpdateProfile() {
           </Form>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
+      <div className="w-100 text-center mt-2 mb-3">
         <Link to="/">Cancel Changes</Link>
       </div>
     </>

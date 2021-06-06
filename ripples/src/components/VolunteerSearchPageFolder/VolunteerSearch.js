@@ -23,15 +23,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const sections = [
-  { title: "Home", url: "/VolunteerHome" },
-  { title: "Search", url: "/VolunteerSearch" },
+  { title: "Home", url: "/" },
+  { title: "Search", url: "#" },
   { title: "Committments", url: "#" },
   { title: "History", url: "#" },
   { title: "Settings", url: "/VolunteerUpdateProfile" },
 ];
 
 const mainFeaturedPost = {
-  title: "THIS IS A HOMEPAGE",
+  title: "THIS IS A VOLUNTEER SEARCH PAGE",
   description:
     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
   image: "https://source.unsplash.com/random",
@@ -84,7 +84,7 @@ const sidebar = {
   ],
 };
 
-export default function VolunteerHome() {
+export default function VolunteerSearch() {
   const classes = useStyles();
 
   return (

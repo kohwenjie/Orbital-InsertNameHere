@@ -13,9 +13,10 @@ import OrganisationSignup from "./OrganisationSignup";
 import VolunteerHome from "./VolunteerHomePageFolder/VolunteerHome";
 // import BeneficiaryHome from "./BeneficiaryHomePageFolder/BeneficiaryHome";
 // import OrganisationHome from "./OrganisationHomePageFolder/OrganisationHome";
+import VolunteerSearch from "./VolunteerSearchPageFolder/VolunteerSearch";
 import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
-import BeneficiaryUpdateProfile from "./BeneficiaryUpdateProfile";
-import OrganisationUpdateProfile from "./OrganisationUpdateProfile";
+// import BeneficiaryUpdateProfile from "./BeneficiaryUpdateProfile";
+// import OrganisationUpdateProfile from "./OrganisationUpdateProfile";
 
 function App() {
   return (
@@ -27,9 +28,8 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
-              <PrivateRoute exact path="/" component={VolunteerHome} />
-              {/* <PrivateRoute path="/VolunteerHome" component={VolunteerHome} />
-              <PrivateRoute
+              <PrivateRoute path="/" component={VolunteerHome} />
+              {/* <PrivateRoute
                 path="/BeneficiaryHome"
                 component={BeneficiaryHome}
               />
@@ -38,17 +38,21 @@ function App() {
                 component={OrganisationHome}
               /> */}
               <PrivateRoute
+                path="/VolunteerSearch"
+                component={VolunteerSearch}
+              />
+              <PrivateRoute
                 path="/VolunteerUpdateProfile"
                 component={VolunteerUpdateProfile}
               />
-              <PrivateRoute
+              {/* <PrivateRoute
                 path="/BeneficiaryUpdateProfile"
                 component={BeneficiaryUpdateProfile}
               />
               <PrivateRoute
                 path="/OrganisationUpdateProfile"
                 component={OrganisationUpdateProfile}
-              />
+              /> */}
               <Route path="/signupDiversion" component={SignupDiversion} />
               <Route path="/volunteerSignup" component={VolunteerSignup} />
               <Route path="/beneficiarySignup" component={BeneficiarySignup} />
@@ -56,7 +60,7 @@ function App() {
                 path="/organisationSignUp"
                 component={OrganisationSignup}
               />
-              <Route path="/login" component={Login} />
+              <Route path="/Login" component={Login} />
               <Route path="/forgotPassword" component={ForgotPassword} />
             </Switch>
           </AuthProvider>
