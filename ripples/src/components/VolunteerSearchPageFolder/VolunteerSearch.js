@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const sections = [
   { title: "Home", url: "/" },
-  { title: "Search", url: "#" },
+  { title: "Search", url: "/VolunteerSearch" },
   { title: "Committments", url: "#" },
   { title: "History", url: "#" },
   { title: "Settings", url: "/VolunteerUpdateProfile" },
