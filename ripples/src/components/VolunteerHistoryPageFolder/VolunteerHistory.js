@@ -31,7 +31,7 @@ const sections = [
 ];
 
 const mainFeaturedPost = {
-  title: "THIS IS A VOLUNTEER HOMEPAGE",
+  title: "THIS IS A VOLUNTEER HISTORY PAGE",
   description:
     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
   image: "https://source.unsplash.com/random",
@@ -84,7 +84,7 @@ const sidebar = {
   ],
 };
 
-export default function VolunteerHome() {
+export default function VolunteerHistory() {
   const classes = useStyles();
 
   return (

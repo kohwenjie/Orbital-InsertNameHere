@@ -13,6 +13,8 @@ import VolunteerHome from "./VolunteerHomePageFolder/VolunteerHome";
 // import BeneficiaryHome from "./BeneficiaryHomePageFolder/BeneficiaryHome";
 // import OrganisationHome from "./OrganisationHomePageFolder/OrganisationHome";
 import VolunteerSearch from "./VolunteerSearchPageFolder/VolunteerSearch";
+import VolunteerCommitment from "./VolunteerCommitmentPageFolder/VolunteerCommitment";
+import VolunteerHistory from "./VolunteerHistoryPageFolder/VolunteerHistory";
 import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
 // import BeneficiaryUpdateProfile from "./BeneficiaryUpdateProfile";
 // import OrganisationUpdateProfile from "./OrganisationUpdateProfile";
@@ -27,7 +29,7 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
-              <PrivateRoute path="/" component={VolunteerHome} />
+              <PrivateRoute exact path="/" component={VolunteerHome} />
               {/* <PrivateRoute
                 path="/BeneficiaryHome"
                 component={BeneficiaryHome}
@@ -39,6 +41,14 @@ function App() {
               <PrivateRoute
                 path="/VolunteerSearch"
                 component={VolunteerSearch}
+              />
+              <PrivateRoute
+                path="/VolunteerCommitment"
+                component={VolunteerCommitment}
+              />
+              <PrivateRoute
+                path="/VolunteerHistory"
+                component={VolunteerHistory}
               />
               <PrivateRoute
                 path="/VolunteerUpdateProfile"

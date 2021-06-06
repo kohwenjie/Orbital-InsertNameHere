@@ -37,7 +37,7 @@ export default function Login() {
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
-            <Form.Group id="password" className="mb-4">
+            <Form.Group id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
@@ -46,12 +46,12 @@ export default function Login() {
             </Button>
           </Form>
           <div className="w-100 text-center mt-3">
-            <Link to="/forgotPassword">Forgot Password?</Link>
+            <Link to="/forgot-password">Forgot Password?</Link>
           </div>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signupDiversion">Sign Up</Link>
+        Need an account? <Link to="/signup">Sign Up</Link>
       </div>
     </>
   );

@@ -62,9 +62,6 @@ export default function Header(props) {
         >
           {title}
         </Typography>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
         <Button variant="outlined" size="small" onClick={handleLogout}>
           Log Out
         </Button>
