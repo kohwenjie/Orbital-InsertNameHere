@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { Link, useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
+// COMMENT FOR THE SAKE OF PUSHING
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
