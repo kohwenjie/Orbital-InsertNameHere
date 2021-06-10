@@ -8,7 +8,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 import { Link, useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {

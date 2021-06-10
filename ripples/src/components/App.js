@@ -1,6 +1,6 @@
 import React from "react";
 import SignupDiversion from "./SignupDiversion";
-import { Container } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 import { AuthProvider } from "../contexts/AuthContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./Login";
@@ -9,13 +9,14 @@ import ForgotPassword from "./ForgotPassword";
 import VolunteerSignup from "./VolunteerSignup";
 import BeneficiarySignup from "./BeneficiarySignup";
 import OrganisationSignup from "./OrganisationSignup";
-import VolunteerHome from "./VolunteerHomePageFolder/VolunteerHome";
+import VolunteerHome from "./VolunteerPages/VolunteerHomePageFolder/VolunteerHome";
+import VolunteerSearch from "./VolunteerPages/VolunteerSearchPageFolder/VolunteerSearch";
+import VolunteerCommitment from "./VolunteerPages/VolunteerCommitmentPageFolder/VolunteerCommitment";
+import VolunteerHistory from "./VolunteerPages/VolunteerHistoryPageFolder/VolunteerHistory";
+import VolunteerSetting from "./VolunteerPages/VolunteerSettingsPageFolder/VolunteerSetting";
 // import BeneficiaryHome from "./BeneficiaryHomePageFolder/BeneficiaryHome";
 // import OrganisationHome from "./OrganisationHomePageFolder/OrganisationHome";
-import VolunteerSearch from "./VolunteerSearchPageFolder/VolunteerSearch";
-import VolunteerCommitment from "./VolunteerCommitmentPageFolder/VolunteerCommitment";
-import VolunteerHistory from "./VolunteerHistoryPageFolder/VolunteerHistory";
-import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
+
 // import BeneficiaryUpdateProfile from "./BeneficiaryUpdateProfile";
 // import OrganisationUpdateProfile from "./OrganisationUpdateProfile";
 
@@ -52,7 +53,7 @@ function App() {
               />
               <PrivateRoute
                 path="/VolunteerUpdateProfile"
-                component={VolunteerUpdateProfile}
+                component={VolunteerSetting}
               />
               {/* <PrivateRoute
                 path="/BeneficiaryUpdateProfile"

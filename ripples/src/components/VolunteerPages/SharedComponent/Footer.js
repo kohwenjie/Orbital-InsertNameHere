@@ -10,7 +10,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Ripples      
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -26,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Footer(props) {
+export default function Footer() {
   const classes = useStyles();
-  const { description, title } = props;
-
+  const title = "Ripples By InsertNameHere"
+  const description = "What we do in life ripples in eternity"
   return (
     <footer className={classes.footer}>
       <Container maxWidth="lg">
