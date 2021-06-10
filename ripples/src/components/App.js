@@ -2,7 +2,12 @@ import React from "react";
 import SignupDiversion from "./SignupDiversion";
 import { Container, Navbar } from "react-bootstrap";
 import { AuthProvider } from "../contexts/AuthContext";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
@@ -14,13 +19,43 @@ import VolunteerSearch from "./VolunteerPages/VolunteerSearchPageFolder/Voluntee
 import VolunteerCommitment from "./VolunteerPages/VolunteerCommitmentPageFolder/VolunteerCommitment";
 import VolunteerHistory from "./VolunteerPages/VolunteerHistoryPageFolder/VolunteerHistory";
 import VolunteerSetting from "./VolunteerPages/VolunteerSettingsPageFolder/VolunteerSetting";
-// import BeneficiaryHome from "./BeneficiaryHomePageFolder/BeneficiaryHome";
-// import OrganisationHome from "./OrganisationHomePageFolder/OrganisationHome";
-
-// import BeneficiaryUpdateProfile from "./BeneficiaryUpdateProfile";
-// import OrganisationUpdateProfile from "./OrganisationUpdateProfile";
+import OrganisationHome from "./OrganisationPages/OrganisationHomePageFolder/OrganisationHome";
+import OrganisationBeneficiaries from "./OrganisationPages/OrganisationBeneficiariesPageFolder/OrganisationBeneficiaries";
+import OrganisationEvents from "./OrganisationPages/OrganisationEventsPageFolder/OrganisationEvents";
+import OrganisationHistory from "./OrganisationPages/OrganisationHistoryPageFolder/OrganisationHistory";
+import OrganisationSetting from "./OrganisationPages/OrganisationSettingPageFolder/OrganisationSetting";
+import BeneficiaryHome from "./BeneficiaryPages/BeneficiaryHomePageFolder/BeneficiaryHome";
+import BeneficiaryRequest from "./BeneficiaryPages/BeneficiaryRequestPageFolder/BeneficiaryRequest";
+import BeneficiaryHistory from "./BeneficiaryPages/BeneficiaryHistoryPageFolder/BeneficiaryHistory";
+import BeneficiaryOrganisations from "./BeneficiaryPages/BeneficiaryOrganisationsPageFolder/BeneficiaryOrganisations";
+import BeneficiarySetting from "./BeneficiaryPages/BeneficiarySettingPageFolder/BeneficiarySetting";
 
 function App() {
+  // const isVolunteer = true;
+  // const isOrganisation = true;
+
+  // const redirectUser = () => {
+  //   if (isVolunteer) {
+  //     return (
+  //       <>
+  //         <Redirect to="/VolunteerHome" />
+  //       </>
+  //     );
+  //   } else if (isOrganisation) {
+  //     return (
+  //       <>
+  //         <Redirect to="/OrganisationHome" />
+  //       </>
+  //     );
+  //   } else {
+  //     return (
+  //       <>
+  //         <Redirect to="/OrganisationHome" />
+  //       </>
+  //     );
+  //   }
+  // };
+
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
@@ -30,15 +65,15 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
-              <PrivateRoute exact path="/" component={VolunteerHome} />
-              {/* <PrivateRoute
-                path="/BeneficiaryHome"
-                component={BeneficiaryHome}
-              />
+              <PrivateRoute exact path="/">
+                <Redirect to="/BeneficiaryHome" />
+              </PrivateRoute>
               <PrivateRoute
-                path="/OrganisationHome"
-                component={OrganisationHome}
-              /> */}
+                exact
+                path="/VolunteerHome"
+                component={VolunteerHome}
+              />
+
               <PrivateRoute
                 path="/VolunteerSearch"
                 component={VolunteerSearch}
@@ -52,17 +87,50 @@ function App() {
                 component={VolunteerHistory}
               />
               <PrivateRoute
-                path="/VolunteerUpdateProfile"
+                path="/VolunteerSetting"
                 component={VolunteerSetting}
               />
-              {/* <PrivateRoute
-                path="/BeneficiaryUpdateProfile"
-                component={BeneficiaryUpdateProfile}
+              <PrivateRoute
+                path="/OrganisationHome"
+                component={OrganisationHome}
               />
               <PrivateRoute
-                path="/OrganisationUpdateProfile"
-                component={OrganisationUpdateProfile}
-              /> */}
+                path="/OrganisationEvents"
+                component={OrganisationEvents}
+              />
+              <PrivateRoute
+                path="/OrganisationBeneficiaries"
+                component={OrganisationBeneficiaries}
+              />
+              <PrivateRoute
+                path="/OrganisationHistory"
+                component={OrganisationHistory}
+              />
+              <PrivateRoute
+                path="/OrganisationSetting"
+                component={OrganisationSetting}
+              />
+              <PrivateRoute
+                path="/BeneficiaryHome"
+                component={BeneficiaryHome}
+              />
+              <PrivateRoute
+                path="/BeneficiaryRequest"
+                component={BeneficiaryRequest}
+              />
+              <PrivateRoute
+                path="/BeneficiaryHistory"
+                component={BeneficiaryHistory}
+              />
+              <PrivateRoute
+                path="/BeneficiaryOrganisations"
+                component={BeneficiaryOrganisations}
+              />
+              <PrivateRoute
+                path="/BeneficiarySetting"
+                component={BeneficiarySetting}
+              />
+
               <Route path="/login" component={Login} />
               <Route path="/forgotPassword" component={ForgotPassword} />
               <Route path="/signupDiversion" component={SignupDiversion} />

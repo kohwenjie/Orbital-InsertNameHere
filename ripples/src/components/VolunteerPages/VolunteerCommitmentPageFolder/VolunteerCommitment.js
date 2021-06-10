@@ -12,13 +12,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const sections = [
-  { title: "Home", url: "/" },
-  { title: "Search", url: "/VolunteerSearch" },
-  { title: "Commitments", url: "/VolunteerCommitment" },
-  { title: "History", url: "/VolunteerHistory" },
-  { title: "Settings", url: "/VolunteerUpdateProfile" },
-];
 
 const mainFeaturedPost = {
   title: "THIS IS A VOLUNTEER COMMITMENT PAGE",
@@ -29,14 +22,14 @@ const mainFeaturedPost = {
   linkText: "Continue reading…",
 };
 
-export default function VolunteerCommitteement() {
+export default function VolunteerCommitment() {
   const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Ripples" sections={sections} />
+        <Header />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>

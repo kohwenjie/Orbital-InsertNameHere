@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
-import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
+import OrganisationUpdateProfile from "./OrganisationUpdateProfile";
 import Footer from "../SharedComponent/Footer";
 
 const useStyles = makeStyles((theme) => ({
@@ -12,16 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const mainFeaturedPost = {
-  title: "THIS IS A VOLUNTEER HOMEPAGE",
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: "https://source.unsplash.com/random",
-  imgText: "main image description",
-  linkText: "Continue reading…",
-};
-
-export default function VolunteerHome() {
+export default function OrganisationSetting() {
   const classes = useStyles();
 
   return (
@@ -29,11 +20,14 @@ export default function VolunteerHome() {
       <CssBaseline />
       <Container maxWidth="lg">
         <Header />
+        <div>
+          <br />
+        </div>
         <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
+          <OrganisationUpdateProfile />
         </main>
       </Container>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }

@@ -14,14 +14,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const sections = [
-  { title: "Home", url: "/" },
-  { title: "Search", url: "/VolunteerSearch" },
-  { title: "Commitments", url: "/VolunteerCommitment" },
-  { title: "History", url: "/VolunteerHistory" },
-  { title: "Settings", url: "/VolunteerUpdateProfile" },
-];
-
 const mainFeaturedPost = {
   title: "THIS IS A VOLUNTEER HISTORY PAGE",
   description:
@@ -38,7 +30,7 @@ export default function VolunteerHistory() {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Ripples" sections={sections} />
+        <Header />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>

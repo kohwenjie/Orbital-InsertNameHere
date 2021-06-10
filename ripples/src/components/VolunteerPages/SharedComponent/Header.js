@@ -27,9 +27,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const sections = [
+  { title: "Home", url: "/VolunteerHome" },
+  { title: "Search", url: "/VolunteerSearch" },
+  { title: "Commitments", url: "/VolunteerCommitment" },
+  { title: "History", url: "/VolunteerHistory" },
+  { title: "Settings", url: "/VolunteerSetting" },
+];
+
+const title = "Ripples"
+
 export default function Header(props) {
   const classes = useStyles();
-  const { sections, title } = props;
   const [error, setError] = useState();
   const { currentUser, logout } = useAuth();
   const history = useHistory();

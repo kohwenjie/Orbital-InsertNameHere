@@ -12,22 +12,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const sections = [
-  { title: "Home", url: "/" },
-  { title: "Search", url: "/VolunteerSearch" },
-  { title: "Commitments", url: "/VolunteerCommitment" },
-  { title: "History", url: "/VolunteerHistory" },
-  { title: "Settings", url: "/VolunteerUpdateProfile" },
-];
-
-export default function VolunteerHome() {
+export default function VolunteerSetting() {
   const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Ripples" sections={sections} />
+        <Header />
         <div>
           <br />
         </div>
