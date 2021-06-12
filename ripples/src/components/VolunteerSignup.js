@@ -2,20 +2,29 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { database } from "../firebase";
 
 export default function VolunteerSignup() {
   const firstNameRef = useRef();
+  const [firstName, setFirstName] = useState("");
   const lastNameRef = useRef();
+  const [lastName, setLastName] = useState("");
   const usernameRef = useRef();
+  const [username, setUsername] = useState("");
   const emailRef = useRef();
+  const [email, setEmail] = useState("");
   const passwordRef = useRef();
+  const [password, setPassword] = useState("");
   const passwordConfirmRef = useRef();
   const contactRef = useRef();
+  const [contact, setContact] = useState("");
   const dobRef = useRef();
+  const [dob, setDob] = useState("");
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const { currentUser } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -33,6 +42,16 @@ export default function VolunteerSignup() {
       setError("Failed to create an account");
     }
 
+    database.collection("user").doc(currentUser.getToken()).add({
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      email: email,
+      password: password,
+      contact: contact,
+      dob: dob,
+    });
+
     setLoading(false);
   }
 
@@ -49,6 +68,8 @@ export default function VolunteerSignup() {
               <Form.Control
                 type="firstName"
                 ref={firstNameRef}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 required
                 placeholder="First Name"
               />
@@ -57,6 +78,8 @@ export default function VolunteerSignup() {
               <Form.Control
                 type="lastNameRef"
                 ref={lastNameRef}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 required
                 placeholder="Last Name"
               />
@@ -65,6 +88,8 @@ export default function VolunteerSignup() {
               <Form.Control
                 type="username"
                 ref={usernameRef}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 placeholder="Username"
               />
@@ -73,6 +98,8 @@ export default function VolunteerSignup() {
               <Form.Control
                 type="email"
                 ref={emailRef}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Email"
               />
@@ -81,6 +108,8 @@ export default function VolunteerSignup() {
               <Form.Control
                 type="password"
                 ref={passwordRef}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Password"
               />
@@ -97,6 +126,8 @@ export default function VolunteerSignup() {
               <Form.Control
                 type="contact"
                 ref={contactRef}
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
                 required
                 placeholder="Contact Number"
               />
@@ -105,6 +136,8 @@ export default function VolunteerSignup() {
               <Form.Control
                 type="dob"
                 ref={dobRef}
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
                 required
                 placeholder="Date of Birth"
               />

@@ -31,31 +31,6 @@ import BeneficiaryOrganisations from "./BeneficiaryPages/BeneficiaryOrganisation
 import BeneficiarySetting from "./BeneficiaryPages/BeneficiarySettingPageFolder/BeneficiarySetting";
 
 function App() {
-  // const isVolunteer = true;
-  // const isOrganisation = true;
-
-  // const redirectUser = () => {
-  //   if (isVolunteer) {
-  //     return (
-  //       <>
-  //         <Redirect to="/VolunteerHome" />
-  //       </>
-  //     );
-  //   } else if (isOrganisation) {
-  //     return (
-  //       <>
-  //         <Redirect to="/OrganisationHome" />
-  //       </>
-  //     );
-  //   } else {
-  //     return (
-  //       <>
-  //         <Redirect to="/OrganisationHome" />
-  //       </>
-  //     );
-  //   }
-  // };
-
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
