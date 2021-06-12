@@ -5,10 +5,14 @@ import { Link, useHistory } from "react-router-dom";
 
 export default function OrganisationSignup() {
   const organisationNameRef = useRef();
+  const [organisationName, setOrganisationName] = useState("");
   const emailRef = useRef();
+  const [email, setEmail] = useState("");
   const passwordRef = useRef();
+  const [password, setPassword] = useState("");
   const passwordConfirmRef = useRef();
   const contactRef = useRef();
+  const [contact, setContact] = useState("");
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,12 +28,21 @@ export default function OrganisationSignup() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      const userDetails = {
+        organisationName: organisationName,
+        email: email,
+        password: password,
+        contact: contact,
+      };
+      await signup(
+        emailRef.current.value,
+        passwordRef.current.value,
+        userDetails
+      );
+      history.push("/OrganisationHome");
     } catch {
       setError("Failed to create an account");
     }
-
     setLoading(false);
   }
 
@@ -46,6 +59,8 @@ export default function OrganisationSignup() {
               <Form.Control
                 type="organisationName"
                 ref={organisationNameRef}
+                value={organisationName}
+                onChange={(e) => setOrganisationName(e.target.value)}
                 required
                 placeholder="Organisation Name"
               />
@@ -55,6 +70,8 @@ export default function OrganisationSignup() {
               <Form.Control
                 type="email"
                 ref={emailRef}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Organisation Email"
               />
@@ -63,6 +80,8 @@ export default function OrganisationSignup() {
               <Form.Control
                 type="password"
                 ref={passwordRef}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Password"
               />
@@ -79,6 +98,8 @@ export default function OrganisationSignup() {
               <Form.Control
                 type="contact"
                 ref={contactRef}
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
                 required
                 placeholder="Organisation Contact Number"
               />

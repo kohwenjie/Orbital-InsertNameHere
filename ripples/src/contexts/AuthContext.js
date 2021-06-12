@@ -9,12 +9,12 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
+  const [dbUser, setDBUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password)
-    .then(cred => {
-      return database.collection('user').doc(cred.user.uid).set({email: email, password: password});
+  function signup(email, password, obj) {
+    return auth.createUserWithEmailAndPassword(email, password).then((cred) => {
+      return database.collection("user").doc(cred.user.uid).set(obj);
     });
   }
 

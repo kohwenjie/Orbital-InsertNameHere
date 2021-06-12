@@ -5,13 +5,21 @@ import { Link, useHistory } from "react-router-dom";
 
 export default function BeneficiarySignup() {
   const firstNameRef = useRef();
+  const [firstName, setFirstName] = useState("");
   const lastNameRef = useRef();
+  const [lastName, setLastName] = useState("");
   const usernameRef = useRef();
+  const [username, setUsername] = useState("");
   const emailRef = useRef();
+  const [email, setEmail] = useState("");
   const passwordRef = useRef();
+  const [password, setPassword] = useState("");
   const passwordConfirmRef = useRef();
   const contactRef = useRef();
+  const [contact, setContact] = useState("");
   const dobRef = useRef();
+  const [dob, setDob] = useState("");
+
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,12 +31,24 @@ export default function BeneficiarySignup() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
-
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      const userDetails = {
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        email: email,
+        password: password,
+        contact: contact,
+        dob: dob,
+      };
+      await signup(
+        emailRef.current.value,
+        passwordRef.current.value,
+        userDetails
+      );
+      history.push("/BeneficiaryHome");
     } catch {
       setError("Failed to create an account");
     }
@@ -49,6 +69,8 @@ export default function BeneficiarySignup() {
               <Form.Control
                 type="firstName"
                 ref={firstNameRef}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 required
                 placeholder="First Name"
               />
@@ -57,6 +79,8 @@ export default function BeneficiarySignup() {
               <Form.Control
                 type="lastNameRef"
                 ref={lastNameRef}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 required
                 placeholder="Last Name"
               />
@@ -65,6 +89,8 @@ export default function BeneficiarySignup() {
               <Form.Control
                 type="username"
                 ref={usernameRef}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 placeholder="Username"
               />
@@ -73,6 +99,8 @@ export default function BeneficiarySignup() {
               <Form.Control
                 type="email"
                 ref={emailRef}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Email"
               />
@@ -81,6 +109,8 @@ export default function BeneficiarySignup() {
               <Form.Control
                 type="password"
                 ref={passwordRef}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Password"
               />
@@ -97,6 +127,8 @@ export default function BeneficiarySignup() {
               <Form.Control
                 type="contact"
                 ref={contactRef}
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
                 required
                 placeholder="Contact Number"
               />
@@ -105,6 +137,8 @@ export default function BeneficiarySignup() {
               <Form.Control
                 type="dob"
                 ref={dobRef}
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
                 required
                 placeholder="Date of Birth"
               />
