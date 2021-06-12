@@ -26,7 +26,13 @@ export function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password);
+    auth.signInWithEmailAndPassword(email, password);
+    database
+      .collection("user")
+      .doc(currentUser.uid)
+      .get()
+      .then((user) => setDBUser(user.data()));
+    return;
   }
 
   function logout() {

@@ -39,6 +39,12 @@ export default function VolunteerUpdateProfile() {
     setLoading(true);
     setError("");
 
+    if (emailRef.current.value !== currentUser.email) {
+      updates.push(updateEmail(emailRef.current.value, currentUser.uid));
+    }
+    if (passwordRef.current.value) {
+      updates.push(updatePassword(passwordRef.current.value, currentUser.uid));
+    }
     if (firstNameRef.current.value) {
       updates.push(
         updateFirstName(firstNameRef.current.value, currentUser.uid)
@@ -49,12 +55,6 @@ export default function VolunteerUpdateProfile() {
     }
     if (usernameRef.current.value) {
       updates.push(updateUsername(usernameRef.current.value, currentUser.uid));
-    }
-    if (emailRef.current.value !== currentUser.email) {
-      updates.push(updateEmail(emailRef.current.value, currentUser.uid));
-    }
-    if (passwordRef.current.value) {
-      updates.push(updatePassword(passwordRef.current.value, currentUser.uid));
     }
     if (contactRef.current.value) {
       updates.push(updateContact(contactRef.current.value, currentUser.uid));
