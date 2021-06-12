@@ -1,7 +1,7 @@
 import React from "react";
 import SignupDiversion from "./SignupDiversion";
-import { Container, Navbar } from "react-bootstrap";
-import { AuthProvider } from "../contexts/AuthContext";
+import { Container } from "react-bootstrap";
+import { AuthProvider, useAuth } from "../contexts/AuthContext";
 import {
   BrowserRouter as Router,
   Switch,
@@ -66,7 +66,7 @@ function App() {
           <AuthProvider>
             <Switch>
               <PrivateRoute exact path="/">
-                <Redirect to="/BeneficiaryHome" />
+                <Redirect to="/VolunteerHome" />
               </PrivateRoute>
               <PrivateRoute
                 exact
