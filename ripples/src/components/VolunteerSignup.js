@@ -38,10 +38,9 @@ export default function VolunteerSignup() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value)
-        .then(setUserUID(currentUser.uid))
-        .then(
-          database.collection("user").doc(userUID).set({
+      await signup(emailRef.current.value, passwordRef.current.value).then(
+        function (user) {
+          database.collection("user").doc(user.uid).set({
             firstName: firstName,
             lastName: lastName,
             username: username,
@@ -49,8 +48,9 @@ export default function VolunteerSignup() {
             password: password,
             contact: contact,
             dob: dob,
-          })
-        );
+          });
+        }
+      );
       history.push("/VolunteerHome");
     } catch {
       setError("Failed to create an account");
