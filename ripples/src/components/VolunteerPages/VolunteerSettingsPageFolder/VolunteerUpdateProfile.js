@@ -12,12 +12,23 @@ export default function VolunteerUpdateProfile() {
   const passwordConfirmRef = useRef();
   const contactRef = useRef();
   const dobRef = useRef();
-  const { currentUser, updateEmail, updatePassword, dbUser } = useAuth();
+  const {
+    currentUser,
+    dbUser,
+    updateFirstName,
+    updateLastName,
+    updateUsername,
+    updateEmail,
+    updatePassword,
+    updateContact,
+    updateDob,
+  } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   console.log(dbUser);
+
   function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
@@ -28,11 +39,28 @@ export default function VolunteerUpdateProfile() {
     setLoading(true);
     setError("");
 
+    if (firstNameRef.current.value) {
+      updates.push(
+        updateFirstName(firstNameRef.current.value, currentUser.uid)
+      );
+    }
+    if (lastNameRef.current.value) {
+      updates.push(updateLastName(lastNameRef.current.value, currentUser.uid));
+    }
+    if (usernameRef.current.value) {
+      updates.push(updateUsername(usernameRef.current.value, currentUser.uid));
+    }
     if (emailRef.current.value !== currentUser.email) {
-      updates.push(updateEmail(emailRef.current.value));
+      updates.push(updateEmail(emailRef.current.value, currentUser.uid));
     }
     if (passwordRef.current.value) {
-      updates.push(updatePassword(passwordRef.current.value));
+      updates.push(updatePassword(passwordRef.current.value, currentUser.uid));
+    }
+    if (contactRef.current.value) {
+      updates.push(updateContact(contactRef.current.value, currentUser.uid));
+    }
+    if (dobRef.current.value) {
+      updates.push(updateDob(dobRef.current.value, currentUser.uid));
     }
 
     Promise.all(updates)

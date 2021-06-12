@@ -37,12 +37,37 @@ export function AuthProvider({ children }) {
     return auth.sendPasswordResetEmail(email);
   }
 
-  function updateEmail(email) {
+  function updateEmail(email, uid) {
+    database.collection("user").doc(uid).update({ email: email });
     return currentUser.updateEmail(email);
   }
 
-  function updatePassword(password) {
+  function updatePassword(password, uid) {
+    database.collection("user").doc(uid).update({ password: password });
     return currentUser.updatePassword(password);
+  }
+
+  function updateUsername(username, uid) {
+    return database.collection("user").doc(uid).update({ username: username });
+  }
+
+  function updateFirstName(firstName, uid) {
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ firstName: firstName });
+  }
+
+  function updateLastName(lastName, uid) {
+    return database.collection("user").doc(uid).update({ lastName: lastName });
+  }
+
+  function updateContact(contact, uid) {
+    return database.collection("user").doc(uid).update({ contact: contact });
+  }
+
+  function updateDob(dob, uid) {
+    return database.collection("user").doc(uid).update({ dob: dob });
   }
 
   useEffect(() => {
@@ -63,6 +88,11 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateEmail,
     updatePassword,
+    updateUsername,
+    updateFirstName,
+    updateLastName,
+    updateContact,
+    updateDob,
   };
 
   return (
