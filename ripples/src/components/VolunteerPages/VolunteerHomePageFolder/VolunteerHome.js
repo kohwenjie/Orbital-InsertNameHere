@@ -28,21 +28,21 @@ export default function VolunteerHome() {
   const { currentUser } = useAuth();
   console.log(currentUser.uid);
 
-  const ref = firebase.firestore().collection("user");
-  const [users, setUsers] = useState([]);
-  function getUsers() {
-    ref.onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
-      });
-      setUsers(items);
-    });
-  }
+  // const ref = firebase.firestore().collection("user");
+  // const [users, setUsers] = useState([]);
+  // function getUsers() {
+  //   ref.onSnapshot((querySnapshot) => {
+  //     const items = [];
+  //     querySnapshot.forEach((doc) => {
+  //       items.push(doc.data());
+  //     });
+  //     setUsers(items);
+  //   });
+  // }
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
 
   return (
     <React.Fragment>

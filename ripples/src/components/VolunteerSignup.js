@@ -26,7 +26,7 @@ export default function VolunteerSignup() {
   const history = useHistory();
   const { currentUser } = useAuth();
 
-  const [userUID, setUserUID] = useState();
+  const [userUID, setUserUID] = useState("not set");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -38,19 +38,18 @@ export default function VolunteerSignup() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value).then(
-        function (user) {
-          database.collection("user").doc(user.uid).set({
-            firstName: firstName,
-            lastName: lastName,
-            username: username,
-            email: email,
-            password: password,
-            contact: contact,
-            dob: dob,
-          });
-        }
-      );
+      await signup(emailRef.current.value, passwordRef.current.value)
+        .then(setUserUID(currentUser.uid))
+        .then(console.log(userUID));
+      // database.collection("user").doc(userUID).set({
+      //   firstName: firstName,
+      //   lastName: lastName,
+      //   username: username,
+      //   email: email,
+      //   password: password,
+      //   contact: contact,
+      //   dob: dob,
+      // });
       history.push("/VolunteerHome");
     } catch {
       setError("Failed to create an account");
