@@ -12,11 +12,12 @@ export default function VolunteerUpdateProfile() {
   const passwordConfirmRef = useRef();
   const contactRef = useRef();
   const dobRef = useRef();
-  const { currentUser, updateEmail, updatePassword } = useAuth();
+  const { currentUser, updateEmail, updatePassword, dbUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
+  console.log(dbUser);
   function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
