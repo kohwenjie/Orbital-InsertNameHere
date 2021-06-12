@@ -6,7 +6,7 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import { useAuth } from "../../../contexts/AuthContext";
-import firebase from "../../../firebase";
+import firebase, { database } from "../../../firebase";
 import { useState, useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,24 +25,8 @@ const mainFeaturedPost = {
 };
 
 export default function VolunteerHome() {
-  const { currentUser } = useAuth();
-  console.log(currentUser.uid);
-
-  // const ref = firebase.firestore().collection("user");
-  // const [users, setUsers] = useState([]);
-  // function getUsers() {
-  //   ref.onSnapshot((querySnapshot) => {
-  //     const items = [];
-  //     querySnapshot.forEach((doc) => {
-  //       items.push(doc.data());
-  //     });
-  //     setUsers(items);
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
+  const { currentUser, dbUser } = useAuth();
+  console.log(dbUser);
 
   return (
     <React.Fragment>
@@ -52,12 +36,6 @@ export default function VolunteerHome() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
-        {/* <div>
-          {users.map((user) => {
-            console.log(user);
-            return <h2>{user.q}</h2>;
-          })}
-        </div> */}
       </Container>
       <Footer />
     </React.Fragment>

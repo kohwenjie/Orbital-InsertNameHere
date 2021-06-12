@@ -14,7 +14,14 @@ export function AuthProvider({ children }) {
 
   function signup(email, password, obj) {
     return auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-      return database.collection("user").doc(cred.user.uid).set(obj);
+      const uid = cred.user.uid;
+      database.collection("user").doc(uid).set(obj);
+      database
+        .collection("user")
+        .doc(uid)
+        .get()
+        .then((user) => setDBUser(user.data()));
+      return;
     });
   }
 
@@ -49,6 +56,7 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    dbUser,
     login,
     signup,
     logout,
