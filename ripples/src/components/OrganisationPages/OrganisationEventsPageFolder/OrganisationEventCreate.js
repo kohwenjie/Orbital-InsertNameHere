@@ -11,12 +11,10 @@ export default function OrganisationEventCreate() {
   const [eventDate, setEventDate] = useState();
   const [signupDeadline, setSignupDeadline] = useState();
   const [tags, setTags] = useState();
-  const [organiserUID, setOrganiserUID] = useState();
   const { currentUser, dbUser, addEvent } = useAuth();
   const [error, setError] = useState("");
 
   console.log(dbUser);
-  console.log(currentUser);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -27,9 +25,15 @@ export default function OrganisationEventCreate() {
       eventLocation,
       eventDate,
       signupDeadline,
-      tags,
-      organiserUID
+      tags
     );
+
+    setEventName("");
+    setEventDescription("");
+    setEventLocation("");
+    setEventDate("");
+    setSignupDeadline("");
+    setTags("");
   }
 
   return (
@@ -87,20 +91,20 @@ export default function OrganisationEventCreate() {
                 onChange={(e) => setTags(e.target.value)}
               />
             </Form.Group>
-            <Form.Group id="organiser" className="mb-4">
+            {/* <Form.Group id="organisation" className="mb-4">
               <Form.Control
-                type="organiser"
-                placeholder={currentUser.organisationName}
+                type="organisation"
+                defaultValue={setOrganisationName(dbUser.organisationName)}
                 readOnly
               />
             </Form.Group>
-            <Form.Group id="organiserUID" className="mb-4">
+            <Form.Group id="organisationUID" className="mb-4">
               <Form.Control
-                type="organiserUID"
-                placeholder={currentUser.uid}
-                disabled
+                type="organisationUID"
+                defaultValue={setOrganisationUID(currentUser.uid)}
+                readOnly
               />
-            </Form.Group>
+            </Form.Group> */}
             <Button className="w-100" type="submit">
               Create Event!
             </Button>

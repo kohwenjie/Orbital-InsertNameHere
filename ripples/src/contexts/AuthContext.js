@@ -108,9 +108,23 @@ export function AuthProvider({ children }) {
     return database.collection("user").doc(uid).update({ dob: dob });
   }
 
-  function addEvent(eventName) {
+  function addEvent(
+    eventName,
+    eventDescription,
+    eventLocation,
+    eventDate,
+    signupDeadline,
+    Tags
+  ) {
     return database.collection("events").add({
       eventName: eventName,
+      eventDescription: eventDescription,
+      eventLocation: eventLocation,
+      eventDate: eventDate,
+      signupDeadline: signupDeadline,
+      Tags: Tags,
+      organisationName: dbUser.organisationName,
+      organisationUID: currentUser.uid,
     });
   }
 
