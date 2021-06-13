@@ -108,6 +108,12 @@ export function AuthProvider({ children }) {
     return database.collection("user").doc(uid).update({ dob: dob });
   }
 
+  function addEvent(eventName) {
+    return database.collection("events").add({
+      eventName: eventName,
+    });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -133,6 +139,7 @@ export function AuthProvider({ children }) {
     updateLastName,
     updateContact,
     updateDob,
+    addEvent,
   };
 
   return (
