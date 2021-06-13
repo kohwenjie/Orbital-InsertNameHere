@@ -1,7 +1,7 @@
 import React from "react";
 import SignupDiversion from "./SignupDiversion";
 import { Container } from "react-bootstrap";
-import { AuthProvider, useAuth } from "../contexts/AuthContext";
+import { AuthProvider } from "../contexts/AuthContext";
 import {
   BrowserRouter as Router,
   Switch,

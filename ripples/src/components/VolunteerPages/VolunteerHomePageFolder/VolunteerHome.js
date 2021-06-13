@@ -1,19 +1,17 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import { useAuth } from "../../../contexts/AuthContext";
-import firebase, { database } from "../../../firebase";
-import { useState, useEffect } from "react";
 
-const useStyles = makeStyles((theme) => ({
-  mainGrid: {
-    marginTop: theme.spacing(3),
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   mainGrid: {
+//     marginTop: theme.spacing(3),
+//   },
+// }));
 
 const mainFeaturedPost = {
   title: "THIS IS A VOLUNTEER HOMEPAGE",
@@ -25,7 +23,7 @@ const mainFeaturedPost = {
 };
 
 export default function VolunteerHome() {
-  const { currentUser, dbUser } = useAuth();
+  const { dbUser } = useAuth();
   console.log(dbUser);
 
   return (
