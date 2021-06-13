@@ -18,8 +18,10 @@ export default function VolunteerUpdateProfile() {
     updateFirstName,
     updateLastName,
     updateUsername,
-    updateEmail,
-    updatePassword,
+    updateAuthEmail,
+    updateDatabaseEmail,
+    updateAuthPassword,
+    updateDatabasePassword,
     updateContact,
     updateDob,
   } = useAuth();
@@ -40,10 +42,16 @@ export default function VolunteerUpdateProfile() {
     setError("");
 
     if (emailRef.current.value !== currentUser.email) {
-      updates.push(updateEmail(emailRef.current.value, currentUser.uid));
+      updates.push(
+        updateDatabaseEmail(emailRef.current.value, currentUser.uid)
+      );
+      updates.push(updateAuthEmail(emailRef.current.value));
     }
     if (passwordRef.current.value) {
-      updates.push(updatePassword(passwordRef.current.value, currentUser.uid));
+      updates.push(
+        updateDatabasePassword(passwordRef.current.value, currentUser.uid)
+      );
+      updates.push(updateAuthPassword(passwordRef.current.value));
     }
     if (firstNameRef.current.value) {
       updates.push(

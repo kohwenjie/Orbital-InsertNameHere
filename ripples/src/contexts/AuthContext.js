@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Alert } from "react-bootstrap";
 import { auth, database } from "../firebase";
 
 const AuthContext = React.createContext();
@@ -21,18 +22,25 @@ export function AuthProvider({ children }) {
         .doc(uid)
         .get()
         .then((user) => setDBUser(user.data()));
-      return;
     });
   }
 
   function login(email, password) {
-    auth.signInWithEmailAndPassword(email, password);
-    database
-      .collection("user")
-      .doc(currentUser.uid)
-      .get()
-      .then((user) => setDBUser(user.data()));
-    return;
+    return auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        console.log(userCredential.user.uid);
+        database
+          .collection("user")
+          .doc(userCredential.user.uid)
+          .get()
+          .then((user) => setDBUser(user.data()));
+        console.log(dbUser);
+      })
+      .catch((error) => {
+        console.log(error.code);
+        console.log(error.messaege);
+      });
   }
 
   function logout() {
@@ -43,14 +51,34 @@ export function AuthProvider({ children }) {
     return auth.sendPasswordResetEmail(email);
   }
 
-  function updateEmail(email, uid) {
-    database.collection("user").doc(uid).update({ email: email });
-    return currentUser.updateEmail(email);
+  function updateAuthEmail(email) {
+    return currentUser
+      .updateEmail(email)
+      .then(() => {
+        Alert.alert("Password was changed");
+      })
+      .catch((error) => {
+        Alert.alert(error.messaege);
+      });
   }
 
-  function updatePassword(password, uid) {
-    database.collection("user").doc(uid).update({ password: password });
-    return currentUser.updatePassword(password);
+  function updateDatabaseEmail(email, uid) {
+    return database.collection("user").doc(uid).update({ email: email });
+  }
+
+  function updateAuthPassword(password) {
+    return currentUser
+      .updatePassword(password)
+      .then(() => {
+        Alert.alert("Password was changed");
+      })
+      .catch((error) => {
+        Alert.alert(error.messaege);
+      });
+  }
+
+  function updateDatabasePassword(password, uid) {
+    return database.collection("user").doc(uid).update({ password: password });
   }
 
   function updateUsername(username, uid) {
@@ -92,8 +120,10 @@ export function AuthProvider({ children }) {
     signup,
     logout,
     resetPassword,
-    updateEmail,
-    updatePassword,
+    updateAuthEmail,
+    updateDatabaseEmail,
+    updateAuthPassword,
+    updateDatabasePassword,
     updateUsername,
     updateFirstName,
     updateLastName,
