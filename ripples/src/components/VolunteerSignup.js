@@ -43,6 +43,9 @@ export default function VolunteerSignup() {
         password: password,
         contact: contact,
         dob: dob,
+        points : 0,
+        commitments : {},
+        history : {},
       };
       await signup(
         emailRef.current.value,
