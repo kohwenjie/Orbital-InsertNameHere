@@ -13,6 +13,7 @@ export function AuthProvider({ children }) {
   const [dbUser, setDBUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  //over here mingyong
   function getUpdatedDBUser(uid) {
     return database
       .collection("user")
