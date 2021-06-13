@@ -13,15 +13,19 @@ export function AuthProvider({ children }) {
   const [dbUser, setDBUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  function getUpdatedDBUser(uid) {
+    return database
+      .collection("user")
+      .doc(uid)
+      .get()
+      .then((user) => setDBUser(user.data()));
+  }
+
   function signup(email, password, obj) {
     return auth.createUserWithEmailAndPassword(email, password).then((cred) => {
       const uid = cred.user.uid;
       database.collection("user").doc(uid).set(obj);
-      database
-        .collection("user")
-        .doc(uid)
-        .get()
-        .then((user) => setDBUser(user.data()));
+      getUpdatedDBUser(uid);
     });
   }
 
@@ -30,11 +34,7 @@ export function AuthProvider({ children }) {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         console.log(userCredential.user.uid);
-        database
-          .collection("user")
-          .doc(userCredential.user.uid)
-          .get()
-          .then((user) => setDBUser(user.data()));
+        getUpdatedDBUser(userCredential.user.uid);
         console.log(dbUser);
       })
       .catch((error) => {
