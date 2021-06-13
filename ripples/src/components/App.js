@@ -22,6 +22,7 @@ import VolunteerSetting from "./VolunteerPages/VolunteerSettingsPageFolder/Volun
 import OrganisationHome from "./OrganisationPages/OrganisationHomePageFolder/OrganisationHome";
 import OrganisationBeneficiaries from "./OrganisationPages/OrganisationBeneficiariesPageFolder/OrganisationBeneficiaries";
 import OrganisationEvents from "./OrganisationPages/OrganisationEventsPageFolder/OrganisationEvents";
+import OrganisationEventCreate from "./OrganisationPages/OrganisationEventsPageFolder/OrganisationEventCreate";
 import OrganisationHistory from "./OrganisationPages/OrganisationHistoryPageFolder/OrganisationHistory";
 import OrganisationSetting from "./OrganisationPages/OrganisationSettingPageFolder/OrganisationSetting";
 import BeneficiaryHome from "./BeneficiaryPages/BeneficiaryHomePageFolder/BeneficiaryHome";
@@ -72,6 +73,10 @@ function App() {
               <PrivateRoute
                 path="/OrganisationEvents"
                 component={OrganisationEvents}
+              />
+              <PrivateRoute
+                path="/OrganisationEventCreate"
+                component={OrganisationEventCreate}
               />
               <PrivateRoute
                 path="/OrganisationBeneficiaries"

@@ -5,6 +5,7 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
+import { Link } from "react-router-dom";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -32,8 +33,14 @@ export default function OrganisationEvents() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
+        <Link
+          to="/OrganisationEventCreate"
+          className="btn btn-primary btn-lg w-100 m-4"
+        >
+          Creat an Event!
+        </Link>
       </Container>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }
