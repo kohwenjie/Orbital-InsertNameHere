@@ -33,8 +33,9 @@ export default function OrganisationSignup() {
         email: email,
         password: password,
         contact: contact,
-        beneficiaries : {},
-        events : {}
+        beneficiaries: {},
+        events: {},
+        userType: "organisation",
       };
       await signup(
         emailRef.current.value,

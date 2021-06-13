@@ -42,6 +42,8 @@ export default function BeneficiarySignup() {
         password: password,
         contact: contact,
         dob: dob,
+        request:{},
+        userType : "beneficiary"
       };
       await signup(
         emailRef.current.value,

@@ -19,7 +19,7 @@ export default function VolunteerSignup() {
   const [contact, setContact] = useState("");
   const dobRef = useRef();
   const [dob, setDob] = useState("");
-  
+
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -43,9 +43,10 @@ export default function VolunteerSignup() {
         password: password,
         contact: contact,
         dob: dob,
-        points : 0,
-        commitments : {},
-        history : {},
+        points: 0,
+        commitments: {},
+        history: {},
+        userType: "volunteer",
       };
       await signup(
         emailRef.current.value,

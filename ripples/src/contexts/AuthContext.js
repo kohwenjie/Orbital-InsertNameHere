@@ -14,37 +14,41 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   //over here mingyong
-  function getUpdatedDBUser(uid) {
-    return database
+  async function getUpdatedDBUser(uid) {
+    await database
       .collection("user")
       .doc(uid)
       .get()
       .then((user) => setDBUser(user.data()));
   }
 
-  function signup(email, password, obj) {
+  async function signup(email, password, obj) {
     return auth.createUserWithEmailAndPassword(email, password).then((cred) => {
       const uid = cred.user.uid;
-      database.collection("user").doc(uid).set(obj);
-      getUpdatedDBUser(uid);
+      database
+        .collection("user")
+        .doc(uid)
+        .set(obj)
+        .then(() => getUpdatedDBUser(uid));
     });
   }
 
-  function login(email, password) {
-    return auth
+  async function login(email, password) {
+    await auth
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        console.log(userCredential.user.uid);
         getUpdatedDBUser(userCredential.user.uid);
-        console.log(dbUser);
+        console.log("logged in", userCredential.user.uid);
       })
       .catch((error) => {
         console.log(error.code);
-        console.log(error.messaege);
+        console.log(error.messege);
       });
   }
 
   function logout() {
+    setDBUser();
+    console.log(dbUser);
     return auth.signOut();
   }
 

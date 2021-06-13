@@ -10,7 +10,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-
+  const { dbUser } = useAuth();
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -18,7 +18,14 @@ export default function Login() {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      console.log(dbUser);
+      if (dbUser.userType === "volunteer") {
+        history.push("/VolunteerHome");
+      } else if (dbUser.userType === "organisation") {
+        history.push("/OrganisationHome");
+      } else {
+        history.push("/BeneficiaryHome");
+      }
     } catch {
       setError("Failed to log in");
     }
