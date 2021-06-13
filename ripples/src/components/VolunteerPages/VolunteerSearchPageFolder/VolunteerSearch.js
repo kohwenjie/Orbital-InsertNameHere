@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
-
+import { Card, Button } from "react-bootstrap";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -22,7 +22,6 @@ const mainFeaturedPost = {
   linkText: "Continue reading…",
 };
 
-
 export default function VolunteerSearch() {
   // const classes = useStyles();
 
@@ -34,8 +33,19 @@ export default function VolunteerSearch() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
+        <Card style={{ width: "" }}>
+          <Card.Body>
+            <Card.Title>This is the search tool function</Card.Title>
+            <Card.Subtitle>This is the subtitle of the card</Card.Subtitle>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </Card.Text>
+            <Button variant="primary">Go somewhere</Button>
+          </Card.Body>
+        </Card>
       </Container>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }

@@ -37,7 +37,7 @@ export default function OrganisationEvents() {
           to="/OrganisationEventCreate"
           className="btn btn-primary btn-lg w-100 m-4"
         >
-          Creat an Event!
+          Create an Event!
         </Link>
       </Container>
       <Footer />

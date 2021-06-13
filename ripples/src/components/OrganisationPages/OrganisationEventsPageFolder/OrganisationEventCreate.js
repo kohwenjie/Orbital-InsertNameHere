@@ -112,7 +112,7 @@ export default function OrganisationEventCreate() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2 mb-3">
-        <Link to="/">Cancel my edits</Link>
+        <Link to="/OrganisationHome">Cancel my edits</Link>
       </div>
     </>
   );
