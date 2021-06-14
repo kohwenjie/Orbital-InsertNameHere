@@ -5,13 +5,13 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
+import { Link } from "react-router-dom";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
 //     marginTop: theme.spacing(3),
 //   },
 // }));
-
 
 const mainFeaturedPost = {
   title: "THIS IS A Beneficiary Request PAGE",
@@ -33,8 +33,14 @@ export default function BeneficiaryRequest() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
+        <Link
+          to="/BeneficiaryRequestCreate"
+          className="btn btn-primary btn-lg w-100 m-4"
+        >
+          Make a Request!
+        </Link>
       </Container>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }

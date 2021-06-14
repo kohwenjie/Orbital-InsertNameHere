@@ -128,6 +128,23 @@ export function AuthProvider({ children }) {
     });
   }
 
+  function addRequest(
+    requestDescription,
+    requestLocation,
+    requestDate,
+    signupDeadline
+  ) {
+    return database.collection("events").add({
+      requestFirstName: dbUser.firstName,
+      requestLastName: dbUser.lastName,
+      requesterUID: currentUser.uid,
+      requestDescription: requestDescription,
+      requestLocation: requestLocation,
+      requestDate: requestDate,
+      signupDeadline: signupDeadline,
+    });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -154,6 +171,7 @@ export function AuthProvider({ children }) {
     updateContact,
     updateDob,
     addEvent,
+    addRequest,
   };
 
   return (

@@ -8,7 +8,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { database } from "../firebase";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
@@ -28,6 +27,7 @@ import OrganisationHistory from "./OrganisationPages/OrganisationHistoryPageFold
 import OrganisationSetting from "./OrganisationPages/OrganisationSettingPageFolder/OrganisationSetting";
 import BeneficiaryHome from "./BeneficiaryPages/BeneficiaryHomePageFolder/BeneficiaryHome";
 import BeneficiaryRequest from "./BeneficiaryPages/BeneficiaryRequestPageFolder/BeneficiaryRequest";
+import BeneficiaryRequestCreate from "./BeneficiaryPages/BeneficiaryRequestPageFolder/BeneficiaryRequestCreate";
 import BeneficiaryHistory from "./BeneficiaryPages/BeneficiaryHistoryPageFolder/BeneficiaryHistory";
 import BeneficiaryOrganisations from "./BeneficiaryPages/BeneficiaryOrganisationsPageFolder/BeneficiaryOrganisations";
 import BeneficiarySetting from "./BeneficiaryPages/BeneficiarySettingPageFolder/BeneficiarySetting";
@@ -98,6 +98,10 @@ function App() {
               <PrivateRoute
                 path="/BeneficiaryRequest"
                 component={BeneficiaryRequest}
+              />
+              <PrivateRoute
+                path="/BeneficiaryRequestCreate"
+                component={BeneficiaryRequestCreate}
               />
               <PrivateRoute
                 path="/BeneficiaryHistory"

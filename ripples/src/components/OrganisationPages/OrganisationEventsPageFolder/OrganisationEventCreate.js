@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import { database } from "../../../firebase";
 
 export default function OrganisationEventCreate() {
   const [eventName, setEventName] = useState();
@@ -11,7 +10,7 @@ export default function OrganisationEventCreate() {
   const [eventDate, setEventDate] = useState();
   const [signupDeadline, setSignupDeadline] = useState();
   const [tags, setTags] = useState();
-  const { currentUser, dbUser, addEvent } = useAuth();
+  const { dbUser, addEvent } = useAuth();
   const [error, setError] = useState("");
 
   console.log(dbUser);
@@ -112,7 +111,7 @@ export default function OrganisationEventCreate() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2 mb-3">
-        <Link to="/OrganisationHome">Cancel my edits</Link>
+        <Link to="/OrganisationEvents">Cancel my edits</Link>
       </div>
     </>
   );

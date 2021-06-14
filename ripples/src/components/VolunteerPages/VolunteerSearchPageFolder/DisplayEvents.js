@@ -40,13 +40,23 @@ export default function DisplayEvents() {
         events.map((event) => {
           return (
             <div className="event-container" key={event.organisationUID}>
+              {/* if the data and field is available, then it will be shown. else the 
+            information will not be shown on the search page
+            *hence, we need to ensure that the field for beneficiary request and 
+            organsation events are and will be different when stored into firestore */}
               <p>{event.eventName}</p>
               <p>{event.eventDescription}</p>
+              <p>{event.requestDescription}</p>
               <p>{event.eventLocation}</p>
+              <p>{event.requestLocation}</p>
               <p>{event.eventDate}</p>
+              <p>{event.requestDate}</p>
               <p>{event.signupDeadline}</p>
               <p>{event.organisationName}</p>
+              <p>{event.requestFirstName}</p>
+              <p>{event.requestLastName}</p>
               <p>{event.organisationUID}</p>
+              <p>{event.requesterUID}</p>
               <p>{event.Tags}</p>
               <br />
             </div>
