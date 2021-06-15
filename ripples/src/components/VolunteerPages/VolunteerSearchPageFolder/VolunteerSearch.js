@@ -6,7 +6,7 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import { Card, Button } from "react-bootstrap";
-import Blogs from "./DisplayEvents";
+import DisplayEvents from "./DisplayEvents";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -49,20 +49,21 @@ export default function VolunteerSearch() {
       <CssBaseline />
       <Container maxWidth="lg">
         <Header />
-        <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
-        </main>
-        <Card style={{ width: "" }}>
-          <Card.Body>
+        <Card
+          style={{ width: "" }}
+          
+        >
+          <DisplayEvents />
+          {/* <Card.Body>
             <Card.Title>This is the search tool function</Card.Title>
             <Card.Subtitle>This is the subtitle of the card</Card.Subtitle>
             <Card.Text>
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </Card.Text>
-            <Blogs />
+            
             <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
+          </Card.Body> */}
         </Card>
       </Container>
       <Footer />

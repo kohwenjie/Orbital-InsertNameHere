@@ -90,20 +90,14 @@ export default function OrganisationEventCreate() {
                 onChange={(e) => setTags(e.target.value)}
               />
             </Form.Group>
-            {/* <Form.Group id="organisation" className="mb-4">
-              <Form.Control
-                type="organisation"
-                defaultValue={setOrganisationName(dbUser.organisationName)}
-                readOnly
+
+              <Form.File
+                id="custom-file-translate-scss"
+                label="Insert Image for Event"
+                lang="en"
+                className="mb-4"
+                custom
               />
-            </Form.Group>
-            <Form.Group id="organisationUID" className="mb-4">
-              <Form.Control
-                type="organisationUID"
-                defaultValue={setOrganisationUID(currentUser.uid)}
-                readOnly
-              />
-            </Form.Group> */}
             <Button className="w-100" type="submit">
               Create Event!
             </Button>

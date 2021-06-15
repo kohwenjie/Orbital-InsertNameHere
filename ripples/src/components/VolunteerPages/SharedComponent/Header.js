@@ -40,7 +40,7 @@ const title = "Ripples"
 export default function Header(props) {
   const classes = useStyles();
   const [error, setError] = useState();
-  const { currentUser, logout } = useAuth();
+  const { dbUser, logout } = useAuth();
   const history = useHistory();
 
   async function handleLogout() {
@@ -59,7 +59,7 @@ export default function Header(props) {
       <Toolbar className={classes.toolbar}>
         {/* WE ARE GOING TO MAKE THIS BUTTON BELOW LINK TO THE PROFILE PAGE AND THE SAME FOR BENE AND ORG*/}
         <Button size="small">
-          <b>{currentUser.email}</b>
+          <b>{dbUser.firstName + "  " + dbUser.lastName}</b>
         </Button>
         <Typography
           component="h2"

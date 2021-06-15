@@ -43,7 +43,7 @@ function App() {
           <AuthProvider>
             <Switch>
               <PrivateRoute exact path="/">
-                <Redirect to="/VolunteerHome" />
+                <Redirect to="/login" />
               </PrivateRoute>
               <PrivateRoute
                 exact
