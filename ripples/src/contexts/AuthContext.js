@@ -35,19 +35,21 @@ export function AuthProvider({ children }) {
   async function login(email, password) {
     await auth
       .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        getUpdatedDBUser(userCredential.user.uid);
-        console.log("logged in", userCredential.user.uid);
-      })
+      // .then((userCredential) => {
+      //   getUpdatedDBUser(userCredential.user.uid);
+      //   console.log("logged in", userCredential.user.uid);
+      // })
       .catch((error) => {
         console.log(error.code);
         console.log(error.messege);
       });
+
+    if (currentUser) {
+      getUpdatedDBUser(currentUser.user.uid);
+    }
   }
 
   function logout() {
-    setDBUser();
-    console.log(dbUser);
     return auth.signOut();
   }
 
@@ -184,16 +186,18 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  useEffect(() => {
-    const data = localStorage.getItem("localUser");
-    if (data) {
-      setDBUser(JSON.parse(data));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const data = localStorage.getItem("localUser");
+  //   console.log(data);
+  //   if (data) {
+  //     console.log(data);
+  //     setDBUser(JSON.parse(data));
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem("localUser", JSON.stringify(dbUser));
-  });
+  // useEffect(() => {
+  //   localStorage.setItem("localUser", JSON.stringify(dbUser));
+  // });
 
   const value = {
     currentUser,
