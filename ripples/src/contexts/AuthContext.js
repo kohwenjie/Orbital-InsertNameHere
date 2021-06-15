@@ -52,12 +52,15 @@ export function AuthProvider({ children }) {
   }
 
   function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email);
+    return auth
+      .sendPasswordResetEmail(email)
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
   function updateAuthEmail(email) {
     return currentUser
       .updateEmail(email)
+      .then(getUpdatedDBUser(currentUser.uid))
       .then(() => {
         Alert.alert("Password was changed");
       })
@@ -67,7 +70,11 @@ export function AuthProvider({ children }) {
   }
 
   function updateDatabaseEmail(email, uid) {
-    return database.collection("user").doc(uid).update({ email: email });
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ email: email })
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
   function updateAuthPassword(password) {
@@ -76,38 +83,61 @@ export function AuthProvider({ children }) {
       .then(() => {
         Alert.alert("Password was changed");
       })
+      .then(getUpdatedDBUser(currentUser.uid))
       .catch((error) => {
         Alert.alert(error.messaege);
       });
   }
 
   function updateDatabasePassword(password, uid) {
-    return database.collection("user").doc(uid).update({ password: password });
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ password: password })
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
   function updateUsername(username, uid) {
-    return database.collection("user").doc(uid).update({ username: username });
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ username: username })
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
   function updateFirstName(firstName, uid) {
     return database
       .collection("user")
       .doc(uid)
-      .update({ firstName: firstName });
+      .update({ firstName: firstName })
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
   function updateLastName(lastName, uid) {
-    return database.collection("user").doc(uid).update({ lastName: lastName });
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ lastName: lastName })
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
   function updateContact(contact, uid) {
-    return database.collection("user").doc(uid).update({ contact: contact });
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ contact: contact })
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
   function updateDob(dob, uid) {
-    return database.collection("user").doc(uid).update({ dob: dob });
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ dob: dob })
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
+  //need add event uid to the organiser's array of events
   function addEvent(
     eventName,
     eventDescription,
@@ -128,6 +158,7 @@ export function AuthProvider({ children }) {
     });
   }
 
+  //need add request uid to beneficiary's array of request
   function addRequest(
     requestDescription,
     requestLocation,
@@ -150,9 +181,19 @@ export function AuthProvider({ children }) {
       setCurrentUser(user);
       setLoading(false);
     });
-
     return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    const data = localStorage.getItem("localUser");
+    if (data) {
+      setDBUser(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("localUser", JSON.stringify(dbUser));
+  });
 
   const value = {
     currentUser,
