@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
-import { Card, Button } from "react-bootstrap";
+import { Card, CardGroup } from "react-bootstrap";
 import DisplayEvents from "./DisplayEvents";
 
 // const useStyles = makeStyles((theme) => ({
@@ -49,11 +49,9 @@ export default function VolunteerSearch() {
       <CssBaseline />
       <Container maxWidth="lg">
         <Header />
-        <Card
-          style={{ width: "" }}
-          
-        >
-          <DisplayEvents />
+        {/* <Card style={{ width: "" }}> */}
+        <DisplayEvents />
+        <CardGroup>
           {/* <Card.Body>
             <Card.Title>This is the search tool function</Card.Title>
             <Card.Subtitle>This is the subtitle of the card</Card.Subtitle>
@@ -64,7 +62,8 @@ export default function VolunteerSearch() {
             
             <Button variant="primary">Go somewhere</Button>
           </Card.Body> */}
-        </Card>
+          {/* </Card> */}
+        </CardGroup>
       </Container>
       <Footer />
     </React.Fragment>
