@@ -17,15 +17,18 @@ export default function Login() {
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      console.log(dbUser);
-      if (dbUser.userType === "volunteer") {
-        history.push("/VolunteerHome");
-      } else if (dbUser.userType === "organisation") {
-        history.push("/OrganisationHome");
-      } else {
-        history.push("/BeneficiaryHome");
-      }
+      await login(emailRef.current.value, passwordRef.current.value).then(
+        () => {
+          console.log("login page: ", dbUser);
+          if (dbUser.userType === "volunteer") {
+            history.push("/VolunteerHome");
+          } else if (dbUser.userType === "organisation") {
+            history.push("/OrganisationHome");
+          } else {
+            history.push("/BeneficiaryHome");
+          }
+        }
+      );
     } catch {
       setError("Failed to log in");
     }

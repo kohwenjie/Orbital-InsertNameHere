@@ -13,12 +13,15 @@ export function AuthProvider({ children }) {
   const [dbUser, setDBUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  async function getUpdatedDBUser(uid) {
-    await database
+  function getUpdatedDBUser(uid) {
+    return database
       .collection("user")
       .doc(uid)
       .get()
-      .then((user) => setDBUser(user.data()));
+      .then((user) => {
+        setDBUser(user.data());
+        console.log("retrieved DBUser:", dbUser);
+      });
   }
 
   async function signup(email, password, obj) {
@@ -35,18 +38,18 @@ export function AuthProvider({ children }) {
   async function login(email, password) {
     await auth
       .signInWithEmailAndPassword(email, password)
-      // .then((userCredential) => {
-      //   getUpdatedDBUser(userCredential.user.uid);
-      //   console.log("logged in", userCredential.user.uid);
-      // })
+      .then((userCredential) => {
+        getUpdatedDBUser(userCredential.user.uid);
+        console.log("logged in", userCredential.user.uid);
+      })
       .catch((error) => {
         console.log(error.code);
         console.log(error.messege);
       });
 
-    if (currentUser) {
-      getUpdatedDBUser(currentUser.user.uid);
-    }
+    // if (currentUser) {
+    //   getUpdatedDBUser(currentUser.user.uid);
+    // }
   }
 
   function logout() {
