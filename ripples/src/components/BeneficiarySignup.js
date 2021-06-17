@@ -42,15 +42,15 @@ export default function BeneficiarySignup() {
         password: password,
         contact: contact,
         dob: dob,
-        request:{},
-        userType : "beneficiary"
+        request: {},
+        userType: "beneficiary",
       };
       await signup(
         emailRef.current.value,
         passwordRef.current.value,
         userDetails
       );
-      history.push("/BeneficiaryHome");
+      history.push("/Redirect");
     } catch {
       setError("Failed to create an account");
     }

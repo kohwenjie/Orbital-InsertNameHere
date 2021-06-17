@@ -53,7 +53,7 @@ export default function VolunteerSignup() {
         passwordRef.current.value,
         userDetails
       );
-      history.push("/VolunteerHome");
+      history.push("/Redirect");
     } catch {
       setError("Failed to create an account");
     }

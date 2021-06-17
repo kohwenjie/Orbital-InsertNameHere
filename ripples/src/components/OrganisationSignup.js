@@ -42,7 +42,7 @@ export default function OrganisationSignup() {
         passwordRef.current.value,
         userDetails
       );
-      history.push("/OrganisationHome");
+      history.push("/Redirect");
     } catch {
       setError("Failed to create an account");
     }

@@ -27,36 +27,26 @@ export function AuthProvider({ children }) {
   }
 
   function signup(email, password, obj) {
-    return auth.createUserWithEmailAndPassword(email, password);
-    // .then((cred) => {
-    //   const uid = cred.user.uid;
-    //   database
-    //     .collection("user")
-    //     .doc(uid)
-    //     .set(obj)
-    //     .then(() => getUpdatedDBUser(uid));
-    //     console.log("retrieved DBUser:", dbUser);
-    // });
+    return auth.createUserWithEmailAndPassword(email, password).then((cred) => {
+      const uid = cred.user.uid;
+      database
+        .collection("user")
+        .doc(uid)
+        .set(obj)
+        .then(() => getUpdatedDBUser(uid));
+      console.log("retrieved DBUser:", dbUser);
+    });
   }
 
   function login(email, password) {
     return (
       auth
         .signInWithEmailAndPassword(email, password)
-        // .then((userCredential) => {
-        //   getUpdatedDBUser(userCredential.user.uid);
-        //   console.log("logged in", userCredential.user.uid);
-        //   console.log("retrieved DBUser LOGIN :", dbUser);
-        // })
         .catch((error) => {
           console.log(error.code);
           console.log(error.messege);
         })
     );
-
-    // if (currentUser) {
-    //   getUpdatedDBUser(currentUser.user.uid);
-    // }
   }
 
   function logout() {
