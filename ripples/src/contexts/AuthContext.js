@@ -20,32 +20,39 @@ export function AuthProvider({ children }) {
       .get()
       .then((user) => {
         setDBUser(user.data());
-        console.log("retrieved DBUser:", dbUser);
-      });
-  }
-
-  async function signup(email, password, obj) {
-    return auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-      const uid = cred.user.uid;
-      database
-        .collection("user")
-        .doc(uid)
-        .set(obj)
-        .then(() => getUpdatedDBUser(uid));
-    });
-  }
-
-  async function login(email, password) {
-    await auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        getUpdatedDBUser(userCredential.user.uid);
-        console.log("logged in", userCredential.user.uid);
       })
-      .catch((error) => {
-        console.log(error.code);
-        console.log(error.messege);
+      .then(() => {
+        console.log("get updated DBUser:", dbUser);
       });
+  }
+
+  function signup(email, password, obj) {
+    return auth.createUserWithEmailAndPassword(email, password);
+    // .then((cred) => {
+    //   const uid = cred.user.uid;
+    //   database
+    //     .collection("user")
+    //     .doc(uid)
+    //     .set(obj)
+    //     .then(() => getUpdatedDBUser(uid));
+    //     console.log("retrieved DBUser:", dbUser);
+    // });
+  }
+
+  function login(email, password) {
+    return (
+      auth
+        .signInWithEmailAndPassword(email, password)
+        // .then((userCredential) => {
+        //   getUpdatedDBUser(userCredential.user.uid);
+        //   console.log("logged in", userCredential.user.uid);
+        //   console.log("retrieved DBUser LOGIN :", dbUser);
+        // })
+        .catch((error) => {
+          console.log(error.code);
+          console.log(error.messege);
+        })
+    );
 
     // if (currentUser) {
     //   getUpdatedDBUser(currentUser.user.uid);
@@ -220,6 +227,7 @@ export function AuthProvider({ children }) {
     updateDob,
     addEvent,
     addRequest,
+    getUpdatedDBUser,
   };
 
   return (

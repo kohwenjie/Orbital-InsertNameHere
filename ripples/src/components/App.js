@@ -14,6 +14,7 @@ import ForgotPassword from "./ForgotPassword";
 import VolunteerSignup from "./VolunteerSignup";
 import BeneficiarySignup from "./BeneficiarySignup";
 import OrganisationSignup from "./OrganisationSignup";
+import RedirectPage from "./Redirect";
 import VolunteerHome from "./VolunteerPages/VolunteerHomePageFolder/VolunteerHome";
 import VolunteerSearch from "./VolunteerPages/VolunteerSearchPageFolder/VolunteerSearch";
 import VolunteerCommitment from "./VolunteerPages/VolunteerCommitmentPageFolder/VolunteerCommitment";
@@ -42,6 +43,8 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
+              <PrivateRoute path="/Redirect" component={RedirectPage} />
+
               <PrivateRoute exact path="/">
                 <Redirect to="/login" />
               </PrivateRoute>

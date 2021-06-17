@@ -10,25 +10,31 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const { dbUser } = useAuth();
+  const { dbUser, currentUser } = useAuth();
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value).then(
-        () => {
-          console.log("login page: ", dbUser);
-          if (dbUser.userType === "volunteer") {
-            history.push("/VolunteerHome");
-          } else if (dbUser.userType === "organisation") {
-            history.push("/OrganisationHome");
-          } else {
-            history.push("/BeneficiaryHome");
-          }
-        }
-      );
+      await login(emailRef.current.value, passwordRef.current.value)
+      history.push("/Redirect");
+      console.log("login page dbUser: ", dbUser);
+      console.log("login page currentUser: ", currentUser);
+      // .then(
+      //   () => {
+      //     // console.log("login page dbUser: ", dbUser);
+      //     // console.log("login page currentUser: ", currentUser);
+      //     history.push("/Redirect");
+      //     // if (dbUser.userType === "volunteer") {
+      //     //   history.push("/VolunteerHome");
+      //     // } else if (dbUser.userType === "organisation") {
+      //     //   history.push("/OrganisationHome");
+      //     // } else {
+      //     //   history.push("/BeneficiaryHome");
+      //     // }
+      //   }
+      // );
     } catch {
       setError("Failed to log in");
     }
