@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
@@ -10,14 +10,14 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const { dbUser, currentUser } = useAuth();
+  const { dbUser, currentUser, setDBUser, setCurrentUser } = useAuth();
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value)
+      await login(emailRef.current.value, passwordRef.current.value);
       history.push("/Redirect");
       console.log("login page dbUser: ", dbUser);
       console.log("login page currentUser: ", currentUser);

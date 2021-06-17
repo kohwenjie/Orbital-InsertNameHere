@@ -40,7 +40,7 @@ const title="Ripples"
 export default function Header(props) {
   const classes = useStyles();
   const [error, setError] = useState();
-  const { dbUser, logout } = useAuth();
+  const { dbUser, logout, setDBUser, setCurrentUser, currentUser } = useAuth();
   const history = useHistory();
 
   async function handleLogout() {
@@ -49,6 +49,9 @@ export default function Header(props) {
     try {
       await logout();
       history.push("/Login");
+      setDBUser();
+      setCurrentUser();
+      console.log("logged out: ", dbUser, currentUser);
     } catch {
       setError("Failed to log out");
     }

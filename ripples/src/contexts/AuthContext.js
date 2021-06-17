@@ -218,6 +218,8 @@ export function AuthProvider({ children }) {
     addEvent,
     addRequest,
     getUpdatedDBUser,
+    setDBUser,
+    setCurrentUser
   };
 
   return (
