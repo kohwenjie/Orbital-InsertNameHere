@@ -39,14 +39,10 @@ export function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    return (
-      auth
-        .signInWithEmailAndPassword(email, password)
-        .catch((error) => {
-          console.log(error.code);
-          console.log(error.messege);
-        })
-    );
+    return auth.signInWithEmailAndPassword(email, password).catch((error) => {
+      console.log(error.code);
+      console.log(error.messege);
+    });
   }
 
   function logout() {
@@ -148,7 +144,8 @@ export function AuthProvider({ children }) {
     signupDeadline,
     Tags
   ) {
-    return database.collection("events").add({
+    const newEventRef = database.collection("events").doc();
+    return newEventRef.set({
       eventName: eventName,
       eventDescription: eventDescription,
       eventLocation: eventLocation,
@@ -157,6 +154,7 @@ export function AuthProvider({ children }) {
       Tags: Tags,
       organisationName: dbUser.organisationName,
       organisationUID: currentUser.uid,
+      documentUID: newEventRef,
     });
   }
 
@@ -219,7 +217,7 @@ export function AuthProvider({ children }) {
     addRequest,
     getUpdatedDBUser,
     setDBUser,
-    setCurrentUser
+    setCurrentUser,
   };
 
   return (
