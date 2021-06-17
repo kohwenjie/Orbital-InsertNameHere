@@ -86,7 +86,7 @@ export default function DisplayEvents() {
 
                 {/* i tot beneficiary send request to organisation then organisation create event for them and tag it as Beneficiary request? */}
 
-                <Card style={{ width: "18rem" }} className="box">
+                <Card style={{ width: "18rem" }} className="box m-4">
                   <Card.Img
                     variant="top"
                     src="https://ivhq.imgix.net/images/pages/volunteer-activity-ideas/volunteer-acitivty-ideascommunity-senior.png?w=850&fit=max&auto=compress%2Cformat"
