@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import { TextField } from "@material-ui/core";
 
 export default function OrganisationEventCreate() {
   const [eventName, setEventName] = useState();
@@ -66,20 +67,44 @@ export default function OrganisationEventCreate() {
                 onChange={(e) => setEventLocation(e.target.value)}
               />
             </Form.Group>
-            <Form.Group id="eventDate" className="mb-4">
+            {/* <Form.Group id="eventDate" className="mb-4">
               <Form.Control
                 type="eventDate"
                 placeholder="Event Date (eg. 6th September 2021)"
                 value={eventDate}
                 onChange={(e) => setEventDate(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group id="signupDeadline" className="mb-4">
+            </Form.Group> */}
+            {/* <Form.Group id="signupDeadline" className="mb-4">
               <Form.Control
                 type="signupDeadline"
                 placeholder="Sign Up Deadline (eg. 6th September 2021)"
                 value={signupDeadline}
                 onChange={(e) => setSignupDeadline(e.target.value)}
+              />
+            </Form.Group> */}
+            <Form.Group id="eventDate" className="mb-4">
+              <TextField
+                id="date"
+                label="Date of Event"
+                type="date"
+                value={eventDate}
+                onChange={(e) => setEventDate(e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Form.Group>
+            <Form.Group id="signupDeadline" className="mb-4">
+              <TextField
+                id="date"
+                label="Signup Deadline"
+                type="date"
+                value={signupDeadline}
+                onChange={(e) => setSignupDeadline(e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </Form.Group>
             <Form.Group id="tags" className="mb-4">
@@ -91,13 +116,13 @@ export default function OrganisationEventCreate() {
               />
             </Form.Group>
 
-              <Form.File
-                id="custom-file-translate-scss"
-                label="Insert Image for Event"
-                lang="en"
-                className="mb-4"
-                custom
-              />
+            <Form.File
+              id="custom-file-translate-scss"
+              label="Insert Image for Event"
+              lang="en"
+              className="mb-4"
+              custom
+            />
             <Button className="w-100" type="submit">
               Create Event!
             </Button>
