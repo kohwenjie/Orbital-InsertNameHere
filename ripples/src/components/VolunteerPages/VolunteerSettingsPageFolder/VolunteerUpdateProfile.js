@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { TextField } from "@material-ui/core";
 
 export default function VolunteerUpdateProfile() {
   const firstNameRef = useRef();
@@ -35,6 +36,12 @@ export default function VolunteerUpdateProfile() {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
+    }
+    if (
+      contactRef.current.value < 80000000 ||
+      contactRef.current.value > 100000000
+    ) {
+      return setError("Contact Number is invalid");
     }
 
     const updates = [];
@@ -130,9 +137,21 @@ export default function VolunteerUpdateProfile() {
               <Form.Label>Contact</Form.Label>
               <Form.Control type="contact" ref={contactRef} />
             </Form.Group>
-            <Form.Group id="dob" className="mb-4">
+            {/* <Form.Group id="dob" className="mb-4">
               <Form.Label>D.O.B</Form.Label>
               <Form.Control type="dob" ref={dobRef} />
+            </Form.Group> */}
+            <Form.Group id="dob" className="mt-3 mb-3">
+              <TextField
+                id="date"
+                inputRef={dobRef}
+                label="Date of Birth"
+                type="date"
+                defaultValue={dbUser.dob}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               Update my profile!

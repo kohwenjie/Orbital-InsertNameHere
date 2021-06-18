@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { TextField } from "@material-ui/core";
 
 export default function BeneficiaryUpdateProfile() {
   const firstNameRef = useRef();
@@ -12,7 +13,19 @@ export default function BeneficiaryUpdateProfile() {
   const passwordConfirmRef = useRef();
   const contactRef = useRef();
   const dobRef = useRef();
-  const { currentUser, updateEmail, updatePassword } = useAuth();
+  const {
+    currentUser,
+    dbUser,
+    updateFirstName,
+    updateLastName,
+    updateUsername,
+    updateAuthEmail,
+    updateDatabaseEmail,
+    updateAuthPassword,
+    updateDatabasePassword,
+    updateContact,
+    updateDob,
+  } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -26,12 +39,34 @@ export default function BeneficiaryUpdateProfile() {
     const updates = [];
     setLoading(true);
     setError("");
-
     if (emailRef.current.value !== currentUser.email) {
-      updates.push(updateEmail(emailRef.current.value));
+      updates.push(
+        updateDatabaseEmail(emailRef.current.value, currentUser.uid)
+      );
+      updates.push(updateAuthEmail(emailRef.current.value));
     }
     if (passwordRef.current.value) {
-      updates.push(updatePassword(passwordRef.current.value));
+      updates.push(
+        updateDatabasePassword(passwordRef.current.value, currentUser.uid)
+      );
+      updates.push(updateAuthPassword(passwordRef.current.value));
+    }
+    if (firstNameRef.current.value) {
+      updates.push(
+        updateFirstName(firstNameRef.current.value, currentUser.uid)
+      );
+    }
+    if (lastNameRef.current.value) {
+      updates.push(updateLastName(lastNameRef.current.value, currentUser.uid));
+    }
+    if (usernameRef.current.value) {
+      updates.push(updateUsername(usernameRef.current.value, currentUser.uid));
+    }
+    if (contactRef.current.value) {
+      updates.push(updateContact(contactRef.current.value, currentUser.uid));
+    }
+    if (dobRef.current.value) {
+      updates.push(updateDob(dobRef.current.value, currentUser.uid));
     }
 
     Promise.all(updates)
@@ -93,9 +128,21 @@ export default function BeneficiaryUpdateProfile() {
               <Form.Label>Contact</Form.Label>
               <Form.Control type="contact" ref={contactRef} />
             </Form.Group>
-            <Form.Group id="dob" className="mb-4">
+            {/* <Form.Group id="dob" className="mb-4">
               <Form.Label>D.O.B</Form.Label>
               <Form.Control type="dob" ref={dobRef} />
+            </Form.Group> */}
+            <Form.Group id="dob" className="mt-3 mb-3">
+              <TextField
+                id="date"
+                inputRef={dobRef}
+                label="Date of Birth"
+                type="date"
+                defaultValue={dbUser.dob}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               Update my profile!
