@@ -24,6 +24,12 @@ export default function OrganisationSignup() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
+    if (contactRef.current.value<80000000 || contactRef.current.value > 100000000) {
+      if (contactRef.current.valu<60000000 || contactRef.current.value > 70000000) {
+        return setError("Contact Number is invalid")
+      }
+    }
+    
 
     try {
       setError("");

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { TextField } from "@material-ui/core";
 
 export default function BeneficiarySignup() {
   const firstNameRef = useRef();
@@ -30,6 +31,9 @@ export default function BeneficiarySignup() {
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
+    }
+    if (contactRef.current.value<80000000 || contactRef.current.value > 100000000) {
+      return setError("Contact Number is invalid")
     }
     try {
       setError("");
@@ -136,15 +140,19 @@ export default function BeneficiarySignup() {
               />
             </Form.Group>
             <Form.Group id="dob" className="mt-3 mb-3">
-              <Form.Control
-                type="dob"
-                ref={dobRef}
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
+              <TextField
+                id="date"
+                inputRef={dobRef}
                 required
-                placeholder="Date of Birth"
+                onChange={(e) => setDob(e.target.value)}
+                label="Date of Birth"
+                type="date"
+                defaultValue="2017-05-24"
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
-            </Form.Group>
+              </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               I am a Beneficiary!
             </Button>

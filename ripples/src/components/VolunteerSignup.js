@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
+import { TextField } from "@material-ui/core";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
@@ -30,6 +31,12 @@ export default function VolunteerSignup() {
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
+    }
+    if (
+      contactRef.current.value < 80000000 ||
+      contactRef.current.value > 100000000
+    ) {
+      return setError("Contact Number is invalid");
     }
 
     try {
@@ -138,7 +145,7 @@ export default function VolunteerSignup() {
                 placeholder="Contact Number"
               />
             </Form.Group>
-            <Form.Group id="dob" className="mt-3 mb-3">
+            {/* <Form.Group id="dob" className="mt-3 mb-3">
               <Form.Control
                 type="dob"
                 ref={dobRef}
@@ -146,6 +153,20 @@ export default function VolunteerSignup() {
                 onChange={(e) => setDob(e.target.value)}
                 required
                 placeholder="Date of Birth"
+              />
+            </Form.Group> */}
+            <Form.Group id="dob" className="mt-3 mb-3">
+              <TextField
+                id="date"
+                inputRef={dobRef}
+                required
+                onChange={(e) => setDob(e.target.value)}
+                label="Date of Birth"
+                type="date"
+                defaultValue="2017-05-24"
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
