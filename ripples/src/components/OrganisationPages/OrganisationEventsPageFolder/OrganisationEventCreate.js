@@ -28,6 +28,8 @@ export default function OrganisationEventCreate() {
       tags
     );
 
+    //need to add event UID into own's Events array @MingYong
+
     setEventName("");
     setEventDescription("");
     setEventLocation("");
