@@ -73,11 +73,15 @@ export default function DisplayFullEvent(props) {
                 </Button>
                 <Modal show={open} onHide={closeModal}>
                   <Modal.Body>
+                    <img
+                      class="img-fluid"
+                      src="https://ivhq.imgix.net/images/pages/volunteer-activity-ideas/volunteer-acitivty-ideascommunity-senior.png?w=850&fit=max&auto=compress%2Cformat"
+                      alt=""
+                    />
                     <h4>{eventName}</h4>
-                    <p>
-                      {eventDate}(sign up before {signupDeadline}){", "}
-                      {eventLocation}
-                    </p>
+                    <p>Event Date: {eventDate}</p>
+                    <p>Sign up before: {signupDeadline}</p>
+                    <p>Location: {eventLocation}</p>
                     <p>Brought to you by: {organisationName}</p>
                     <p>Tags: {Tags}</p>
                     <h7>{eventDescription}</h7>
@@ -86,6 +90,7 @@ export default function DisplayFullEvent(props) {
                     <Button variant="secondary" onClick={closeModal}>
                       Close
                     </Button>
+                    <Button variant="primary">Sign Up Now</Button>
                   </Modal.Footer>
                 </Modal>
               </>
