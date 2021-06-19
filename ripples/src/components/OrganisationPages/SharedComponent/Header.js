@@ -35,7 +35,7 @@ const sections = [
   { title: "Settings", url: "/OrganisationSetting" },
 ];
 
-const title="Ripples"
+const title = "Ripples";
 
 export default function Header(props) {
   const classes = useStyles();

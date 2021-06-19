@@ -1,9 +1,9 @@
 import { database } from "../../../firebase";
 import React, { useState, useEffect } from "react";
 import { Card, CardDeck } from "react-bootstrap";
-import DisplayFullEvent from "./DisplayFullEvent";
+import VolDisplayFullEvent from "./VolDisplayFullEvent";
 
-export default function DisplayEvents() {
+export default function VolDisplayEvents() {
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState();
   const fetchEvents = async () => {
@@ -36,20 +36,9 @@ export default function DisplayEvents() {
         justifyContent: "center",
       }}
     >
-      {/* <div className="grid"> */}
       {events &&
         events.map((event) => {
-          const {
-            eventName,
-            eventDescription,
-            eventLocation,
-            eventDate,
-            signupDeadline,
-            organisationName,
-            organisationUID,
-            Tags,
-            documentUID,
-          } = event;
+          const { eventName, eventDate, organisationName } = event;
           return (
             <>
               <Card
@@ -73,13 +62,12 @@ export default function DisplayEvents() {
                     {organisationName}
                   </Card.Subtitle>
                   <Card.Text>Event Date:{eventDate}</Card.Text>
-                  <DisplayFullEvent identity={identity} />
+                  <VolDisplayFullEvent identity={identity} />
                 </Card.Body>
               </Card>
             </>
           );
         })}
-      {/* </div> */}
     </CardDeck>
   );
 }

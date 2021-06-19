@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import SearchHeader from "./SearchHeader";
 import Footer from "../SharedComponent/Footer";
-import DisplayEvents from "./DisplayEvents";
+import VolDisplayEvents from "./VolDisplayEvents";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -16,7 +16,7 @@ import DisplayEvents from "./DisplayEvents";
 const mainFeaturedPost = {
   title: "Search for an Event!",
   // description:
-    // "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+  // "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
   image: "https://source.unsplash.com/random",
   // imgText: "main image description",
   // linkText: "Continue reading…",
@@ -31,7 +31,7 @@ export default function VolunteerSearch() {
       <Container maxWidth="lg">
         <Header />
         <SearchHeader post={mainFeaturedPost} />
-        <DisplayEvents />
+        <VolDisplayEvents />
       </Container>
       <Footer />
     </React.Fragment>

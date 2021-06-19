@@ -6,6 +6,7 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import { Link } from "react-router-dom";
+import OrgDisplayEvents from "./OrgDisplayEvents";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -39,6 +40,7 @@ export default function OrganisationEvents() {
         >
           Create an Event!
         </Link>
+        <OrgDisplayEvents />
       </Container>
       <Footer />
     </React.Fragment>

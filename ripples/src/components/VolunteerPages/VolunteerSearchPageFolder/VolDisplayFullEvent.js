@@ -3,7 +3,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export default function DisplayFullEvent(props) {
+export default function VolDisplayFullEvent(props) {
   const [events, setEvents] = useState([]);
   const [open, setOpen] = useState(false);
   const { currentUser, dbUser } = useAuth();
