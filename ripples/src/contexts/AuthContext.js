@@ -165,8 +165,15 @@ export function AuthProvider({ children }) {
       organisationName: dbUser.organisationName,
       organisationUID: currentUser.uid,
       documentUID: newEventRef,
+      signedUpVolunteers: {},
+      confirmedVolunteers: {},
+      cancelledEvent: false,
     });
   }
+
+  // function getEvent(eventUID) {
+
+  // }
 
   //need add request uid to beneficiary's array of request
   function addRequest(
