@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, InputGroup } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
@@ -10,11 +10,9 @@ export default function OrganisationEventCreate() {
   const [eventLocation, setEventLocation] = useState();
   const [eventDate, setEventDate] = useState();
   const [signupDeadline, setSignupDeadline] = useState();
-  const [tags, setTags] = useState();
-  const { dbUser, addEvent } = useAuth();
+  const [tags, setTags] = useState([]);
+  const { dbUser, currentUser, addEvent } = useAuth();
   const [error, setError] = useState("");
-
-  console.log(dbUser);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -28,15 +26,16 @@ export default function OrganisationEventCreate() {
       tags
     );
 
-    //need to add event UID into own's Events array @MingYong
-
     setEventName("");
     setEventDescription("");
     setEventLocation("");
     setEventDate("");
     setSignupDeadline("");
-    setTags("");
+    setTags([]);
   }
+
+  console.log(dbUser);
+  console.log(currentUser);
 
   return (
     <>
@@ -69,22 +68,6 @@ export default function OrganisationEventCreate() {
                 onChange={(e) => setEventLocation(e.target.value)}
               />
             </Form.Group>
-            {/* <Form.Group id="eventDate" className="mb-4">
-              <Form.Control
-                type="eventDate"
-                placeholder="Event Date (eg. 6th September 2021)"
-                value={eventDate}
-                onChange={(e) => setEventDate(e.target.value)}
-              />
-            </Form.Group> */}
-            {/* <Form.Group id="signupDeadline" className="mb-4">
-              <Form.Control
-                type="signupDeadline"
-                placeholder="Sign Up Deadline (eg. 6th September 2021)"
-                value={signupDeadline}
-                onChange={(e) => setSignupDeadline(e.target.value)}
-              />
-            </Form.Group> */}
             <Form.Group id="eventDate" className="mb-4">
               <TextField
                 id="date"
@@ -109,14 +92,63 @@ export default function OrganisationEventCreate() {
                 }}
               />
             </Form.Group>
-            <Form.Group id="tags" className="mb-4">
-              <Form.Control
-                type="tags"
-                placeholder="Tags"
-                value={tags}
-                onChange={(e) => setTags(e.target.value)}
+            <div key={"inline-checkbox"}>
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Animal Welfare Tag"}
+                label={"Animal Welfare Tag"}
               />
-            </Form.Group>
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Arts & Heritage"}
+                label={"Arts & Heritage"}
+              />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Community"}
+                label={"Community"}
+              />
+            </div>
+            <div key={"inline-radio"}>
+              <Form.Check
+                inline
+                type={"radio"}
+                name="type"
+                id={"Live"}
+                label={"Live"}
+              />
+              <Form.Check
+                inline
+                type={"radio"}
+                name="type"
+                id={"Virtual"}
+                label={"Virtual"}
+              />
+              <Form.Check
+                inline
+                type={"radio"}
+                name="type"
+                id={"Hybrid"}
+                label={"Hyrbid"}
+              />
+            </div>
+
+            {/* THE FOLLOW CHECKBOX AND RADIOBOX IS EXPERIMENTAL FOR TAGS */}
+            {/* <InputGroup className="mb-2">
+              <InputGroup.Checkbox onSelect={tags.push("Animal Welfare")} />
+              <Form.Control value="Animal Welfare" readOnly />
+            </InputGroup>
+            <InputGroup className="mb-2">
+              <InputGroup.Checkbox onSelect={tags.push("Arts & Heritage")} />
+              <Form.Control value="Arts & Heritage" readOnly />
+            </InputGroup> */}
+            {/* <InputGroup className="mb-4">
+              <InputGroup.Radio aria-label="Radio button for following text input" />
+              <Form.Control aria-label="Text input with radio button" />
+            </InputGroup> */}
 
             <Form.File
               id="custom-file-translate-scss"

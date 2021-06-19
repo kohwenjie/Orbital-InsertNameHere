@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Alert } from "react-bootstrap";
 import { auth, database } from "../firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
 const AuthContext = React.createContext();
 
@@ -135,7 +138,6 @@ export function AuthProvider({ children }) {
       .then(getUpdatedDBUser(currentUser.uid));
   }
 
-  //need add event uid to the organiser's array of events
   function addEvent(
     eventName,
     eventDescription,
@@ -145,6 +147,14 @@ export function AuthProvider({ children }) {
     Tags
   ) {
     const newEventRef = database.collection("events").doc();
+
+    database
+      .collection("user")
+      .doc(currentUser.uid)
+      .update({
+        events: firebase.firestore.FieldValue.arrayUnion(newEventRef),
+      });
+
     return newEventRef.set({
       eventName: eventName,
       eventDescription: eventDescription,
