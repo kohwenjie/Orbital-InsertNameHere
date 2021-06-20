@@ -2,13 +2,13 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export default function SignedUpComponent() {
+export default function CommittedComponent() {
   const { dbUser } = useAuth();
   const eventArray = dbUser.commitments;
   return (
     <>
       <div>
-        <h2>SIGN UP PORTION</h2>
+        <h2>COMMITMENT PORTION</h2>
       </div>
       <Table striped bordered hover size="sm">
         <thead>

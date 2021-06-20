@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
-
+import HistoryComponent from "./HistoryComponent";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -15,12 +15,8 @@ import Footer from "../SharedComponent/Footer";
 // }));
 
 const mainFeaturedPost = {
-  title: "THIS IS A VOLUNTEER HISTORY PAGE",
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+  title: "View Past Events Here",
   image: "https://source.unsplash.com/random",
-  imgText: "main image description",
-  linkText: "Continue reading…",
 };
 
 export default function VolunteerHistory() {
@@ -34,8 +30,9 @@ export default function VolunteerHistory() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
+        <HistoryComponent />
       </Container>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }
