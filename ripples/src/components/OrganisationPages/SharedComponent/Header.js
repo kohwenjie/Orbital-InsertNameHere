@@ -51,7 +51,7 @@ export default function Header(props) {
       history.push("/Login");
       setDBUser();
       setCurrentUser();
-      console.log("logged out: ", dbUser, currentUser);
+      // console.log("logged out: ", dbUser, currentUser);
     } catch {
       setError("Failed to log out");
     }

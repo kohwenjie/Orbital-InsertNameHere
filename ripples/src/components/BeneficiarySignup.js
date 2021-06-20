@@ -32,8 +32,11 @@ export default function BeneficiarySignup() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
-    if (contactRef.current.value<80000000 || contactRef.current.value > 100000000) {
-      return setError("Contact Number is invalid")
+    if (
+      contactRef.current.value < 80000000 ||
+      contactRef.current.value > 100000000
+    ) {
+      return setError("Contact Number is invalid");
     }
     try {
       setError("");
@@ -46,7 +49,8 @@ export default function BeneficiarySignup() {
         password: password,
         contact: contact,
         dob: dob,
-        request: {},
+        request: [],
+        linkedOrganisation: [],
         userType: "beneficiary",
       };
       await signup(
@@ -152,7 +156,7 @@ export default function BeneficiarySignup() {
                   shrink: true,
                 }}
               />
-              </Form.Group>
+            </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               I am a Beneficiary!
             </Button>

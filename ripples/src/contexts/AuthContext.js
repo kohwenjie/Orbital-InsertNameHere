@@ -25,10 +25,10 @@ export function AuthProvider({ children }) {
       .get()
       .then((user) => {
         setDBUser(user.data());
-      })
-      .then(() => {
-        console.log("get updated DBUser:", dbUser);
       });
+    // .then(() => {
+    //   console.log("get updated DBUser:", dbUser);
+    // });
   }
 
   function signup(email, password, obj) {

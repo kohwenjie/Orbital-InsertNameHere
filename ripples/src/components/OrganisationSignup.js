@@ -46,8 +46,7 @@ export default function OrganisationSignup() {
         email: email,
         password: password,
         contact: contact,
-        beneficiaries: {},
-        events: {},
+        beneficiaries: [],
         userType: "organisation",
         events: [],
       };

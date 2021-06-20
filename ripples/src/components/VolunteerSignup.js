@@ -51,8 +51,8 @@ export default function VolunteerSignup() {
         contact: contact,
         dob: dob,
         points: 0,
-        commitments: {},
-        history: {},
+        commitments: [],
+        history: [],
         userType: "volunteer",
       };
       await signup(

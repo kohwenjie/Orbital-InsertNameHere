@@ -19,8 +19,8 @@ export default function Login() {
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       history.push("/Redirect");
-      console.log("login page dbUser: ", dbUser);
-      console.log("login page currentUser: ", currentUser);
+      // console.log("login page dbUser: ", dbUser);
+      // console.log("login page currentUser: ", currentUser);
       // .then(
       //   () => {
       //     // console.log("login page dbUser: ", dbUser);

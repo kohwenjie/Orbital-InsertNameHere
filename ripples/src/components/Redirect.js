@@ -8,7 +8,7 @@ function Redirect() {
 
   useEffect(() => {
     getUpdatedDBUser(currentUser.uid);
-    console.log(dbUser)
+    // console.log(dbUser)
     if (dbUser) {
       if (dbUser.userType === "volunteer") {
         history.push("/VolunteerHome");

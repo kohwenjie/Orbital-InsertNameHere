@@ -5,6 +5,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 import OrgDisplayFullEvent from "./OrgDisplayFullEvent";
 
 export default function OrgDisplayEvents() {
+  const [eventsUID, setEventsUID] = useState([]);
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState([]);
   const { currentUser, getUpdatedDBUser, dbUser } = useAuth();
@@ -21,14 +22,34 @@ export default function OrgDisplayEvents() {
     //     console.log(doc);
     //   });
 
-    getUpdatedDBUser(currentUser.uid)
-      .then(setEvents(dbUser.events))
-      // .then(console.log(events));
+    //seperate container to store the events object, the plan is to pull them all out from the database first and store here
+    let eventArr = [];
 
+    console.log("DBUSER EVENTS LIST:", dbUser.events);
+    getUpdatedDBUser(currentUser.uid)
+      .then(setEventsUID(dbUser.events))
+      .then(console.log("dbUser events list is here:", dbUser.events))
+      .then(console.log("setted eventsUID list:", eventsUID))
+      .then(() => {
+        eventsUID.map((eventUID) => {
+          database
+            .collection("events")
+            .doc(eventUID)
+            .get()
+            .then((event) => {
+              console.log(event.data());
+              eventArr.concat(event.data());
+            });
+        });
+      })
+      .then(setEvents(eventArr))
+      .then(console.log("eventsArr:", events));
     console.log(events);
-    events.forEach((eventUID) => {
-      setIdentity(eventUID);
-      // console.log(identity);
+
+    console.log(eventsUID);
+    events.forEach((event) => {
+      setIdentity(event.documentUID);
+      console.log("identity is :", identity);
     });
   };
 
@@ -58,6 +79,7 @@ export default function OrgDisplayEvents() {
             Tags,
             documentUID,
           } = event;
+          console.log("number of events available to display:", events.length);
           return (
             <>
               <Card
@@ -76,7 +98,7 @@ export default function OrgDisplayEvents() {
                   // will add image into the event document in firestore then extract to display
                 />
                 <Card.Body>
-                  <Card.Title>{documentUID}</Card.Title>
+                  <Card.Title>{eventName}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     {organisationName}
                   </Card.Subtitle>
