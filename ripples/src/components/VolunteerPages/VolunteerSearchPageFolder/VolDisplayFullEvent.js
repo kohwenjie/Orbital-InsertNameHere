@@ -5,6 +5,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 
 export default function VolDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
+  const { currentUser, signupEvent } = useAuth();
 
   const event = props.e;
   const {
@@ -18,12 +19,17 @@ export default function VolDisplayFullEvent(props) {
     Tags,
     documentUID,
   } = event;
+
   function openModal() {
     setOpen(true);
   }
 
   function closeModal() {
     setOpen(false);
+  }
+
+  function signup() {
+    signupEvent(documentUID, currentUser.uid);
   }
 
   return (
@@ -50,7 +56,9 @@ export default function VolDisplayFullEvent(props) {
           <Button variant="secondary" onClick={closeModal}>
             Close
           </Button>
-          <Button variant="primary">Sign Up Now</Button>
+          <Button variant="primary" onClick={signup}>
+            Sign Up Now
+          </Button>
         </Modal.Footer>
       </Modal>
     </>

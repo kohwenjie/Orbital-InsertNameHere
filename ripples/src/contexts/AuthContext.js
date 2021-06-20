@@ -190,6 +190,15 @@ export function AuthProvider({ children }) {
     });
   }
 
+  function signupEvent(docUID, userUID) {
+    database
+      .collection("events")
+      .doc(docUID)
+      .update({
+        signedUpVolunteers: firebase.firestore.FieldValue.arrayUnion(userUID),
+      });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -229,6 +238,7 @@ export function AuthProvider({ children }) {
     updateDob,
     addEvent,
     addRequest,
+    signupEvent,
     getUpdatedDBUser,
     setDBUser,
     setCurrentUser,
