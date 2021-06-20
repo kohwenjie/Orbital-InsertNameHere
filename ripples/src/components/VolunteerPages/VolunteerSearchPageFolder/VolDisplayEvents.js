@@ -7,18 +7,19 @@ export default function VolDisplayEvents() {
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState();
   const fetchEvents = async () => {
+    let arr = [];
     database
       .collection("events")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log(doc.id);
+          // setIdentity will cause rendering, which is required or nothing will show
           setIdentity(doc.id);
-          setEvents([...events, doc.data()]);
-          events.push(doc.data());
-          console.log(events);
+          arr.push(doc.data());
         });
-      });
+      })
+      .then(setEvents(arr))
+      .then(console.log("THIS IS THE EVENTS ARR", events));
   };
 
   useEffect(() => {
@@ -62,7 +63,7 @@ export default function VolDisplayEvents() {
                     {organisationName}
                   </Card.Subtitle>
                   <Card.Text>Event Date:{eventDate}</Card.Text>
-                  <VolDisplayFullEvent identity={identity} />
+                  <VolDisplayFullEvent e={event} />
                 </Card.Body>
               </Card>
             </>

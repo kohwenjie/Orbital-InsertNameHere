@@ -38,7 +38,7 @@ export default function OrgDisplayEvents() {
             .get()
             .then((event) => {
               console.log(event.data());
-              eventArr.concat(event.data());
+              eventArr.push(event.data());
             });
         });
       })
