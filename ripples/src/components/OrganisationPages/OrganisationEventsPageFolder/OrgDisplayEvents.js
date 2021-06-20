@@ -25,25 +25,26 @@ export default function OrgDisplayEvents() {
     //seperate container to store the events object, the plan is to pull them all out from the database first and store here
     let eventArr = [];
 
-    console.log("DBUSER EVENTS LIST:", dbUser.events);
-    getUpdatedDBUser(currentUser.uid)
-      .then(setEventsUID(dbUser.events))
-      .then(console.log("dbUser events list is here:", dbUser.events))
-      .then(console.log("setted eventsUID list:", eventsUID))
-      .then(() => {
-        eventsUID.map((eventUID) => {
-          database
-            .collection("events")
-            .doc(eventUID)
-            .get()
-            .then((event) => {
-              console.log(event.data());
-              eventArr.push(event.data());
-            });
+    // console.log("DBUSER EVENTS LIST:", dbUser.events);
+    getUpdatedDBUser(currentUser.uid);
+    console.log("dbUser:", dbUser);
+    console.log("dbUser events:", dbUser.events);
+    setEventsUID(dbUser.events);
+    console.log("dbUser events list is here:", dbUser.events);
+    console.log("setted eventsUID list:", eventsUID);
+    eventsUID.map((eventUID) => {
+      database
+        .collection("events")
+        .doc(eventUID)
+        .get()
+        .then((event) => {
+          console.log(event.data());
+          eventArr.push(event.data());
         });
-      })
-      .then(setEvents(eventArr))
-      .then(console.log("eventsArr:", events));
+    });
+
+    setEvents(eventArr);
+    console.log("eventsArr:", events);
     console.log(events);
 
     console.log(eventsUID);
