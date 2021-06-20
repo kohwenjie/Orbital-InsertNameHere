@@ -7,25 +7,29 @@ import OrgDisplayFullEvent from "./OrgDisplayFullEvent";
 export default function OrgDisplayEvents() {
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState([]);
-  const { currentUser } = useAuth();
+  const { currentUser, getUpdatedDBUser, dbUser } = useAuth();
 
   const fetchEvents = async () => {
-    database
-      .collection("user")
-      .doc(currentUser.uid)
-      .get()
-      .then((doc) => {
-        console.log(doc.get("events"));
-        setEvents(doc.get("events"));
-        console.log(doc.get("events"));
-        console.log(doc.id);
-      });
+    // database
+    //   .collection("user")
+    //   .doc(currentUser.uid)
+    //   .get()
+    //   .then((doc) => {
+    //     console.log(doc.get("events"));
+    //     setEvents(doc.get("events"));
+    //     console.log(events);
+    //     console.log(doc);
+    //   });
 
-    // console.log(events);
-    // events.forEach((data) => {
-    //   setIdentity(data.id);
-    //   console.log(identity);
-    // });
+    getUpdatedDBUser(currentUser.uid)
+      .then(setEvents(dbUser.events))
+      // .then(console.log(events));
+
+    console.log(events);
+    events.forEach((eventUID) => {
+      setIdentity(eventUID);
+      // console.log(identity);
+    });
   };
 
   useEffect(() => {
@@ -73,11 +77,11 @@ export default function OrgDisplayEvents() {
                 />
                 <Card.Body>
                   <Card.Title>{documentUID}</Card.Title>
-                  {/* <Card.Subtitle className="mb-2 text-muted">
+                  <Card.Subtitle className="mb-2 text-muted">
                     {organisationName}
-                  </Card.Subtitle> */}
-                  {/* <Card.Text>Event Date:{eventDate}</Card.Text> */}
-                  {/* <OrgDisplayFullEvent identity={identity} /> */}
+                  </Card.Subtitle>
+                  <Card.Text>Event Date:{eventDate}</Card.Text>
+                  <OrgDisplayFullEvent identity={identity} />
                 </Card.Body>
               </Card>
             </>

@@ -1,37 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export default function OrgDisplayFullEvent(props) {
   const [events, setEvents] = useState([]);
   const [open, setOpen] = useState(false);
-  const { currentUser, dbUser } = useAuth();
+  const { dbUser } = useAuth();
 
   console.log(props.identity);
   console.log(dbUser);
 
   const fetchEvents = async () => {
-    const path = props.identity;
-    const docRef = database.path;
-    docRef.get().then((doc) => console.log(doc.data()));
-    // database
-    //   .collection("events")
-    //   .doc(props.identity)
-    //   .get()
-    //   .then((doc) => {
-    //     console.log(doc.data());
-    //     setEvents([doc.data()]);
-    //     // events.push(doc.data());
-    //     console.log(events);
-    //   });
+    database
+      .collection("events")
+      .doc(props.identity)
+      .get()
+      .then((doc) => {
+        console.log(doc.data());
+        setEvents([doc.data()]);
+        // events.push(doc.data());
+        // console.log(events);
+      });
   };
 
   useEffect(() => {
     fetchEvents();
   }, []);
 
-  console.log(events);
 
   function openModal() {
     setOpen(true);

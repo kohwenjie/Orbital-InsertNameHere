@@ -4,6 +4,7 @@ import { auth, database } from "../firebase";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
 const AuthContext = React.createContext();
 
@@ -15,7 +16,7 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [dbUser, setDBUser] = useState();
   const [loading, setLoading] = useState(true);
-  const [eventsArray, setEventsArray] = useState([])
+  const [eventsArray, setEventsArray] = useState([]);
 
   function getUpdatedDBUser(uid) {
     return database
@@ -147,16 +148,15 @@ export function AuthProvider({ children }) {
     signupDeadline,
     Tags
   ) {
-    const newEventRef = database.collection("events").doc();
-
+    const eventUID = uuidv4();
     database
       .collection("user")
       .doc(currentUser.uid)
       .update({
-        events: firebase.firestore.FieldValue.arrayUnion(newEventRef),
+        events: firebase.firestore.FieldValue.arrayUnion(eventUID),
       });
 
-    return newEventRef.set({
+    return database.collection("events").doc(eventUID).set({
       eventName: eventName,
       eventDescription: eventDescription,
       eventLocation: eventLocation,
@@ -165,13 +165,12 @@ export function AuthProvider({ children }) {
       Tags: Tags,
       organisationName: dbUser.organisationName,
       organisationUID: currentUser.uid,
-      documentUID: newEventRef,
+      documentUID: eventUID,
       signedUpVolunteers: {},
       confirmedVolunteers: {},
       cancelledEvent: false,
     });
   }
-
 
   //need add request uid to beneficiary's array of request
   function addRequest(
