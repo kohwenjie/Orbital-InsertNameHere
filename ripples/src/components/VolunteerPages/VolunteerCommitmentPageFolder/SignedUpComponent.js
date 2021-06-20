@@ -5,6 +5,8 @@ import { useAuth } from "../../../contexts/AuthContext";
 export default function SignedUpComponent() {
   const { dbUser } = useAuth();
   const eventArray = dbUser.commitments;
+
+  //ADDED COMMENT TO REPUSH THIS
   return (
     <>
       <div>
