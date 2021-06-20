@@ -13,9 +13,23 @@ export default function OrganisationEventCreate() {
   const [tags, setTags] = useState([]);
   const { dbUser, currentUser, addEvent } = useAuth();
   const [error, setError] = useState("");
+  const [eventType, setEventType] = useState();
+
+  const handleChange = (tag) => {
+    let tempTags = tags;
+    if (tempTags.some((t) => t === tag)) {
+      tempTags = tempTags.filter((t) => t !== tag);
+    } else {
+      tempTags.push(tag);
+    }
+    setTags(tempTags);
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    tags.push(eventType);
+    console.log(tags);
 
     addEvent(
       eventName,
@@ -33,10 +47,6 @@ export default function OrganisationEventCreate() {
     setSignupDeadline("");
     setTags([]);
   }
-
-  console.log(dbUser);
-  console.log(currentUser);
-
   return (
     <>
       <Card>
@@ -93,62 +103,129 @@ export default function OrganisationEventCreate() {
               />
             </Form.Group>
             <div key={"inline-checkbox"}>
+              <h6>Select Category: </h6>
               <Form.Check
                 inline
                 type={"checkbox"}
                 id={"Animal Welfare Tag"}
                 label={"Animal Welfare Tag"}
+                onChange={() => handleChange("Animal Welfare")}
               />
               <Form.Check
                 inline
                 type={"checkbox"}
                 id={"Arts & Heritage"}
                 label={"Arts & Heritage"}
+                onChange={() => handleChange("Arts & Heritage")}
+              />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Children & Youth"}
+                label={"Children & Youth"}
+                onChange={() => handleChange("Children & Youth")}
               />
               <Form.Check
                 inline
                 type={"checkbox"}
                 id={"Community"}
                 label={"Community"}
+                onChange={() => handleChange("Community")}
+              />
+              <br />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Disability"}
+                label={"Disability"}
+                onChange={() => handleChange("Disability")}
+              />
+
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Education"}
+                label={"Education"}
+                onChange={() => handleChange("Education")}
+              />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Elderly"}
+                label={"Elderly"}
+                onChange={() => handleChange("Elderly")}
+              />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Environment"}
+                label={"Environment"}
+                onChange={() => handleChange("Environment")}
+              />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Families"}
+                label={"Families"}
+                onChange={() => handleChange("Families")}
+              />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Health"}
+                label={"Health"}
+                onChange={() => handleChange("Health")}
+              />
+              <br />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Humanitarian"}
+                label={"Humanitarian"}
+                onChange={() => handleChange("Humanitarian")}
+              />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Social Service"}
+                label={"Social Service"}
+                onChange={() => handleChange("Social Service")}
+              />
+              <Form.Check
+                inline
+                type={"checkbox"}
+                id={"Sports"}
+                label={"Sports"}
+                onChange={() => handleChange("Sports")}
               />
             </div>
             <div key={"inline-radio"}>
+              <h6>Select Event Type: </h6>
               <Form.Check
                 inline
+                name="event type"
                 type={"radio"}
-                name="type"
                 id={"Live"}
                 label={"Live"}
+                onChange={() => setEventType("Live")}
               />
               <Form.Check
                 inline
+                name="event type"
                 type={"radio"}
-                name="type"
                 id={"Virtual"}
                 label={"Virtual"}
+                onChange={() => setEventType("Virtual")}
               />
               <Form.Check
                 inline
+                name="event type"
                 type={"radio"}
-                name="type"
                 id={"Hybrid"}
-                label={"Hyrbid"}
+                label={"Hybrid"}
+                onChange={() => setEventType("Hybrid")}
               />
             </div>
-
-            {/* THE FOLLOW CHECKBOX AND RADIOBOX IS EXPERIMENTAL FOR TAGS */}
-            {/* <InputGroup className="mb-2">
-              <InputGroup.Checkbox onSelect={tags.push("Animal Welfare")} />
-              <Form.Control value="Animal Welfare" readOnly />
-            </InputGroup>
-            <InputGroup className="mb-2">
-              <InputGroup.Checkbox onSelect={tags.push("Arts & Heritage")} />
-              <Form.Control value="Arts & Heritage" readOnly />
-            </InputGroup> */}
-            {/* <InputGroup className="mb-4">
-              <InputGroup.Radio aria-label="Radio button for following text input" />
-              <Form.Control aria-label="Text input with radio button" />
-            </InputGroup> */}
 
             <Form.File
               id="custom-file-translate-scss"

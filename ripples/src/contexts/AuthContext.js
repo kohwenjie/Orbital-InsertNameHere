@@ -15,6 +15,7 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [dbUser, setDBUser] = useState();
   const [loading, setLoading] = useState(true);
+  const [eventsArray, setEventsArray] = useState([])
 
   function getUpdatedDBUser(uid) {
     return database
@@ -171,9 +172,6 @@ export function AuthProvider({ children }) {
     });
   }
 
-  // function getEvent(eventUID) {
-
-  // }
 
   //need add request uid to beneficiary's array of request
   function addRequest(

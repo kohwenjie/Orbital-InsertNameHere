@@ -5,6 +5,7 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
+import SignedUpComponent from "./SignedUpComponent"
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -33,6 +34,8 @@ export default function VolunteerCommitment() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
+        <SignedUpComponent/>
+
       </Container>
       <Footer/>
     </React.Fragment>
