@@ -14,8 +14,9 @@ export default function VolDisplayEvents() {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           // setIdentity will cause rendering, which is required or nothing will show
-          setIdentity(doc.id);
+          
           arr.push(doc.data());
+          setIdentity(doc.id);
         });
       })
       .then(setEvents(arr))
