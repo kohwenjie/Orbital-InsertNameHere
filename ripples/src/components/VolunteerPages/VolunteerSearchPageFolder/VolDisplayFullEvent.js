@@ -5,8 +5,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 
 export default function VolDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
-  // const [event, setEvent] = useState();
-  // const { currentUser, dbUser } = useAuth();
+
   const event = props.e;
   const {
     eventName,
@@ -19,40 +18,6 @@ export default function VolDisplayFullEvent(props) {
     Tags,
     documentUID,
   } = event;
-  // console.log(props.identity);
-  // console.log(dbUser);
-
-  // const fetchEvent = async () => {
-  //   // database
-  //   //   .collection("events")
-  //   //   .get()
-  //   //   .then((querySnapshot) => {
-  //   //     querySnapshot.forEach((doc) => {
-  //   //       console.log(doc.id);
-  //   //       setEvents([...events, doc.data()]);
-  //   //       events.push(doc.data());
-  //   //       console.log(events);
-  //   //     });
-  //   //   });
-
-  //   database
-  //     .collection("events")
-  //     .doc(props.identity)
-  //     .get()
-  //     .then((doc) => {
-  //       // console.log(doc.data());
-  //       setEvent([doc.data()]);
-  //       // events.push(doc.data());
-  //       // console.log(events);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   fetchEvent();
-  // }, []);
-
-  // console.log(events);
-
   function openModal() {
     setOpen(true);
   }
@@ -63,7 +28,6 @@ export default function VolDisplayFullEvent(props) {
 
   return (
     <>
-
       <Button onClick={openModal} variant="outline-success" size="sm">
         More Details
       </Button>
