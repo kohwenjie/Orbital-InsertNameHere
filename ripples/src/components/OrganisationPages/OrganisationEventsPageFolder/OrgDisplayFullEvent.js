@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
+import OrgUpdateEvent from "./OrgUpdateEvent";
 
 export default function OrgDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
@@ -51,7 +52,7 @@ export default function OrgDisplayFullEvent(props) {
             Close
           </Button>
           <Button variant="primary">View Signups</Button>
-          <Button variant="warning">Update</Button>
+          <OrgUpdateEvent e={event} />
         </Modal.Footer>
       </Modal>
     </>
