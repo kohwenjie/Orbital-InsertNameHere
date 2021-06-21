@@ -236,7 +236,6 @@ export default function OrganisationEventCreate() {
               lang="en"
               className="mb-4"
               custom
-              required
             />
             <Button className="w-100" type="submit">
               Create Event!

@@ -18,8 +18,8 @@ export default function VolDisplayEvents() {
           setIdentity(doc.id);
         });
       })
-      .then(setEvents(arr))
-      // .then(console.log("THIS IS THE EVENTS ARR", events));
+      .then(setEvents(arr));
+    // .then(console.log("THIS IS THE EVENTS ARR", events));
   };
 
   useEffect(() => {
