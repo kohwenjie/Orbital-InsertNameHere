@@ -27,9 +27,7 @@ export default function OrganisationEventCreate() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     tags.push(eventType);
-    console.log(tags);
 
     addEvent(
       eventName,

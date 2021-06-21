@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardDeck } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import OrgDisplayFullEvent from "./OrgDisplayFullEvent";
+import ViewSignedUpVolunteers from "./ViewSignedUpVolunteers";
 
 export default function OrgDisplayEvents() {
   const [events, setEvents] = useState([]);
@@ -51,7 +52,6 @@ export default function OrgDisplayEvents() {
             Tags,
             documentUID,
           } = event;
-          console.log("number of events available to display:", events.length);
           return (
             <>
               <Card
@@ -75,7 +75,8 @@ export default function OrgDisplayEvents() {
                     {organisationName}
                   </Card.Subtitle>
                   <Card.Text>Event Date:{eventDate}</Card.Text>
-                  <OrgDisplayFullEvent identity={identity} e={event}/>
+                  <OrgDisplayFullEvent e={event}/>
+                  <ViewSignedUpVolunteers e={event}/>
                 </Card.Body>
               </Card>
             </>
@@ -84,3 +85,4 @@ export default function OrgDisplayEvents() {
     </CardDeck>
   );
 }
+

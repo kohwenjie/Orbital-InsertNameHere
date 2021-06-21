@@ -34,6 +34,7 @@ export function AuthProvider({ children }) {
   function signup(email, password, obj) {
     return auth.createUserWithEmailAndPassword(email, password).then((cred) => {
       const uid = cred.user.uid;
+      // obj.map(userUID=> uid);
       database
         .collection("user")
         .doc(uid)

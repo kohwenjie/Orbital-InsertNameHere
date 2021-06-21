@@ -4,9 +4,7 @@ import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export default function OrgDisplayFullEvent(props) {
-  const [events, setEvents] = useState([]);
   const [open, setOpen] = useState(false);
-  const { dbUser } = useAuth();
   const event = props.e;
   const {
     eventName,
