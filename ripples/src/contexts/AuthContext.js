@@ -236,6 +236,24 @@ export function AuthProvider({ children }) {
     });
   }
 
+  function RemoveVolunteerFromSignUp(documentUID, volUID) {
+    database
+      .collection("events")
+      .doc(documentUID)
+      .update({
+        signedUpVolunteers: firebase.firestore.FieldValue.arrayRemove(volUID),
+      });
+  }
+
+  function AddVolunteerToConfirmed(documentUID, volUID) {
+    database
+      .collection("events")
+      .doc(documentUID)
+      .update({
+        confirmedVolunteers: firebase.firestore.FieldValue.arrayUnion(volUID),
+      });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -285,6 +303,8 @@ export function AuthProvider({ children }) {
     getUpdatedDBUser,
     setDBUser,
     setCurrentUser,
+    RemoveVolunteerFromSignUp,
+    AddVolunteerToConfirmed,
   };
 
   return (

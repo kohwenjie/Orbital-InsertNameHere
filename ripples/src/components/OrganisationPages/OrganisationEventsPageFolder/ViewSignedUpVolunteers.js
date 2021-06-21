@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Table, Alert } from "react-bootstrap";
-import { database } from "../../../firebase";
+import { database, firebase } from "../../../firebase";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export default function ViewSignedUpVolunteers(props) {
   const [open, setOpen] = useState(false);
   const [signedUpVolunteersArr, setSignedUpVolunteersArr] = useState([]);
   const [volunteersProfile, setVolunteersProfile] = useState([]);
+  const { RemoveVolunteerFromSignUp, AddVolunteerToConfirmed } = useAuth();
   const event = props.e;
-  const { eventName, signedUpVolunteers, confirmedVolunteers } = event;
+  const { eventName, signedUpVolunteers, confirmedVolunteers, documentUID } =
+    event;
 
   const fetchVolunteers = async () => {
     let arr = [];
@@ -35,7 +38,7 @@ export default function ViewSignedUpVolunteers(props) {
 
   useEffect(() => {
     fetchVolunteers();
-  }, [open]);
+  }, [open, signedUpVolunteers]);
 
   function openModal() {
     setOpen(true);
@@ -46,30 +49,19 @@ export default function ViewSignedUpVolunteers(props) {
   }
 
   function handleAccept(volUID) {
+    console.log(signedUpVolunteers);
+    console.log(confirmedVolunteers);
+    console.log(volUID);
+    console.log(documentUID);
+
     if (
       signedUpVolunteers.includes(volUID) &&
+      signedUpVolunteers.length > 0 &&
       !confirmedVolunteers.includes(volUID)
     ) {
-      let newSignedUpArr = [];
-      signedUpVolunteers.forEach((uid) => {
-        if (uid !== volUID) {
-          newSignedUpArr.push(uid);
-        }
-      });
-      database
-        .collection("events")
-        .doc(event.id)
-        .update({ signedUpVolunteers: newSignedUpArr });
+      RemoveVolunteerFromSignUp(documentUID, volUID);
+      AddVolunteerToConfirmed(documentUID, volUID);
 
-      let newConfirmedArr = [];
-      confirmedVolunteers.forEach((uid) => {
-        newConfirmedArr.push(uid);
-      });
-      newConfirmedArr.push(volUID);
-      database
-        .collection("events")
-        .doc(event.id)
-        .update({ signedUpVolunteers: newConfirmedArr });
       return <Alert>Volunteer accepted!</Alert>;
     } else {
       return <Alert>Error! Cant Accept Volunteer</Alert>;
@@ -100,7 +92,7 @@ export default function ViewSignedUpVolunteers(props) {
             <tbody>
               {volunteersProfile &&
                 volunteersProfile.map((profile) => {
-                  const { firstName, lastName, contact, email } = profile;
+                  const { firstName, lastName, contact, email, uid } = profile;
                   return (
                     <tr>
                       <td>{volunteersProfile.indexOf(profile) + 1}</td>
@@ -110,7 +102,11 @@ export default function ViewSignedUpVolunteers(props) {
                       <td>description yet to implement</td>
                       <td>
                         <Button>Reject</Button>
-                        <Button onClick={handleAccept(profile.id)}>
+                        <Button
+                          onClick={() => {
+                            handleAccept(uid);
+                          }}
+                        >
                           Accept
                         </Button>
                       </td>
