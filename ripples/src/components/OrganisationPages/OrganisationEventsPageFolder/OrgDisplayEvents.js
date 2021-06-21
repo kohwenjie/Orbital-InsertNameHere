@@ -5,53 +5,24 @@ import { useAuth } from "../../../contexts/AuthContext";
 import OrgDisplayFullEvent from "./OrgDisplayFullEvent";
 
 export default function OrgDisplayEvents() {
-  const [eventsUID, setEventsUID] = useState([]);
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState([]);
-  const { currentUser, getUpdatedDBUser, dbUser } = useAuth();
+  const { currentUser } = useAuth();
 
   const fetchEvents = async () => {
-    // database
-    //   .collection("user")
-    //   .doc(currentUser.uid)
-    //   .get()
-    //   .then((doc) => {
-    //     console.log(doc.get("events"));
-    //     setEvents(doc.get("events"));
-    //     console.log(events);
-    //     console.log(doc);
-    //   });
-
-    //seperate container to store the events object, the plan is to pull them all out from the database first and store here
-    let eventArr = [];
-
-    // console.log("DBUSER EVENTS LIST:", dbUser.events);
-    getUpdatedDBUser(currentUser.uid);
-    console.log("dbUser:", dbUser);
-    console.log("dbUser events:", dbUser.events);
-    setEventsUID(dbUser.events);
-    console.log("dbUser events list is here:", dbUser.events);
-    console.log("setted eventsUID list:", eventsUID);
-    eventsUID.map((eventUID) => {
-      database
-        .collection("events")
-        .doc(eventUID)
-        .get()
-        .then((event) => {
-          console.log(event.data());
-          eventArr.push(event.data());
+    let arr = [];
+    database
+      .collection("events")
+      .where("organisationUID", "==", currentUser.uid)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // setIdentity will cause rendering, which is required or nothing will show
+          arr.push(doc.data());
+          setIdentity(doc.id);
         });
-    });
-
-    setEvents(eventArr);
-    console.log("eventsArr:", events);
-    console.log(events);
-
-    console.log(eventsUID);
-    events.forEach((event) => {
-      setIdentity(event.documentUID);
-      console.log("identity is :", identity);
-    });
+      })
+      .then(setEvents(arr));
   };
 
   useEffect(() => {
@@ -104,7 +75,7 @@ export default function OrgDisplayEvents() {
                     {organisationName}
                   </Card.Subtitle>
                   <Card.Text>Event Date:{eventDate}</Card.Text>
-                  <OrgDisplayFullEvent identity={identity} />
+                  <OrgDisplayFullEvent identity={identity} e={event}/>
                 </Card.Body>
               </Card>
             </>

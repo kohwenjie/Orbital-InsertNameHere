@@ -14,13 +14,12 @@ export default function VolDisplayEvents() {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           // setIdentity will cause rendering, which is required or nothing will show
-          
           arr.push(doc.data());
           setIdentity(doc.id);
         });
       })
       .then(setEvents(arr))
-      .then(console.log("THIS IS THE EVENTS ARR", events));
+      // .then(console.log("THIS IS THE EVENTS ARR", events));
   };
 
   useEffect(() => {
