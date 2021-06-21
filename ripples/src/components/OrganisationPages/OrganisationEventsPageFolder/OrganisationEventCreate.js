@@ -58,6 +58,7 @@ export default function OrganisationEventCreate() {
                 placeholder="Event Name"
                 value={eventName}
                 onChange={(e) => setEventName(e.target.value)}
+                required
               />
             </Form.Group>
             <Form.Group id="eventDescription" className="mb-4">
@@ -66,6 +67,7 @@ export default function OrganisationEventCreate() {
                 placeholder="Event Description"
                 value={eventDescription}
                 onChange={(e) => setEventDescription(e.target.value)}
+                required
               />
             </Form.Group>
             <Form.Group id="eventLocation" className="mb-4">
@@ -74,6 +76,7 @@ export default function OrganisationEventCreate() {
                 placeholder="Event Location"
                 value={eventLocation}
                 onChange={(e) => setEventLocation(e.target.value)}
+                required
               />
             </Form.Group>
             <Form.Group id="eventDate" className="mb-4">
@@ -86,6 +89,7 @@ export default function OrganisationEventCreate() {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                required
               />
             </Form.Group>
             <Form.Group id="signupDeadline" className="mb-4">
@@ -98,6 +102,7 @@ export default function OrganisationEventCreate() {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                required
               />
             </Form.Group>
             <div key={"inline-checkbox"}>
@@ -231,6 +236,7 @@ export default function OrganisationEventCreate() {
               lang="en"
               className="mb-4"
               custom
+              required
             />
             <Button className="w-100" type="submit">
               Create Event!
