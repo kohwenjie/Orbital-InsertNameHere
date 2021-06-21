@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Card, Button, Modal, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { TextField } from "@material-ui/core";
 
 export default function OrgUpdateEvent(props) {
   const [open, setOpen] = useState(false);
@@ -23,12 +24,17 @@ export default function OrgUpdateEvent(props) {
     updateEventDate,
     updateEventLocation,
     updateSignUpDeadline,
+    updateEventTags,
   } = useAuth();
   const eNameRef = useRef();
   const eDescriptionRef = useRef();
   const eLocationRef = useRef();
   const eDateRef = useRef();
   const sDeadlineRef = useRef();
+  const [eDate, setEDate] = useState();
+  const [sDeadline, setSDeadline] = useState();
+  const [tags, setTags] = useState([]);
+  const [eType, setEType] = useState();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -41,8 +47,19 @@ export default function OrgUpdateEvent(props) {
     setOpen(false);
   }
 
+  const handleChange = (tag) => {
+    let tempTags = tags;
+    if (tempTags.some((t) => t === tag)) {
+      tempTags = tempTags.filter((t) => t !== tag);
+    } else {
+      tempTags.push(tag);
+    }
+    setTags(tempTags);
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
+    tags.push(eType);
 
     const updates = [];
     setLoading(true);
@@ -69,6 +86,9 @@ export default function OrgUpdateEvent(props) {
         updateSignUpDeadline(sDeadlineRef.current.value, documentUID)
       );
     }
+    if (tags) {
+      updates.push(updateEventTags(tags, documentUID));
+    }
 
     Promise.all(updates)
       .then(() => {
@@ -85,7 +105,7 @@ export default function OrgUpdateEvent(props) {
   return (
     <>
       <Button onClick={openModal} variant="info">
-        Test
+        Update Event
       </Button>
       <Modal show={open} onHide={closeModal}>
         <Card>
@@ -96,7 +116,7 @@ export default function OrgUpdateEvent(props) {
               <Form.Group id="eName">
                 <Form.Label>Event Name</Form.Label>
                 <Form.Control
-                  type="eName"
+                  type="eventName"
                   ref={eNameRef}
                   placeholder="Leave blank to keep the same"
                 />
@@ -104,7 +124,7 @@ export default function OrgUpdateEvent(props) {
               <Form.Group id="eDescription">
                 <Form.Label>Event Description</Form.Label>
                 <Form.Control
-                  type="eDescription"
+                  type="eventDescription"
                   ref={eDescriptionRef}
                   placeholder="Leave blank to keep the same"
                 />
@@ -112,19 +132,169 @@ export default function OrgUpdateEvent(props) {
               <Form.Group id="eLocation">
                 <Form.Label>Event Location</Form.Label>
                 <Form.Control
-                  type="eLocation"
+                  type="eventLocation"
                   ref={eLocationRef}
                   placeholder="Leave blank to keep the same"
                 />
               </Form.Group>
-              <Form.Group id="eDate">
-                <Form.Label>Event Date</Form.Label>
-                <Form.Control type="eDate" ref={eDateRef} />
+              <Form.Group id="eDate" className="mb-4">
+                <TextField
+                  id="date"
+                  label="Date of Event"
+                  type="date"
+                  value={eDate}
+                  ref={eDateRef}
+                  onChange={(e) => setEDate(e.target.value)}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
               </Form.Group>
-              <Form.Group id="sDeadline">
-                <Form.Label>Sign Up Deadline</Form.Label>
-                <Form.Control type="sDeadline" ref={sDeadlineRef} />
+              <Form.Group id="signupDeadline" className="mb-4">
+                <TextField
+                  id="date"
+                  label="Signup Deadline"
+                  type="date"
+                  value={sDeadline}
+                  ref={sDeadlineRef}
+                  onChange={(e) => setSDeadline(e.target.value)}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
               </Form.Group>
+              <div key={"inline-checkbox"}>
+                <h6>Select Category: </h6>
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Animal Welfare Tag"}
+                  label={"Animal Welfare Tag"}
+                  onChange={() => handleChange("Animal Welfare")}
+                />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Arts & Heritage"}
+                  label={"Arts & Heritage"}
+                  onChange={() => handleChange("Arts & Heritage")}
+                />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Children & Youth"}
+                  label={"Children & Youth"}
+                  onChange={() => handleChange("Children & Youth")}
+                />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Community"}
+                  label={"Community"}
+                  onChange={() => handleChange("Community")}
+                />
+                <br />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Disability"}
+                  label={"Disability"}
+                  onChange={() => handleChange("Disability")}
+                />
+
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Education"}
+                  label={"Education"}
+                  onChange={() => handleChange("Education")}
+                />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Elderly"}
+                  label={"Elderly"}
+                  onChange={() => handleChange("Elderly")}
+                />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Environment"}
+                  label={"Environment"}
+                  onChange={() => handleChange("Environment")}
+                />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Families"}
+                  label={"Families"}
+                  onChange={() => handleChange("Families")}
+                />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Health"}
+                  label={"Health"}
+                  onChange={() => handleChange("Health")}
+                />
+                <br />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Humanitarian"}
+                  label={"Humanitarian"}
+                  onChange={() => handleChange("Humanitarian")}
+                />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Social Service"}
+                  label={"Social Service"}
+                  onChange={() => handleChange("Social Service")}
+                />
+                <Form.Check
+                  inline
+                  type={"checkbox"}
+                  id={"Sports"}
+                  label={"Sports"}
+                  onChange={() => handleChange("Sports")}
+                />
+              </div>
+              <div key={"inline-radio"}>
+                <h6>Select Event Type: </h6>
+                <Form.Check
+                  inline
+                  name="event type"
+                  type={"radio"}
+                  id={"Live"}
+                  label={"Live"}
+                  onChange={() => setEType("Live")}
+                />
+                <Form.Check
+                  inline
+                  name="event type"
+                  type={"radio"}
+                  id={"Virtual"}
+                  label={"Virtual"}
+                  onChange={() => setEType("Virtual")}
+                />
+                <Form.Check
+                  inline
+                  name="event type"
+                  type={"radio"}
+                  id={"Hybrid"}
+                  label={"Hybrid"}
+                  onChange={() => setEType("Hybrid")}
+                />
+              </div>
+
+              <Form.File
+                id="custom-file-translate-scss"
+                label="Insert Image for Event"
+                lang="en"
+                className="mb-4"
+                custom
+              />
               <Button disabled={loading} className="w-100" type="submit">
                 Update Event
               </Button>
@@ -132,9 +302,6 @@ export default function OrgUpdateEvent(props) {
           </Card.Body>
         </Card>
       </Modal>
-      <div className="w-100 text-center mt-2 mb-3">
-        <Link to="/">Cancel Changes</Link>
-      </div>
     </>
   );
 }

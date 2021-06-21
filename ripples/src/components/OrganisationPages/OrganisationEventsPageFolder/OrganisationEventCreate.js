@@ -11,9 +11,9 @@ export default function OrganisationEventCreate() {
   const [eventDate, setEventDate] = useState();
   const [signupDeadline, setSignupDeadline] = useState();
   const [tags, setTags] = useState([]);
+  const [eventType, setEventType] = useState();
   const { dbUser, currentUser, addEvent } = useAuth();
   const [error, setError] = useState("");
-  const [eventType, setEventType] = useState();
 
   const handleChange = (tag) => {
     let tempTags = tags;

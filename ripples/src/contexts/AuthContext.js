@@ -167,8 +167,8 @@ export function AuthProvider({ children }) {
       organisationName: dbUser.organisationName,
       organisationUID: currentUser.uid,
       documentUID: eventUID,
-      signedUpVolunteers: {},
-      confirmedVolunteers: {},
+      signedUpVolunteers: [],
+      confirmedVolunteers: [],
       cancelledEvent: false,
     });
   }
@@ -230,6 +230,12 @@ export function AuthProvider({ children }) {
     });
   }
 
+  function updateEventTags(newTags, docUID) {
+    database.collection("events").doc(docUID).update({
+      Tags: newTags,
+    });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -272,6 +278,7 @@ export function AuthProvider({ children }) {
     updateEventLocation,
     updateEventDate,
     updateSignUpDeadline,
+    updateEventTags,
     addEvent,
     addRequest,
     signupEvent,
