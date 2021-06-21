@@ -7,7 +7,7 @@ export default function ViewSignedUpVolunteers(props) {
   const [signedUpVolunteersArr, setSignedUpVolunteersArr] = useState([]);
   const [volunteersProfile, setVolunteersProfile] = useState([]);
   const event = props.e;
-  const { eventName, signedUpVolunteers } = props.e;
+  const { eventName, signedUpVolunteers } = event;
 
   const fetchVolunteers = async () => {
     let arr = [];
@@ -31,12 +31,11 @@ export default function ViewSignedUpVolunteers(props) {
       .then(() => {
         setVolunteersProfile(arr);
       });
-    // .then(console.log(volunteersProfile));
   };
 
   useEffect(() => {
     fetchVolunteers();
-  }, []);
+  }, [open]);
 
   function openModal() {
     setOpen(true);
