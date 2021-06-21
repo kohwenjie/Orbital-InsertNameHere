@@ -6,14 +6,13 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
-
+import OrgDisplayBeneficiaries from "./OrgDisplayBeneficiaries";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
 //     marginTop: theme.spacing(3),
 //   },
 // }));
-
 
 const mainFeaturedPost = {
   title: "THIS IS A Organisation Beneficiarie PAGE",
@@ -35,8 +34,9 @@ export default function OrganisationBeneficiaries() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
+        <OrgDisplayBeneficiaries />
       </Container>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }

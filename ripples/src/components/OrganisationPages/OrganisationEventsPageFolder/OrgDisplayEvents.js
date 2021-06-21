@@ -75,8 +75,8 @@ export default function OrgDisplayEvents() {
                     {organisationName}
                   </Card.Subtitle>
                   <Card.Text>Event Date:{eventDate}</Card.Text>
-                  <OrgDisplayFullEvent e={event}/>
-                  <ViewSignedUpVolunteers e={event}/>
+                  <OrgDisplayFullEvent e={event} />
+                  <ViewSignedUpVolunteers e={event} />
                 </Card.Body>
               </Card>
             </>
@@ -85,4 +85,3 @@ export default function OrgDisplayEvents() {
     </CardDeck>
   );
 }
-
