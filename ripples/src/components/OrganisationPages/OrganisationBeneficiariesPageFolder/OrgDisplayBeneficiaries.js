@@ -36,7 +36,7 @@ export default function SignedUpComponent() {
   return (
     <>
       <div>
-        <h2>LIST OF OrgDisplayBeneficiaries</h2>
+        <h2>LIST OF ORGANISATION BENEFICIARIES</h2>
       </div>
       <Table striped bordered hover size="sm">
         <thead>

@@ -39,7 +39,7 @@ export default function SignedUpComponent() {
   return (
     <>
       <div>
-        <h2>COMMITMENT PORTION</h2>
+        <h2>VOLUNTEERING HISTORY</h2>
       </div>
       <Table striped bordered hover size="sm">
         <thead>
