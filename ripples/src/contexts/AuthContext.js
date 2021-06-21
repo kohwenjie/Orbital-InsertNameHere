@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
   function signup(email, password, obj) {
     return auth.createUserWithEmailAndPassword(email, password).then((cred) => {
       const uid = cred.user.uid;
-      // obj.map(userUID=> uid);
+      obj.uid = uid;
       database
         .collection("user")
         .doc(uid)
@@ -200,6 +200,36 @@ export function AuthProvider({ children }) {
       });
   }
 
+  function updateEventName(newEventName, docUID) {
+    database.collection("events").doc(docUID).update({
+      eventName: newEventName,
+    });
+  }
+
+  function updateEventDescription(newEventDescription, docUID) {
+    database.collection("events").doc(docUID).update({
+      eventDescription: newEventDescription,
+    });
+  }
+
+  function updateEventLocation(newEventLocation, docUID) {
+    database.collection("events").doc(docUID).update({
+      eventLocation: newEventLocation,
+    });
+  }
+
+  function updateEventDate(newEventDate, docUID) {
+    database.collection("events").doc(docUID).update({
+      eventDate: newEventDate,
+    });
+  }
+
+  function updateSignUpDeadline(newSignupDeadline, docUID) {
+    database.collection("events").doc(docUID).update({
+      signupDeadline: newSignupDeadline,
+    });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -237,6 +267,11 @@ export function AuthProvider({ children }) {
     updateLastName,
     updateContact,
     updateDob,
+    updateEventName,
+    updateEventDescription,
+    updateEventLocation,
+    updateEventDate,
+    updateSignUpDeadline,
     addEvent,
     addRequest,
     signupEvent,
