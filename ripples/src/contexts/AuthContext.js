@@ -16,7 +16,6 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [dbUser, setDBUser] = useState();
   const [loading, setLoading] = useState(true);
-  const [eventsArray, setEventsArray] = useState([]);
 
   function getUpdatedDBUser(uid) {
     return database

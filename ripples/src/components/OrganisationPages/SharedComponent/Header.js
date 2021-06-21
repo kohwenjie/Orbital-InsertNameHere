@@ -40,7 +40,7 @@ const title = "Ripples";
 export default function Header(props) {
   const classes = useStyles();
   const [error, setError] = useState();
-  const { dbUser, logout, setDBUser, setCurrentUser, currentUser } = useAuth();
+  const { dbUser, logout, setDBUser, setCurrentUser } = useAuth();
   const history = useHistory();
 
   async function handleLogout() {

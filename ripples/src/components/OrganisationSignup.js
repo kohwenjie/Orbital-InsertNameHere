@@ -13,8 +13,6 @@ export default function OrganisationSignup() {
   const passwordConfirmRef = useRef();
   const contactRef = useRef();
   const [contact, setContact] = useState("");
-  const eventRef = useRef();
-  const [events, setEvents] = useState([]);
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);

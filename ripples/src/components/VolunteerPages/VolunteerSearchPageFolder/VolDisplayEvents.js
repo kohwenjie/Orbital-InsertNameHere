@@ -19,7 +19,6 @@ export default function VolDisplayEvents() {
         });
       })
       .then(setEvents(arr));
-    // .then(console.log("THIS IS THE EVENTS ARR", events));
   };
 
   useEffect(() => {

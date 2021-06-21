@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
-import { database } from "../../../firebase";
+import React, { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export default function VolDisplayFullEvent(props) {
@@ -15,7 +14,6 @@ export default function VolDisplayFullEvent(props) {
     eventDate,
     signupDeadline,
     organisationName,
-    organisationUID,
     Tags,
     documentUID,
   } = event;

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
-import OrganisationBeneficiaries from "./OrganisationBeneficiaries";
 
 export default function SignedUpComponent() {
   const { dbUser } = useAuth();
