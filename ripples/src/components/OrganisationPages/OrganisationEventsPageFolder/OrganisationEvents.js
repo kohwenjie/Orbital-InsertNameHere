@@ -5,9 +5,7 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "./MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
-import { Link } from "react-router-dom";
 import OrgDisplayEvents from "./OrgDisplayEvents";
-import { Button } from "@material-ui/core";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {

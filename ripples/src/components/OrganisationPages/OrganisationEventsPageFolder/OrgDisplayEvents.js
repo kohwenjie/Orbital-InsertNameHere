@@ -63,6 +63,7 @@ export default function OrgDisplayEvents() {
                   boxSizing: "border-box",
                 }}
                 className="box m-4"
+                key={events.indexOf(event) + 1}
               >
                 <Card.Img
                   variant="top"

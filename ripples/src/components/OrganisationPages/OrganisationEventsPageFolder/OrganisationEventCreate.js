@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 
 export default function OrganisationEventCreate() {
@@ -14,6 +14,7 @@ export default function OrganisationEventCreate() {
   const [eventType, setEventType] = useState();
   const { addEvent } = useAuth();
   const [error, setError] = useState("");
+  const history = useHistory();
 
   const handleChange = (tag) => {
     let tempTags = tags;
@@ -28,22 +29,28 @@ export default function OrganisationEventCreate() {
   function handleSubmit(e) {
     e.preventDefault();
     tags.push(eventType);
+    let signupDate = new Date(signupDeadline);
+    let eventActualDate = new Date(eventDate);
+    if (signupDate >= eventActualDate) {
+      setError("Sign Up Date cannot be later than Event Date!");
+    } else {
+      addEvent(
+        eventName,
+        eventDescription,
+        eventLocation,
+        eventDate,
+        signupDeadline,
+        tags
+      );
 
-    addEvent(
-      eventName,
-      eventDescription,
-      eventLocation,
-      eventDate,
-      signupDeadline,
-      tags
-    );
-
-    setEventName("");
-    setEventDescription("");
-    setEventLocation("");
-    setEventDate("");
-    setSignupDeadline("");
-    setTags([]);
+      setEventName("");
+      setEventDescription("");
+      setEventLocation("");
+      setEventDate("");
+      setSignupDeadline("");
+      setTags([]);
+      history.push("/OrganisationEvents");
+    }
   }
   return (
     <>

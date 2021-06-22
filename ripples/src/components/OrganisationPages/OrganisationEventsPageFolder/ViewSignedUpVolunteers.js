@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Table, Alert } from "react-bootstrap";
-import { database, firebase } from "../../../firebase";
+import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export default function ViewSignedUpVolunteers(props) {
@@ -18,7 +18,6 @@ export default function ViewSignedUpVolunteers(props) {
       let signedUpArr = [];
       signedUpVolunteers.forEach((volUID) => signedUpArr.push(volUID));
       setSignedUpVolunteersArr(signedUpArr);
-      // console.log("here 3: ", signedUpVolunteersArr);
     }
 
     database
@@ -49,11 +48,6 @@ export default function ViewSignedUpVolunteers(props) {
   }
 
   function handleAccept(volUID) {
-    console.log(signedUpVolunteers);
-    console.log(confirmedVolunteers);
-    console.log(volUID);
-    console.log(documentUID);
-
     if (
       signedUpVolunteers.includes(volUID) &&
       signedUpVolunteers.length > 0 &&
@@ -62,13 +56,16 @@ export default function ViewSignedUpVolunteers(props) {
       RemoveVolunteerFromSignUp(documentUID, volUID);
       AddVolunteerToConfirmed(documentUID, volUID);
 
-      return <Alert>Volunteer accepted!</Alert>;
+      alert("Accepted Volunteer");
     } else {
-      return <Alert>Error! Cant Accept Volunteer</Alert>;
+      alert("Unable to Accept Volunteer");
     }
   }
 
-  function handleReject(volUID) {}
+  function handleReject(volUID) {
+    RemoveVolunteerFromSignUp(documentUID, volUID);
+    alert("Volunteer has been Rejected");
+  }
 
   return (
     <>
@@ -94,14 +91,16 @@ export default function ViewSignedUpVolunteers(props) {
                 volunteersProfile.map((profile) => {
                   const { firstName, lastName, contact, email, uid } = profile;
                   return (
-                    <tr>
+                    <tr key={volunteersProfile.indexOf(profile) + 1}>
                       <td>{volunteersProfile.indexOf(profile) + 1}</td>
                       <td>{firstName + " " + lastName}</td>
                       <td>{contact}</td>
                       <td>{email}</td>
                       <td>description yet to implement</td>
                       <td>
-                        <Button>Reject</Button>
+                        <Button onClick={() => handleReject(uid)}>
+                          Reject
+                        </Button>
                         <Button
                           onClick={() => {
                             handleAccept(uid);
