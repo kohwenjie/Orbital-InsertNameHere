@@ -29,10 +29,13 @@ export default function OrganisationEventCreate() {
   function handleSubmit(e) {
     e.preventDefault();
     tags.push(eventType);
+    let currentDate = new Date();
     let signupDate = new Date(signupDeadline);
     let eventActualDate = new Date(eventDate);
     if (signupDate >= eventActualDate) {
       setError("Sign Up Date cannot be later than Event Date!");
+    } else if (currentDate >= signupDate) {
+      setError("Date has already passed, pick another Date!");
     } else {
       addEvent(
         eventName,
