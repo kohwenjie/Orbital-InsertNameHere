@@ -51,7 +51,6 @@ export default function OrgDisplayFullEvent(props) {
           <Button variant="secondary" onClick={closeModal}>
             Close
           </Button>
-          <Button variant="primary">View Signups</Button>
           <OrgUpdateEvent e={event} />
         </Modal.Footer>
       </Modal>

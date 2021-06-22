@@ -3,10 +3,11 @@ import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
-import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
+import MainFeaturedPost from "./MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import { Link } from "react-router-dom";
 import OrgDisplayEvents from "./OrgDisplayEvents";
+import { Button } from "@material-ui/core";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -30,12 +31,6 @@ export default function OrganisationEvents() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
-        <Link
-          to="/OrganisationEventCreate"
-          className="btn btn-primary btn-lg w-100 m-4"
-        >
-          Create an Event!
-        </Link>
         <OrgDisplayEvents />
       </Container>
       <Footer />

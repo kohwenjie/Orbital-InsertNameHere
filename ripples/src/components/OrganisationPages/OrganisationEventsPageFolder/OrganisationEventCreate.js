@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Card, Alert, InputGroup } from "react-bootstrap";
+import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
@@ -12,7 +12,7 @@ export default function OrganisationEventCreate() {
   const [signupDeadline, setSignupDeadline] = useState();
   const [tags, setTags] = useState([]);
   const [eventType, setEventType] = useState();
-  const { dbUser, currentUser, addEvent } = useAuth();
+  const { addEvent } = useAuth();
   const [error, setError] = useState("");
 
   const handleChange = (tag) => {
@@ -85,7 +85,9 @@ export default function OrganisationEventCreate() {
                 label="Date of Event"
                 type="date"
                 value={eventDate}
-                onChange={(e) => setEventDate(e.target.value)}
+                onChange={(e) => {
+                  setEventDate(e.target.value);
+                }}
                 InputLabelProps={{
                   shrink: true,
                 }}
