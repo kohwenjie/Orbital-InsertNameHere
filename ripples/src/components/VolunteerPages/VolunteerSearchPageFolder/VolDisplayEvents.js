@@ -25,8 +25,6 @@ export default function VolDisplayEvents() {
     fetchEvents();
   }, []);
 
-  console.log(events);
-
   return (
     <CardDeck
       style={{

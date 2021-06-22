@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Button, Modal, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export default function VolDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const { currentUser, signupEvent } = useAuth();
 
   const event = props.e;
@@ -16,6 +17,8 @@ export default function VolDisplayFullEvent(props) {
     organisationName,
     Tags,
     documentUID,
+    confirmedVolunteers,
+    signedUpVolunteers,
   } = event;
 
   function openModal() {
@@ -29,6 +32,28 @@ export default function VolDisplayFullEvent(props) {
   function signup() {
     signupEvent(documentUID, currentUser.uid);
   }
+
+  function ShowSignedUpMessage() {
+    if (disabled) {
+      return (
+        <Alert show variant="info">
+          Looks like you have already signed up for this event!
+        </Alert>
+      );
+    }
+    return <></>;
+  }
+
+  useEffect(() => {
+    if (
+      confirmedVolunteers.includes(currentUser.uid) ||
+      signedUpVolunteers.includes(currentUser.uid)
+    ) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, []);
 
   return (
     <>
@@ -50,14 +75,16 @@ export default function VolDisplayFullEvent(props) {
           <p>Tags: {Tags}</p>
           <h7>{eventDescription}</h7>
         </Modal.Body>
+        <ShowSignedUpMessage/>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={signup}>
+          <Button variant="primary" onClick={signup} disabled={disabled}>
             Sign Up Now
           </Button>
         </Modal.Footer>
+        
       </Modal>
     </>
   );
