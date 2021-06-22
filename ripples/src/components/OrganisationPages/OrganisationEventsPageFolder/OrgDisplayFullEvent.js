@@ -29,7 +29,7 @@ export default function OrgDisplayFullEvent(props) {
     <>
       <Button onClick={openModal} variant="outline-success" size="sm">
         More Details
-      </Button>
+      </Button>{" "}
       <Modal show={open} onHide={closeModal}>
         <Modal.Body>
           <img

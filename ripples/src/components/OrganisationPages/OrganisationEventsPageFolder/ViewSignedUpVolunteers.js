@@ -72,7 +72,7 @@ export default function ViewSignedUpVolunteers(props) {
       <Button onClick={openModal} variant="outline-success" size="sm">
         View Signed Up
       </Button>
-      <Modal show={open} onHide={closeModal}>
+      <Modal show={open} onHide={closeModal} size="lg">
         <Modal.Body>
           <h4>{eventName}</h4>
           <Table striped bordered hover size="sm">
@@ -100,7 +100,7 @@ export default function ViewSignedUpVolunteers(props) {
                       <td>
                         <Button onClick={() => handleReject(uid)}>
                           Reject
-                        </Button>
+                        </Button>{" "}
                         <Button
                           onClick={() => {
                             handleAccept(uid);
