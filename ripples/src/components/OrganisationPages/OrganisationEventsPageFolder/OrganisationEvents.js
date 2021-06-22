@@ -6,6 +6,7 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "./MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import OrgDisplayEvents from "./OrgDisplayEvents";
+import OrgOngoingEvents from "./OrgOngoingEvents"
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 
 // const useStyles = makeStyles((theme) => ({
@@ -48,7 +49,7 @@ export default function OrganisationEvents() {
                   <OrgDisplayEvents />
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
-                  <h2>That</h2>
+                  <OrgOngoingEvents />
                 </Tab.Pane>
               </Tab.Content>
             </Col>

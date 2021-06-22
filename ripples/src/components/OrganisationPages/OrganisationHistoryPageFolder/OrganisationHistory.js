@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
-
+import OrgHistoryEvents from "./OrgDisplayEvents";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -14,14 +14,9 @@ import Footer from "../SharedComponent/Footer";
 // }));
 
 const mainFeaturedPost = {
-  title: "THIS IS A Organisation History PAGE",
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+  title: "Your Events History ",
   image: "https://source.unsplash.com/random",
-  imgText: "main image description",
-  linkText: "Continue reading…",
 };
-
 
 export default function OrganisationHistory() {
   // const classes = useStyles();
@@ -34,8 +29,9 @@ export default function OrganisationHistory() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
+        <OrgHistoryEvents />
       </Container>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }
