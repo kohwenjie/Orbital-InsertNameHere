@@ -13,9 +13,13 @@ export default function VolDisplayEvents() {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          // setIdentity will cause rendering, which is required or nothing will show
-          arr.push(doc.data());
-          setIdentity(doc.id);
+          //check to see if the event is passed the sign up Date
+          console.log(doc.data().signupDeadline);
+          if (new Date() < new Date(doc.data().signupDeadline)) {
+            arr.push(doc.data());
+            // setIdentity will cause rendering, which is required or nothing will show
+            setIdentity(doc.id);
+          }
         });
       })
       .then(setEvents(arr));
