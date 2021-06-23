@@ -65,7 +65,7 @@ export function AuthProvider({ children }) {
       .updateEmail(email)
       .then(getUpdatedDBUser(currentUser.uid))
       .then(() => {
-        Alert.alert("Password was changed");
+        Alert.alert("Email was changed");
       })
       .catch((error) => {
         Alert.alert(error.messaege);
@@ -124,6 +124,22 @@ export function AuthProvider({ children }) {
       .then(getUpdatedDBUser(currentUser.uid));
   }
 
+  function updateDescription(description, uid) {
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ dscription: description })
+      .then(getUpdatedDBUser(currentUser.uid));
+  }
+
+  function updateAddress(address, uid) {
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ address: address })
+      .then(getUpdatedDBUser(currentUser.uid));
+  }
+
   function updateContact(contact, uid) {
     return database
       .collection("user")
@@ -156,20 +172,30 @@ export function AuthProvider({ children }) {
         events: firebase.firestore.FieldValue.arrayUnion(eventUID),
       });
 
-    return database.collection("events").doc(eventUID).set({
-      eventName: eventName,
-      eventDescription: eventDescription,
-      eventLocation: eventLocation,
-      eventDate: eventDate,
-      signupDeadline: signupDeadline,
-      Tags: Tags,
-      organisationName: dbUser.organisationName,
-      organisationUID: currentUser.uid,
-      documentUID: eventUID,
-      signedUpVolunteers: [],
-      confirmedVolunteers: [],
-      cancelledEvent: false,
-    });
+    return database
+      .collection("events")
+      .doc(eventUID)
+      .set({
+        eventName: eventName,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventDate: eventDate,
+        signupDeadline: signupDeadline,
+        Tags: Tags,
+        organisationName: dbUser.organisationName,
+        organisationUID: currentUser.uid,
+        documentUID: eventUID,
+        signedUpVolunteers: [],
+        confirmedVolunteers: [],
+        cancelledEvent: false,
+      })
+      .then(() => {
+        Alert.alert("Event created!");
+      })
+      .then(getUpdatedDBUser(currentUser.uid))
+      .catch((error) => {
+        Alert.alert(error.messaege);
+      });
   }
 
   //need add request uid to beneficiary's array of request
@@ -179,15 +205,24 @@ export function AuthProvider({ children }) {
     requestDate,
     signupDeadline
   ) {
-    return database.collection("events").add({
-      requestFirstName: dbUser.firstName,
-      requestLastName: dbUser.lastName,
-      requesterUID: currentUser.uid,
-      requestDescription: requestDescription,
-      requestLocation: requestLocation,
-      requestDate: requestDate,
-      signupDeadline: signupDeadline,
-    });
+    return database
+      .collection("events")
+      .add({
+        requestFirstName: dbUser.firstName,
+        requestLastName: dbUser.lastName,
+        requesterUID: currentUser.uid,
+        requestDescription: requestDescription,
+        requestLocation: requestLocation,
+        requestDate: requestDate,
+        signupDeadline: signupDeadline,
+      })
+      .then(() => {
+        Alert.alert("Request Created!");
+      })
+      .then(getUpdatedDBUser(currentUser.uid))
+      .catch((error) => {
+        Alert.alert(error.messaege);
+      });
   }
 
   function signupEvent(docUID, userUID) {
@@ -196,6 +231,13 @@ export function AuthProvider({ children }) {
       .doc(docUID)
       .update({
         signedUpVolunteers: firebase.firestore.FieldValue.arrayUnion(userUID),
+      })
+      .then(() => {
+        Alert.alert("Signed Up!");
+      })
+      .then(getUpdatedDBUser(currentUser.uid))
+      .catch((error) => {
+        Alert.alert(error.messaege);
       });
   }
 
@@ -241,6 +283,13 @@ export function AuthProvider({ children }) {
       .doc(documentUID)
       .update({
         signedUpVolunteers: firebase.firestore.FieldValue.arrayRemove(volUID),
+      })
+      .then(() => {
+        Alert.alert("Volunteer Rejected");
+      })
+      .then(getUpdatedDBUser(currentUser.uid))
+      .catch((error) => {
+        Alert.alert(error.messaege);
       });
   }
 
@@ -250,6 +299,13 @@ export function AuthProvider({ children }) {
       .doc(documentUID)
       .update({
         confirmedVolunteers: firebase.firestore.FieldValue.arrayUnion(volUID),
+      })
+      .then(() => {
+        Alert.alert("Volunteer Confirmed");
+      })
+      .then(getUpdatedDBUser(currentUser.uid))
+      .catch((error) => {
+        Alert.alert(error.messaege);
       });
   }
 
@@ -260,19 +316,6 @@ export function AuthProvider({ children }) {
     });
     return unsubscribe;
   }, []);
-
-  // useEffect(() => {
-  //   const data = localStorage.getItem("localUser");
-  //   console.log(data);
-  //   if (data) {
-  //     console.log(data);
-  //     setDBUser(JSON.parse(data));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("localUser", JSON.stringify(dbUser));
-  // });
 
   const value = {
     currentUser,
@@ -288,6 +331,8 @@ export function AuthProvider({ children }) {
     updateUsername,
     updateFirstName,
     updateLastName,
+    updateDescription,
+    updateAddress,
     updateContact,
     updateDob,
     updateEventName,

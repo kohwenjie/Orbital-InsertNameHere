@@ -8,6 +8,7 @@ export default function VolunteerUpdateProfile() {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const usernameRef = useRef();
+  const descriptionRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -19,6 +20,7 @@ export default function VolunteerUpdateProfile() {
     updateFirstName,
     updateLastName,
     updateUsername,
+    updateDescription,
     updateAuthEmail,
     updateDatabaseEmail,
     updateAuthPassword,
@@ -71,6 +73,11 @@ export default function VolunteerUpdateProfile() {
     if (usernameRef.current.value) {
       updates.push(updateUsername(usernameRef.current.value, currentUser.uid));
     }
+    if (descriptionRef.current.value) {
+      updates.push(
+        updateDescription(descriptionRef.current.value, currentUser.uid)
+      );
+    }
     if (contactRef.current.value) {
       updates.push(updateContact(contactRef.current.value, currentUser.uid));
     }
@@ -97,19 +104,26 @@ export default function VolunteerUpdateProfile() {
           <h2 className="text-center mb-20">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="firstName">
+            <Form.Group id="firstName" className="mb-2">
               <Form.Label>First Name</Form.Label>
               <Form.Control type="firstName" ref={firstNameRef} />
             </Form.Group>
-            <Form.Group id="lastName">
+            <Form.Group id="lastName" className="mb-2">
               <Form.Label>Last Name</Form.Label>
               <Form.Control type="lastNameRef" ref={lastNameRef} />
             </Form.Group>
-            <Form.Group id="username">
+            <Form.Group id="username" className="mb-2">
               <Form.Label>Username</Form.Label>
               <Form.Control type="username" ref={usernameRef} />
             </Form.Group>
-            <Form.Group id="email">
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mb-2"
+            >
+              <Form.Label>Description</Form.Label>
+              <Form.Control as="textarea" rows={3} ref={descriptionRef} />
+            </Form.Group>
+            <Form.Group id="email" className="mb-2">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -117,7 +131,7 @@ export default function VolunteerUpdateProfile() {
                 defaultValue={currentUser.email}
               />
             </Form.Group>
-            <Form.Group id="password">
+            <Form.Group id="password" className="mb-2">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -125,7 +139,7 @@ export default function VolunteerUpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
-            <Form.Group id="confirmpassword">
+            <Form.Group id="confirmpassword" className="mb-2">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
@@ -133,14 +147,10 @@ export default function VolunteerUpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
-            <Form.Group id="contact">
+            <Form.Group id="contact" className="mb-2">
               <Form.Label>Contact</Form.Label>
               <Form.Control type="contact" ref={contactRef} />
             </Form.Group>
-            {/* <Form.Group id="dob" className="mb-4">
-              <Form.Label>D.O.B</Form.Label>
-              <Form.Control type="dob" ref={dobRef} />
-            </Form.Group> */}
             <Form.Group id="dob" className="mt-3 mb-3">
               <TextField
                 id="date"

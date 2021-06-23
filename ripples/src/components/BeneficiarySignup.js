@@ -11,11 +11,15 @@ export default function BeneficiarySignup() {
   const [lastName, setLastName] = useState("");
   const usernameRef = useRef();
   const [username, setUsername] = useState("");
+  const descriptionRef = useRef();
+  const [description, setDescription] = useState("");
   const emailRef = useRef();
   const [email, setEmail] = useState("");
   const passwordRef = useRef();
   const [password, setPassword] = useState("");
   const passwordConfirmRef = useRef();
+  const addressRef = useRef();
+  const [address, setAddress] = useState("");
   const contactRef = useRef();
   const [contact, setContact] = useState("");
   const dobRef = useRef();
@@ -45,10 +49,13 @@ export default function BeneficiarySignup() {
         firstName: firstName,
         lastName: lastName,
         username: username,
+        description: description,
         email: email,
         password: password,
+        address: address,
         contact: contact,
         dob: dob,
+        requestCounter: 0,
         request: [],
         linkedOrganisation: [],
         userType: "beneficiary",
@@ -105,6 +112,17 @@ export default function BeneficiarySignup() {
                 placeholder="Username"
               />
             </Form.Group>
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={descriptionRef}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                placeholder="Description of Yourself"
+              />
+            </Form.Group>
             <Form.Group id="email" className="mt-3 mb-3">
               <Form.Control
                 type="email"
@@ -133,6 +151,20 @@ export default function BeneficiarySignup() {
                 placeholder="Confirm Password"
               />
             </Form.Group>
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mt-3 mb-3"
+            >
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={addressRef}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+                placeholder="Address"
+              />
+            </Form.Group>
             <Form.Group id="contact" className="mt-3 mb-3">
               <Form.Control
                 type="contact"
@@ -147,6 +179,7 @@ export default function BeneficiarySignup() {
               <TextField
                 id="date"
                 inputRef={dobRef}
+                value={dob}
                 required
                 onChange={(e) => setDob(e.target.value)}
                 label="Date of Birth"

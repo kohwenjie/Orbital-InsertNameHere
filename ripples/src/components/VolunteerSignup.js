@@ -11,6 +11,8 @@ export default function VolunteerSignup() {
   const [lastName, setLastName] = useState("");
   const usernameRef = useRef();
   const [username, setUsername] = useState("");
+  const descriptionRef = useRef();
+  const [description, setDescription] = useState("");
   const emailRef = useRef();
   const [email, setEmail] = useState("");
   const passwordRef = useRef();
@@ -46,11 +48,13 @@ export default function VolunteerSignup() {
         firstName: firstName,
         lastName: lastName,
         username: username,
+        description: description,
         email: email,
         password: password,
         contact: contact,
         dob: dob,
         points: 0,
+        eventCounter: 0,
         commitments: [],
         history: [],
         userType: "volunteer",
@@ -107,6 +111,17 @@ export default function VolunteerSignup() {
                 placeholder="Username"
               />
             </Form.Group>
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={descriptionRef}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                placeholder="Description of Yourself"
+              />
+            </Form.Group>
             <Form.Group id="email" className="mt-3 mb-3">
               <Form.Control
                 type="email"
@@ -145,20 +160,11 @@ export default function VolunteerSignup() {
                 placeholder="Contact Number"
               />
             </Form.Group>
-            {/* <Form.Group id="dob" className="mt-3 mb-3">
-              <Form.Control
-                type="dob"
-                ref={dobRef}
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
-                required
-                placeholder="Date of Birth"
-              />
-            </Form.Group> */}
             <Form.Group id="dob" className="mt-3 mb-3">
               <TextField
                 id="date"
                 inputRef={dobRef}
+                value={dob}
                 required
                 onChange={(e) => setDob(e.target.value)}
                 label="Date of Birth"

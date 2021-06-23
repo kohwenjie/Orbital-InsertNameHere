@@ -8,9 +8,11 @@ export default function BeneficiaryUpdateProfile() {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const usernameRef = useRef();
+  const descriptionRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+  const addressRef = useRef();
   const contactRef = useRef();
   const dobRef = useRef();
   const {
@@ -19,10 +21,12 @@ export default function BeneficiaryUpdateProfile() {
     updateFirstName,
     updateLastName,
     updateUsername,
+    updateDescription,
     updateAuthEmail,
     updateDatabaseEmail,
     updateAuthPassword,
     updateDatabasePassword,
+    updateAddress,
     updateContact,
     updateDob,
   } = useAuth();
@@ -62,6 +66,14 @@ export default function BeneficiaryUpdateProfile() {
     if (usernameRef.current.value) {
       updates.push(updateUsername(usernameRef.current.value, currentUser.uid));
     }
+    if (descriptionRef.current.value) {
+      updates.push(
+        updateDescription(descriptionRef.current.value, currentUser.uid)
+      );
+    }
+    if (addressRef.current.value) {
+      updates.push(updateAddress(addressRef.current.value, currentUser.uid));
+    }
     if (contactRef.current.value) {
       updates.push(updateContact(contactRef.current.value, currentUser.uid));
     }
@@ -100,6 +112,13 @@ export default function BeneficiaryUpdateProfile() {
               <Form.Label>Username</Form.Label>
               <Form.Control type="username" ref={usernameRef} />
             </Form.Group>
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mb-2"
+            >
+              <Form.Label>Description</Form.Label>
+              <Form.Control as="textarea" rows={3} ref={descriptionRef} />
+            </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -124,14 +143,14 @@ export default function BeneficiaryUpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
+            <Form.Group id="address">
+              <Form.Label>Address</Form.Label>
+              <Form.Control type="address" ref={addressRef} />
+            </Form.Group>
             <Form.Group id="contact">
               <Form.Label>Contact</Form.Label>
               <Form.Control type="contact" ref={contactRef} />
             </Form.Group>
-            {/* <Form.Group id="dob" className="mb-4">
-              <Form.Label>D.O.B</Form.Label>
-              <Form.Control type="dob" ref={dobRef} />
-            </Form.Group> */}
             <Form.Group id="dob" className="mt-3 mb-3">
               <TextField
                 id="date"

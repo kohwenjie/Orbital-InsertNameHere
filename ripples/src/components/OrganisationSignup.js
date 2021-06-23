@@ -4,13 +4,17 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
 export default function OrganisationSignup() {
-  const organisationNameRef = useRef();
-  const [organisationName, setOrganisationName] = useState("");
+  const nameRef = useRef();
+  const [name, setName] = useState("");
+  const descriptionRef = useRef();
+  const [description, setDescription] = useState("");
   const emailRef = useRef();
   const [email, setEmail] = useState("");
   const passwordRef = useRef();
   const [password, setPassword] = useState("");
   const passwordConfirmRef = useRef();
+  const addressRef = useRef();
+  const [address, setAddress] = useState("");
   const contactRef = useRef();
   const [contact, setContact] = useState("");
   const { signup } = useAuth();
@@ -40,13 +44,16 @@ export default function OrganisationSignup() {
       setError("");
       setLoading(true);
       const userDetails = {
-        organisationName: organisationName,
+        name: name,
+        description: description,
         email: email,
         password: password,
+        address: address,
         contact: contact,
+        eventCounter: 0,
+        events: [],
         beneficiaries: [],
         userType: "organisation",
-        events: [],
       };
       await signup(
         emailRef.current.value,
@@ -69,18 +76,28 @@ export default function OrganisationSignup() {
           </h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="organisationName" className="mt-3 mb-3">
+            <Form.Group id="name" className="mt-3 mb-3">
               <Form.Control
-                type="organisationName"
-                ref={organisationNameRef}
-                value={organisationName}
-                onChange={(e) => setOrganisationName(e.target.value)}
+                type="name"
+                ref={nameRef}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 required
                 placeholder="Organisation Name"
               />
             </Form.Group>
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={descriptionRef}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                placeholder="Description of Yourself"
+              />
+            </Form.Group>
             <Form.Group id="email" className="mt-3 mb-3">
-              {/* <Form.Label>Email</Form.Label> */}
               <Form.Control
                 type="email"
                 ref={emailRef}
@@ -106,6 +123,20 @@ export default function OrganisationSignup() {
                 ref={passwordConfirmRef}
                 required
                 placeholder="Confirm Password"
+              />
+            </Form.Group>
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mt-3 mb-3"
+            >
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={addressRef}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+                placeholder="Organisation Address"
               />
             </Form.Group>
             <Form.Group id="contact" className="mt-3 mb-3">

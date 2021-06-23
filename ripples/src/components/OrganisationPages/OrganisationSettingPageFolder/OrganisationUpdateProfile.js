@@ -7,8 +7,19 @@ export default function OrganisationUpdateProfile() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+  const descriptionRef = useRef();
+  const addressRef = useRef();
   const contactRef = useRef();
-  const { currentUser, updateEmail, updatePassword } = useAuth();
+  const {
+    currentUser,
+    updateDescription,
+    updateAuthEmail,
+    updateDatabaseEmail,
+    updateAuthPassword,
+    updateDatabasePassword,
+    updateAddress,
+    updateContact,
+  } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -24,10 +35,27 @@ export default function OrganisationUpdateProfile() {
     setError("");
 
     if (emailRef.current.value !== currentUser.email) {
-      updates.push(updateEmail(emailRef.current.value));
+      updates.push(
+        updateDatabaseEmail(emailRef.current.value, currentUser.uid)
+      );
+      updates.push(updateAuthEmail(emailRef.current.value));
     }
     if (passwordRef.current.value) {
-      updates.push(updatePassword(passwordRef.current.value));
+      updates.push(
+        updateDatabasePassword(passwordRef.current.value, currentUser.uid)
+      );
+      updates.push(updateAuthPassword(passwordRef.current.value));
+    }
+    if (descriptionRef.current.value) {
+      updates.push(
+        updateDescription(descriptionRef.current.value, currentUser.uid)
+      );
+    }
+    if (addressRef.current.value) {
+      updates.push(updateAddress(addressRef.current.value, currentUser.uid));
+    }
+    if (contactRef.current.value) {
+      updates.push(updateContact(contactRef.current.value, currentUser.uid));
     }
 
     Promise.all(updates)
@@ -49,6 +77,13 @@ export default function OrganisationUpdateProfile() {
           <h2 className="text-center mb-20">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mb-2"
+            >
+              <Form.Label>Description</Form.Label>
+              <Form.Control as="textarea" rows={3} ref={descriptionRef} />
+            </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -72,6 +107,13 @@ export default function OrganisationUpdateProfile() {
                 ref={passwordConfirmRef}
                 placeholder="Leave blank to keep the same"
               />
+            </Form.Group>
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mb-2"
+            >
+              <Form.Label>Address</Form.Label>
+              <Form.Control as="textarea" rows={3} ref={addressRef} />
             </Form.Group>
             <Form.Group id="contact">
               <Form.Label>Contact</Form.Label>
