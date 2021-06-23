@@ -187,6 +187,7 @@ export function AuthProvider({ children }) {
         documentUID: eventUID,
         signedUpVolunteers: [],
         confirmedVolunteers: [],
+        rejectedVolunteers: [],
         cancelledEvent: false,
       })
       .then(() => {

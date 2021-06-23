@@ -53,6 +53,7 @@ export default function OrganisationSignup() {
         eventCounter: 0,
         events: [],
         beneficiaries: [],
+        history: [],
         userType: "organisation",
       };
       await signup(

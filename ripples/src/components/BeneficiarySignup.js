@@ -58,6 +58,7 @@ export default function BeneficiarySignup() {
         requestCounter: 0,
         request: [],
         linkedOrganisation: [],
+        history: [],
         userType: "beneficiary",
       };
       await signup(
