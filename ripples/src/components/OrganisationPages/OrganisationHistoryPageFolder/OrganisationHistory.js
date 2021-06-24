@@ -30,6 +30,7 @@ export default function OrganisationHistory() {
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
         <OrgHistoryEvents />
+        
       </Container>
       <Footer />
     </React.Fragment>

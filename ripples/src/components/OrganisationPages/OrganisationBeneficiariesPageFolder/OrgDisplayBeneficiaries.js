@@ -5,7 +5,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 
 export default function SignedUpComponent() {
   const { dbUser } = useAuth();
-  const [events, setEvents] = useState([]);
+  const [beneficiaryList, setBeneficiaryList] = useState([]);
   const [identity, setIdentity] = useState();
 
   const fetchEvents = async () => {
@@ -17,11 +17,10 @@ export default function SignedUpComponent() {
         .doc(dbUser.beneficiaries[i])
         .get()
         .then((doc) => {
-          console.log(doc.data());
           arr.push(doc.data());
           setIdentity(doc.id);
         })
-        .then(setEvents(arr));
+        .then(setBeneficiaryList(arr));
     }
   };
 
@@ -29,17 +28,13 @@ export default function SignedUpComponent() {
     fetchEvents();
   }, []);
 
-  console.log(events);
-  console.log(dbUser.beneficiaries);
-
   return (
     <>
-      <div>
-        <h2>LIST OF ORGANISATION BENEFICIARIES</h2>
-      </div>
+
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
+            <th>S/N</th>
             <th>Beneficiary First Name</th>
             <th>Beneficiary Last Name</th>
             <th>Beneficiary Contact</th>
@@ -47,11 +42,12 @@ export default function SignedUpComponent() {
           </tr>
         </thead>
         <tbody>
-          {events &&
-            events.map((beneficiary) => {
+          {beneficiaryList &&
+            beneficiaryList.map((beneficiary) => {
               const { firstName, lastName, contact, email } = beneficiary;
               return (
                 <tr>
+                  <td>{beneficiaryList.indexOf(beneficiary)}</td>
                   <td>{firstName}</td>
                   <td>{lastName}</td>
                   <td>{contact}</td>
@@ -61,6 +57,15 @@ export default function SignedUpComponent() {
             })}
         </tbody>
       </Table>
+      {beneficiaryList.length === 0 && (
+        <div style={{ textAlign: "center", margin: "8rem" }}>
+          <h2>
+            There are no Beneficiaries under your Organisation right now
+          </h2>
+          <br></br>
+
+        </div>
+      )}
     </>
   );
 }

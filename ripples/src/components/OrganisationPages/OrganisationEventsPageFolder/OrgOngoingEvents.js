@@ -21,10 +21,9 @@ export default function OrgOngoingEvents() {
           //only show events whose EVENT DATE is TODAY
           if (new Date(doc.data().eventDate) === new Date()) {
             arr.push(doc.data());
-             // setIdentity will cause rendering, which is required or nothing will show
+            // setIdentity will cause rendering, which is required or nothing will show
             setIdentity(doc.id);
           }
-         
         });
       })
       .then(setEvents(arr));
@@ -87,6 +86,15 @@ export default function OrgOngoingEvents() {
             </>
           );
         })}
+      {events.length === 0 && (
+        <div style={{ textAlign: "center", margin: "8rem" }}>
+          <h2>
+            There are no events created by your Organisation that is ongoing
+          </h2>
+          <br></br>
+          <h4>Start by creating one right now!</h4>
+        </div>
+      )}
     </CardDeck>
   );
 }

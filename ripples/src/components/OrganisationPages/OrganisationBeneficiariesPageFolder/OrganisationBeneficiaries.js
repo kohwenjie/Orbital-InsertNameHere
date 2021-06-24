@@ -7,6 +7,7 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import OrgDisplayBeneficiaries from "./OrgDisplayBeneficiaries";
+import { Tab, Row, Col, Nav } from "react-bootstrap";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -15,9 +16,8 @@ import OrgDisplayBeneficiaries from "./OrgDisplayBeneficiaries";
 // }));
 
 const mainFeaturedPost = {
-  title: "THIS IS A Organisation Beneficiarie PAGE",
+  title: "View Beneficiaries Under You",
   image: "https://source.unsplash.com/random",
-
 };
 
 export default function OrganisationBeneficiaries() {
@@ -31,7 +31,40 @@ export default function OrganisationBeneficiaries() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
-        <OrgDisplayBeneficiaries />
+        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+          <Row>
+            <Col sm={2}>
+              <Nav variant="pills" className="flex-column">
+                <Nav.Item>
+                  <Nav.Link eventKey="first">View Your Beneficiaries</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="second">
+                    View Beneficiary Request
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="third">
+                    View Beneficiary Link-Up Request
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Col>
+            <Col sm={10}>
+              <Tab.Content>
+                <Tab.Pane eventKey="first">
+                  <OrgDisplayBeneficiaries />
+                </Tab.Pane>
+                <Tab.Pane eventKey="second">
+                  <h2>nothing yet</h2>
+                </Tab.Pane>
+                <Tab.Pane eventKey="third">
+                  <h2>nothing yet</h2>
+                </Tab.Pane>
+              </Tab.Content>
+            </Col>
+          </Row>
+        </Tab.Container>
       </Container>
       <Footer />
     </React.Fragment>

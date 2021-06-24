@@ -4,6 +4,7 @@ import { Card, CardDeck } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import OrgDisplayFullEvent from "./OrgDisplayFullEvent";
 import ViewSignedUpVolunteers from "./ViewSignedUpVolunteers";
+import { Divider } from "@material-ui/core";
 
 export default function OrgDisplayEvents() {
   const [events, setEvents] = useState([]);
@@ -83,6 +84,12 @@ export default function OrgDisplayEvents() {
             </>
           );
         })}
+      {events.length === 0 &&
+      <div style={{ textAlign: "center", margin: "8rem" }}>
+        <h2>There are no events created by your Organisation that is available</h2>
+        <br></br>
+        <h4>Start by creating one right now!</h4>
+      </div>}
     </CardDeck>
   );
 }
