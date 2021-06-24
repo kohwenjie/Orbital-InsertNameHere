@@ -38,7 +38,7 @@ export default function ViewSignedUpVolunteers(props) {
 
   useEffect(() => {
     fetchVolunteers();
-  }, []);
+  }, [open]);
 
   function openModal() {
     setOpen(true);
@@ -57,8 +57,10 @@ export default function ViewSignedUpVolunteers(props) {
       RemoveVolunteerFromSignUp(documentUID, volUID);
       AddVolunteerToConfirmed(documentUID, volUID);
       //testing useState to rerender
-      fetchVolunteers();
+
       alert("Accepted Volunteer");
+      closeModal();
+      openModal();
     } else {
       alert("Unable to Accept Volunteer");
     }

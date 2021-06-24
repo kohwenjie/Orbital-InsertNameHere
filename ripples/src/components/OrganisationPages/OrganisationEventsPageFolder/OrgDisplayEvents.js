@@ -20,7 +20,7 @@ export default function OrgDisplayEvents() {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           // setIdentity will cause rendering, which is required or nothing will show
-          if (new Date() > new Date(doc.data().eventDate)) {
+          if (new Date() < new Date(doc.data().eventDate)) {
             arr.push(doc.data());
             setIdentity(doc.id);
           }
