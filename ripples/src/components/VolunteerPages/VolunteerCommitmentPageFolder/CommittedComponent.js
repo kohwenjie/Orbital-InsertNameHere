@@ -44,6 +44,7 @@ export default function SignedUpComponent() {
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
+            <th>S/N</th>
             <th>Event Name</th>
             <th>Event Date</th>
             <th>Event Location</th>
@@ -57,6 +58,7 @@ export default function SignedUpComponent() {
                 event;
               return (
                 <tr>
+                  <td>{events.indexOf(event) + 1}</td>
                   <td>{eventName}</td>
                   <td>{eventDate}</td>
                   <td>{eventLocation}</td>
@@ -66,6 +68,13 @@ export default function SignedUpComponent() {
             })}
         </tbody>
       </Table>
+      {events.length === 0 && (
+        <div style={{ textAlign: "center", margin: "8rem" }}>
+          <h2>Oops You have no confirmed Events yet</h2>
+          <br></br>
+          <h3>Proceed to Search to start finding an event!</h3>
+        </div>
+      )}
     </>
   );
 }
