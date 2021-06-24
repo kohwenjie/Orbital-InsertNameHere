@@ -20,8 +20,10 @@ export default function OrgDisplayEvents() {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           // setIdentity will cause rendering, which is required or nothing will show
-          arr.push(doc.data());
-          setIdentity(doc.id);
+          if (new Date() > new Date(doc.data().eventDate)) {
+            arr.push(doc.data());
+            setIdentity(doc.id);
+          }
         });
       })
       .then(setEvents(arr));
@@ -84,12 +86,15 @@ export default function OrgDisplayEvents() {
             </>
           );
         })}
-      {events.length === 0 &&
-      <div style={{ textAlign: "center", margin: "8rem" }}>
-        <h2>There are no events created by your Organisation that is available</h2>
-        <br></br>
-        <h4>Start by creating one right now!</h4>
-      </div>}
+      {events.length === 0 && (
+        <div style={{ textAlign: "center", margin: "8rem" }}>
+          <h2>
+            There are no events created by your Organisation that is available
+          </h2>
+          <br></br>
+          <h4>Start by creating one right now!</h4>
+        </div>
+      )}
     </CardDeck>
   );
 }

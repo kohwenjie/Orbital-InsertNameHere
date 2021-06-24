@@ -57,7 +57,7 @@ export default function ViewSignedUpVolunteers(props) {
       RemoveVolunteerFromSignUp(documentUID, volUID);
       AddVolunteerToConfirmed(documentUID, volUID);
       //testing useState to rerender
-      setUpdate("13");
+      fetchVolunteers();
       alert("Accepted Volunteer");
     } else {
       alert("Unable to Accept Volunteer");
