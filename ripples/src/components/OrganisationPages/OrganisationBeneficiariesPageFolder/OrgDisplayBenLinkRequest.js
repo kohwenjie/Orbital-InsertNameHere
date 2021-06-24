@@ -8,6 +8,7 @@ export default function SignedUpComponent() {
     dbUser,
     RemoveBeneficiaryFromRequesting,
     AddBeneficiaryToBenficiaries,
+    AddOrganisationToBeneficiary,
   } = useAuth();
   const [requestingBeneficiaryList, setRequestingBeneficiaryList] = useState(
     []
@@ -35,15 +36,16 @@ export default function SignedUpComponent() {
 
   console.log(requestingBeneficiaryList);
 
-  function handleAccept(volUID) {
+  function handleAccept(benUID) {
     if (
-      dbUser.requestingBeneficiaries.includes(volUID) &&
+      dbUser.requestingBeneficiaries.includes(benUID) &&
       dbUser.requestingBeneficiaries.length > 0 &&
-      !dbUser.beneficiaries.includes(volUID)
+      !dbUser.beneficiaries.includes(benUID)
     ) {
-      RemoveBeneficiaryFromRequesting(dbUser.uid, volUID);
-      AddBeneficiaryToBenficiaries(dbUser.uid, volUID);
+      RemoveBeneficiaryFromRequesting(dbUser.uid, benUID);
+      AddBeneficiaryToBenficiaries(dbUser.uid, benUID);
       //testing useState to rerender
+      AddOrganisationToBeneficiary(benUID, dbUser.uid);
 
       alert("Accepted Volunteer");
     } else {
@@ -51,8 +53,8 @@ export default function SignedUpComponent() {
     }
   }
 
-  function handleReject(volUID) {
-    RemoveBeneficiaryFromRequesting(dbUser.uid, volUID);
+  function handleReject(benUID) {
+    RemoveBeneficiaryFromRequesting(dbUser.uid, benUID);
     alert("Volunteer has been Rejected");
   }
 

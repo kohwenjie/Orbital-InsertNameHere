@@ -30,7 +30,6 @@ export default function SignedUpComponent() {
 
   return (
     <>
-
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
@@ -44,12 +43,22 @@ export default function SignedUpComponent() {
         <tbody>
           {beneficiaryList &&
             beneficiaryList.map((beneficiary) => {
-              const { firstName, lastName, contact, email } = beneficiary;
+              const {
+                firstName,
+                lastName,
+                description,
+                address,
+                contact,
+                email,
+                uid,
+              } = beneficiary;
               return (
                 <tr>
                   <td>{beneficiaryList.indexOf(beneficiary)}</td>
                   <td>{firstName}</td>
                   <td>{lastName}</td>
+                  <td>{description}</td>
+                  <td>{address}</td>
                   <td>{contact}</td>
                   <td>{email}</td>
                 </tr>
@@ -59,11 +68,8 @@ export default function SignedUpComponent() {
       </Table>
       {beneficiaryList.length === 0 && (
         <div style={{ textAlign: "center", margin: "8rem" }}>
-          <h2>
-            There are no Beneficiaries under your Organisation right now
-          </h2>
+          <h2>There are no Beneficiaries under your Organisation right now</h2>
           <br></br>
-
         </div>
       )}
     </>

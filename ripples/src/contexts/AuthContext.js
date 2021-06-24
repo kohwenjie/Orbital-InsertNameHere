@@ -359,6 +359,15 @@ export function AuthProvider({ children }) {
     // });
   }
 
+  function AddOrganisationToBeneficiary(benUID, orgUID) {
+    database
+      .collection("user")
+      .doc(benUID)
+      .update({
+        linkedOrganisation: firebase.firestore.FieldValue.arrayUnion(orgUID),
+      });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -402,6 +411,7 @@ export function AuthProvider({ children }) {
     AddVolunteerToConfirmed,
     RemoveBeneficiaryFromRequesting,
     AddBeneficiaryToBenficiaries,
+    AddOrganisationToBeneficiary,
   };
 
   return (
