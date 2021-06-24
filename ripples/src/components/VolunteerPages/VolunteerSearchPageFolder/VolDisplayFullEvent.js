@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 
 export default function VolDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const { currentUser, signupEvent } = useAuth();
-
+  const history = useHistory();
   const event = props.e;
   const {
     eventName,
@@ -31,6 +32,9 @@ export default function VolDisplayFullEvent(props) {
 
   function signup() {
     signupEvent(documentUID, currentUser.uid);
+    alert("sign up successful!");
+    closeModal();
+    setDisabled(true);
   }
 
   function ShowSignedUpMessage() {
@@ -75,7 +79,7 @@ export default function VolDisplayFullEvent(props) {
           <p>Tags: {Tags}</p>
           <h7>{eventDescription}</h7>
         </Modal.Body>
-        <ShowSignedUpMessage/>
+        <ShowSignedUpMessage />
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
             Close
@@ -84,7 +88,6 @@ export default function VolDisplayFullEvent(props) {
             Sign Up Now
           </Button>
         </Modal.Footer>
-        
       </Modal>
     </>
   );

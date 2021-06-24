@@ -64,12 +64,12 @@ export function AuthProvider({ children }) {
     return currentUser
       .updateEmail(email)
       .then(getUpdatedDBUser(currentUser.uid))
-      .then(() => {
-        Alert.alert("Email was changed");
-      })
-      .catch((error) => {
-        Alert.alert(error.messaege);
-      });
+      // .then(() => {
+      //   Alert.alert("Email was changed");
+      // })
+      // .catch((error) => {
+      //   Alert.alert(error.messaege);
+      // });
   }
 
   function updateDatabaseEmail(email, uid) {
@@ -83,13 +83,13 @@ export function AuthProvider({ children }) {
   function updateAuthPassword(password) {
     return currentUser
       .updatePassword(password)
-      .then(() => {
-        Alert.alert("Password was changed");
-      })
+      // .then(() => {
+      //   Alert.alert("Password was changed");
+      // })
       .then(getUpdatedDBUser(currentUser.uid))
-      .catch((error) => {
-        Alert.alert(error.messaege);
-      });
+      // .catch((error) => {
+      //   Alert.alert(error.messaege);
+      // });
   }
 
   function updateDatabasePassword(password, uid) {
@@ -190,13 +190,13 @@ export function AuthProvider({ children }) {
         rejectedVolunteers: [],
         cancelledEvent: false,
       })
-      .then(() => {
-        Alert.alert("Event created!");
-      })
+      // .then(() => {
+      //   Alert.alert("Event created!");
+      // })
       .then(getUpdatedDBUser(currentUser.uid))
-      .catch((error) => {
-        Alert.alert(error.messaege);
-      });
+      // .catch((error) => {
+      //   Alert.alert(error.messaege);
+      // });
   }
 
   //need add request uid to beneficiary's array of request
@@ -217,13 +217,13 @@ export function AuthProvider({ children }) {
         requestDate: requestDate,
         signupDeadline: signupDeadline,
       })
-      .then(() => {
-        Alert.alert("Request Created!");
-      })
+      // .then(() => {
+      //   Alert.alert("Request Created!");
+      // })
       .then(getUpdatedDBUser(currentUser.uid))
-      .catch((error) => {
-        Alert.alert(error.messaege);
-      });
+      // .catch((error) => {
+      //   Alert.alert(error.messaege);
+      // });
   }
 
   function signupEvent(docUID, userUID) {
@@ -233,13 +233,13 @@ export function AuthProvider({ children }) {
       .update({
         signedUpVolunteers: firebase.firestore.FieldValue.arrayUnion(userUID),
       })
-      .then(() => {
-        Alert.alert("Signed Up!");
-      })
+      // .then(() => {
+      //   Alert.alert("Signed Up!");
+      // })
       .then(getUpdatedDBUser(currentUser.uid))
-      .catch((error) => {
-        Alert.alert(error.messaege);
-      });
+      // .catch((error) => {
+      //   Alert.alert(error.messaege);
+      // });
   }
 
   function updateEventName(newEventName, docUID) {
@@ -285,13 +285,13 @@ export function AuthProvider({ children }) {
       .update({
         signedUpVolunteers: firebase.firestore.FieldValue.arrayRemove(volUID),
       })
-      .then(() => {
-        Alert.alert("Volunteer Rejected");
-      })
+      // .then(() => {
+      //   Alert.alert("Volunteer Rejected");
+      // })
       .then(getUpdatedDBUser(currentUser.uid))
-      .catch((error) => {
-        Alert.alert(error.messaege);
-      });
+      // .catch((error) => {
+      //   Alert.alert(error.messaege);
+      // });
   }
 
   function AddVolunteerToConfirmed(documentUID, volUID) {
@@ -301,13 +301,13 @@ export function AuthProvider({ children }) {
       .update({
         confirmedVolunteers: firebase.firestore.FieldValue.arrayUnion(volUID),
       })
-      .then(() => {
-        Alert.alert("Volunteer Confirmed");
-      })
+      // .then(() => {
+      //   Alert.alert("Volunteer Confirmed");
+      // })
       .then(getUpdatedDBUser(currentUser.uid))
-      .catch((error) => {
-        Alert.alert(error.messaege);
-      });
+      // .catch((error) => {
+      //   Alert.alert(error.messaege);
+      // });
   }
 
   useEffect(() => {

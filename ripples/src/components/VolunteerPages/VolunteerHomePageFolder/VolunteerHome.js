@@ -5,7 +5,6 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
-import { useAuth } from "../../../contexts/AuthContext";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -23,8 +22,6 @@ const mainFeaturedPost = {
 };
 
 export default function VolunteerHome() {
-  const { dbUser } = useAuth();
-  console.log(dbUser);
 
   return (
     <React.Fragment>

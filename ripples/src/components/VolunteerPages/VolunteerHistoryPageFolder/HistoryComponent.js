@@ -5,14 +5,8 @@ import { useAuth } from "../../../contexts/AuthContext";
 
 export default function SignedUpComponent() {
   const { dbUser } = useAuth();
-  const eventArray = dbUser.commitments;
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState();
-
-  console.log(dbUser);
-  console.log(dbUser.uid);
-  // event array stalls the eventUIDs only
-  console.log(eventArray);
 
   const fetchEvents = async () => {
     let arr = [];
@@ -32,9 +26,6 @@ export default function SignedUpComponent() {
   useEffect(() => {
     fetchEvents();
   }, []);
-
-  console.log(events);
-  console.log(eventArray);
 
   return (
     <>

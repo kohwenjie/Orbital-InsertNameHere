@@ -8,6 +8,7 @@ export default function ViewSignedUpVolunteers(props) {
   const [signedUpVolunteersArr, setSignedUpVolunteersArr] = useState([]);
   const [volunteersProfile, setVolunteersProfile] = useState([]);
   const { RemoveVolunteerFromSignUp, AddVolunteerToConfirmed } = useAuth();
+  const [update, setUpdate] = useState();
   const event = props.e;
   const { eventName, signedUpVolunteers, confirmedVolunteers, documentUID } =
     event;
@@ -37,7 +38,7 @@ export default function ViewSignedUpVolunteers(props) {
 
   useEffect(() => {
     fetchVolunteers();
-  }, [open, signedUpVolunteers]);
+  }, []);
 
   function openModal() {
     setOpen(true);
@@ -55,7 +56,8 @@ export default function ViewSignedUpVolunteers(props) {
     ) {
       RemoveVolunteerFromSignUp(documentUID, volUID);
       AddVolunteerToConfirmed(documentUID, volUID);
-
+      //testing useState to rerender
+      setUpdate("13");
       alert("Accepted Volunteer");
     } else {
       alert("Unable to Accept Volunteer");
@@ -114,6 +116,11 @@ export default function ViewSignedUpVolunteers(props) {
                 })}
             </tbody>
           </Table>
+          {volunteersProfile.length === 0 && (
+            <div style={{ textAlign: "center", margin: "8rem" }}>
+              <h2>No Volunteers has currently signed up</h2>
+            </div>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>

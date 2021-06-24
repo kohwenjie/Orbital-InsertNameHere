@@ -12,22 +12,24 @@ export default function VolDisplayEvents() {
       .collection("events")
       .get()
       .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
+        // console.log(querySnapshot);
+        querySnapshot.forEach( async (doc) => {
           //check to see if the event is passed the sign up Date
-          console.log(doc.data().signupDeadline);
           if (new Date() < new Date(doc.data().signupDeadline)) {
-            arr.push(doc.data());
+            console.log(doc.data());
+            arr.push(await doc.data());
             // setIdentity will cause rendering, which is required or nothing will show
             setIdentity(doc.id);
           }
         });
-      })
-      .then(setEvents(arr));
+      });
+    setEvents(arr);
   };
 
   useEffect(() => {
     fetchEvents();
   }, []);
+
 
   return (
     <CardDeck
@@ -64,7 +66,7 @@ export default function VolDisplayEvents() {
                     {organisationName}
                   </Card.Subtitle>
                   <Card.Text>Event Date:{eventDate}</Card.Text>
-                  <VolDisplayFullEvent e={event} />
+                  <VolDisplayFullEvent e={event}/>
                 </Card.Body>
               </Card>
             </>
