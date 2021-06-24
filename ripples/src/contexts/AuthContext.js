@@ -63,13 +63,13 @@ export function AuthProvider({ children }) {
   function updateAuthEmail(email) {
     return currentUser
       .updateEmail(email)
-      .then(getUpdatedDBUser(currentUser.uid))
-      // .then(() => {
-      //   Alert.alert("Email was changed");
-      // })
-      // .catch((error) => {
-      //   Alert.alert(error.messaege);
-      // });
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .then(() => {
+    //   Alert.alert("Email was changed");
+    // })
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
   }
 
   function updateDatabaseEmail(email, uid) {
@@ -81,15 +81,17 @@ export function AuthProvider({ children }) {
   }
 
   function updateAuthPassword(password) {
-    return currentUser
-      .updatePassword(password)
-      // .then(() => {
-      //   Alert.alert("Password was changed");
-      // })
-      .then(getUpdatedDBUser(currentUser.uid))
-      // .catch((error) => {
-      //   Alert.alert(error.messaege);
-      // });
+    return (
+      currentUser
+        .updatePassword(password)
+        // .then(() => {
+        //   Alert.alert("Password was changed");
+        // })
+        .then(getUpdatedDBUser(currentUser.uid))
+    );
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
   }
 
   function updateDatabasePassword(password, uid) {
@@ -172,31 +174,33 @@ export function AuthProvider({ children }) {
         events: firebase.firestore.FieldValue.arrayUnion(eventUID),
       });
 
-    return database
-      .collection("events")
-      .doc(eventUID)
-      .set({
-        eventName: eventName,
-        eventDescription: eventDescription,
-        eventLocation: eventLocation,
-        eventDate: eventDate,
-        signupDeadline: signupDeadline,
-        Tags: Tags,
-        organisationName: dbUser.organisationName,
-        organisationUID: currentUser.uid,
-        documentUID: eventUID,
-        signedUpVolunteers: [],
-        confirmedVolunteers: [],
-        rejectedVolunteers: [],
-        cancelledEvent: false,
-      })
-      // .then(() => {
-      //   Alert.alert("Event created!");
-      // })
-      .then(getUpdatedDBUser(currentUser.uid))
-      // .catch((error) => {
-      //   Alert.alert(error.messaege);
-      // });
+    return (
+      database
+        .collection("events")
+        .doc(eventUID)
+        .set({
+          eventName: eventName,
+          eventDescription: eventDescription,
+          eventLocation: eventLocation,
+          eventDate: eventDate,
+          signupDeadline: signupDeadline,
+          Tags: Tags,
+          name: dbUser.name,
+          organisationUID: currentUser.uid,
+          documentUID: eventUID,
+          signedUpVolunteers: [],
+          confirmedVolunteers: [],
+          rejectedVolunteers: [],
+          cancelledEvent: false,
+        })
+        // .then(() => {
+        //   Alert.alert("Event created!");
+        // })
+        .then(getUpdatedDBUser(currentUser.uid))
+    );
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
   }
 
   //need add request uid to beneficiary's array of request
@@ -206,24 +210,26 @@ export function AuthProvider({ children }) {
     requestDate,
     signupDeadline
   ) {
-    return database
-      .collection("events")
-      .add({
-        requestFirstName: dbUser.firstName,
-        requestLastName: dbUser.lastName,
-        requesterUID: currentUser.uid,
-        requestDescription: requestDescription,
-        requestLocation: requestLocation,
-        requestDate: requestDate,
-        signupDeadline: signupDeadline,
-      })
-      // .then(() => {
-      //   Alert.alert("Request Created!");
-      // })
-      .then(getUpdatedDBUser(currentUser.uid))
-      // .catch((error) => {
-      //   Alert.alert(error.messaege);
-      // });
+    return (
+      database
+        .collection("requests")
+        .add({
+          requestFirstName: dbUser.firstName,
+          requestLastName: dbUser.lastName,
+          requesterUID: currentUser.uid,
+          requestDescription: requestDescription,
+          requestLocation: requestLocation,
+          requestDate: requestDate,
+          signupDeadline: signupDeadline,
+        })
+        // .then(() => {
+        //   Alert.alert("Request Created!");
+        // })
+        .then(getUpdatedDBUser(currentUser.uid))
+    );
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
   }
 
   function signupEvent(docUID, userUID) {
@@ -236,10 +242,20 @@ export function AuthProvider({ children }) {
       // .then(() => {
       //   Alert.alert("Signed Up!");
       // })
-      .then(getUpdatedDBUser(currentUser.uid))
-      // .catch((error) => {
-      //   Alert.alert(error.messaege);
-      // });
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
+  }
+
+  function requestOrgLink(orgUID, benUID) {
+    database
+      .collection("user")
+      .doc(orgUID)
+      .update({
+        reqeustingBeneficiaries:
+          firebase.firestore.FieldValue.arrayUnion(benUID),
+      });
   }
 
   function updateEventName(newEventName, docUID) {
@@ -288,10 +304,10 @@ export function AuthProvider({ children }) {
       // .then(() => {
       //   Alert.alert("Volunteer Rejected");
       // })
-      .then(getUpdatedDBUser(currentUser.uid))
-      // .catch((error) => {
-      //   Alert.alert(error.messaege);
-      // });
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
   }
 
   function AddVolunteerToConfirmed(documentUID, volUID) {
@@ -304,10 +320,10 @@ export function AuthProvider({ children }) {
       // .then(() => {
       //   Alert.alert("Volunteer Confirmed");
       // })
-      .then(getUpdatedDBUser(currentUser.uid))
-      // .catch((error) => {
-      //   Alert.alert(error.messaege);
-      // });
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
   }
 
   useEffect(() => {
@@ -344,6 +360,7 @@ export function AuthProvider({ children }) {
     updateEventTags,
     addEvent,
     addRequest,
+    requestOrgLink,
     signupEvent,
     getUpdatedDBUser,
     setDBUser,

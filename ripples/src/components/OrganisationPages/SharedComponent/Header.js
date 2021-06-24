@@ -62,7 +62,7 @@ export default function Header(props) {
       <Toolbar className={classes.toolbar}>
         {/* WE ARE GOING TO MAKE THIS BUTTON BELOW LINK TO THE PROFILE PAGE AND THE SAME FOR BENE AND ORG*/}
         <Button size="small">
-          <b>{dbUser.organisationName}</b>
+          <b>{dbUser.name}</b>
         </Button>
         <Typography
           component="h2"
