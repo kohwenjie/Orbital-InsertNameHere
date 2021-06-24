@@ -38,9 +38,7 @@ export default function SignedUpComponent() {
 
   return (
     <>
-      <div>
-        <h2>VOLUNTEERING HISTORY</h2>
-      </div>
+
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
@@ -66,6 +64,13 @@ export default function SignedUpComponent() {
             })}
         </tbody>
       </Table>
+      {events.length === 0 && (
+        <div style={{ textAlign: "center", margin: "8rem" }}>
+          <h2>Oops You have no History to display!</h2>
+          <br></br>
+          <h3>Proceed to Search to start finding an event!</h3>
+        </div>
+      )}
     </>
   );
 }

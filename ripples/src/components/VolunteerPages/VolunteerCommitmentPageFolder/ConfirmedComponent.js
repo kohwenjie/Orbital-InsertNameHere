@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export default function SignedUpComponent() {
+export default function ConfirmedComponent() {
   const { dbUser } = useAuth();
   const eventArray = dbUser.commitments;
   const [events, setEvents] = useState([]);
@@ -22,8 +22,10 @@ export default function SignedUpComponent() {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          arr.push(doc.data());
-          setIdentity(doc.id);
+          if (new Date() <= new Date(doc.data().eventDate)) {
+            arr.push(doc.data());
+            setIdentity(doc.id);
+          }
         });
       })
       .then(setEvents(arr));
@@ -38,9 +40,6 @@ export default function SignedUpComponent() {
 
   return (
     <>
-      <div>
-        <h2>COMMITMENT PORTION</h2>
-      </div>
       <Table striped bordered hover size="sm">
         <thead>
           <tr>

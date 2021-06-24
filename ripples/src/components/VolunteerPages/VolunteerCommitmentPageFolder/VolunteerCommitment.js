@@ -6,7 +6,7 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import SignedUpComponent from "./SignedUpComponent";
-import CommittedComponent from "./CommittedComponent";
+import ConfirmedComponent from "./ConfirmedComponent";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 
 // const useStyles = makeStyles((theme) => ({
@@ -49,7 +49,7 @@ export default function VolunteerCommitment() {
                   <SignedUpComponent />
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
-                  <CommittedComponent />
+                  <ConfirmedComponent />
                 </Tab.Pane>
               </Tab.Content>
             </Col>
