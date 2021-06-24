@@ -4,30 +4,27 @@ import { Card, CardDeck } from "react-bootstrap";
 import BenDisplayFullOrg from "./BenDisplayFullOrg";
 
 export default function BenDisplayOrg() {
-  const [events, setEvents] = useState([]);
+  const [organisations, setOrganisations] = useState([]);
   const [identity, setIdentity] = useState();
-  const fetchEvents = async () => {
+
+  const fetchOrganisations = async () => {
     let arr = [];
     database
-      .collection("events")
+      .collection("user")
+      .where("userType", "==", "organisation")
       .get()
       .then((querySnapshot) => {
-        // console.log(querySnapshot);
-        querySnapshot.forEach(async (doc) => {
-          //check to see if the event is passed the sign up Date
-          if (new Date() < new Date(doc.data().signupDeadline)) {
-            console.log(doc.data());
-            arr.push(await doc.data());
-            // setIdentity will cause rendering, which is required or nothing will show
-            setIdentity(doc.id);
-          }
+        querySnapshot.forEach((doc) => {
+          // setIdentity will cause rendering, which is required or nothing will show
+          arr.push(doc.data());
+          setIdentity(doc.id);
         });
-      });
-    setEvents(arr);
+      })
+      .then(setOrganisations(arr));
   };
 
   useEffect(() => {
-    fetchEvents();
+    fetchOrganisations();
   }, []);
 
   return (
@@ -39,9 +36,9 @@ export default function BenDisplayOrg() {
         justifyContent: "center",
       }}
     >
-      {events &&
-        events.map((event) => {
-          const { eventName, eventDate, organisationName } = event;
+      {organisations &&
+        organisations.map((organisation) => {
+          const { name, description, address, email, contact } = organisation;
           return (
             <>
               <Card
@@ -60,12 +57,12 @@ export default function BenDisplayOrg() {
                   // will add image into the event document in firestore then extract to display
                 />
                 <Card.Body>
-                  <Card.Title>{eventName}</Card.Title>
+                  <Card.Title>{name}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
-                    {organisationName}
+                    {description}
                   </Card.Subtitle>
-                  <Card.Text>Event Date:{eventDate}</Card.Text>
-                  <BenDisplayFullOrg e={event} />
+                  <Card.Text>Address:{address}</Card.Text>
+                  <BenDisplayFullOrg o={organisation} />
                 </Card.Body>
               </Card>
             </>

@@ -7,6 +7,7 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import OrgDisplayBeneficiaries from "./OrgDisplayBeneficiaries";
+import OrgDisplayBenLinkRequest from "./OrgDisplayBenLinkRequest";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 
 // const useStyles = makeStyles((theme) => ({
@@ -59,7 +60,7 @@ export default function OrganisationBeneficiaries() {
                   <h2>nothing yet</h2>
                 </Tab.Pane>
                 <Tab.Pane eventKey="third">
-                  <h2>nothing yet</h2>
+                  <OrgDisplayBenLinkRequest />
                 </Tab.Pane>
               </Tab.Content>
             </Col>

@@ -253,7 +253,7 @@ export function AuthProvider({ children }) {
       .collection("user")
       .doc(orgUID)
       .update({
-        reqeustingBeneficiaries:
+        requestingBeneficiaries:
           firebase.firestore.FieldValue.arrayUnion(benUID),
       });
   }
@@ -326,6 +326,39 @@ export function AuthProvider({ children }) {
     // });
   }
 
+  function RemoveBeneficiaryFromRequesting(orgUID, benUID) {
+    database
+      .collection("user")
+      .doc(orgUID)
+      .update({
+        requestingBeneficiaries:
+          firebase.firestore.FieldValue.arrayRemove(benUID),
+      })
+      // .then(() => {
+      //   Alert.alert("Volunteer Rejected");
+      // })
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
+  }
+
+  function AddBeneficiaryToBenficiaries(orgUID, benUID) {
+    database
+      .collection("user")
+      .doc(orgUID)
+      .update({
+        beneficiaries: firebase.firestore.FieldValue.arrayUnion(benUID),
+      })
+      // .then(() => {
+      //   Alert.alert("Volunteer Confirmed");
+      // })
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -367,6 +400,8 @@ export function AuthProvider({ children }) {
     setCurrentUser,
     RemoveVolunteerFromSignUp,
     AddVolunteerToConfirmed,
+    RemoveBeneficiaryFromRequesting,
+    AddBeneficiaryToBenficiaries,
   };
 
   return (

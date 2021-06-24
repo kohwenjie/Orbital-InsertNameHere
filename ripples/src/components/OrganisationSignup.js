@@ -52,7 +52,7 @@ export default function OrganisationSignup() {
         contact: contact,
         eventCounter: 0,
         events: [],
-        reqeustingBeneficiaries: [],
+        requestingBeneficiaries: [],
         beneficiaries: [],
         history: [],
         userType: "organisation",
