@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export default function SignedUpComponent() {
+export default function HistoryComponent() {
   const { dbUser, RemoveEventFromCommitments, AddEventToHistory } = useAuth();
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState();

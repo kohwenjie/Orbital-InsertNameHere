@@ -36,6 +36,8 @@ export default function SignedUpComponent() {
             <th>S/N</th>
             <th>Beneficiary First Name</th>
             <th>Beneficiary Last Name</th>
+            <th>Beneficiary Description</th>
+            <th>Beneficiary Address</th>
             <th>Beneficiary Contact</th>
             <th>Beneficiary Email</th>
           </tr>

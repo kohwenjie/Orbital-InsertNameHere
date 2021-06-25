@@ -3,59 +3,60 @@ import { Table, Button } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export default function SignedUpComponent() {
+export default function OrgDisplayBenLinkRequest() {
   const {
     dbUser,
-    RemoveBeneficiaryFromRequesting,
-    AddBeneficiaryToBenficiaries,
-    AddOrganisationToBeneficiary,
+    RemoveBeneficiaryRequestFromOrganisationPending,
+    AddBeneficiaryRequestToOrganisationEvent,
+    RemoveBeneficiaryRequestFromBeneficiaryPending,
+    AddBeneficiaryRequestToBenficiaryConfirmed,
   } = useAuth();
-  const [requestingBeneficiaryList, setRequestingBeneficiaryList] = useState(
-    []
-  );
+  const [beneficiaryPendingList, setBeneficiaryPendingList] = useState([]);
   const [identity, setIdentity] = useState();
 
   console.log(dbUser);
-  console.log(dbUser.requestingBeneficiaries);
+  console.log(dbUser.beneficiariesPendingRequest);
 
   const fetchEvents = async () => {
     let arr = [];
 
-    for (var i = 0; i < dbUser.requestingBeneficiaries.length; i++) {
+    for (var i = 0; i < dbUser.beneficiariesPendingRequest.length; i++) {
       database
-        .collection("user")
-        .doc(dbUser.requestingBeneficiaries[i])
+        .collection("requests")
+        .doc(dbUser.beneficiariesPendingRequest[i])
         .get()
         .then((doc) => {
           arr.push(doc.data());
+          console.log(doc.data());
           setIdentity(doc.id);
         })
-        .then(setRequestingBeneficiaryList(arr));
+        .then(setBeneficiaryPendingList(arr));
     }
   };
 
-  console.log(requestingBeneficiaryList);
+  console.log(beneficiaryPendingList);
 
-  function handleAccept(benUID) {
+  function handleAccept(requesterUID, requestUID) {
     if (
-      dbUser.requestingBeneficiaries.includes(benUID) &&
-      dbUser.requestingBeneficiaries.length > 0 &&
-      !dbUser.beneficiaries.includes(benUID)
+      dbUser.beneficiariesPendingRequest.includes(requestUID) &&
+      dbUser.beneficiariesPendingRequest.length > 0 &&
+      !dbUser.events.includes(requestUID)
     ) {
-      RemoveBeneficiaryFromRequesting(dbUser.uid, benUID);
-      AddBeneficiaryToBenficiaries(dbUser.uid, benUID);
-      //testing useState to rerender
-      AddOrganisationToBeneficiary(benUID, dbUser.uid);
+      RemoveBeneficiaryRequestFromOrganisationPending(dbUser.uid, requestUID);
+      AddBeneficiaryRequestToOrganisationEvent(dbUser.uid, requestUID);
+      RemoveBeneficiaryRequestFromBeneficiaryPending(requesterUID, requestUID);
+      AddBeneficiaryRequestToBenficiaryConfirmed(requesterUID, requestUID);
 
-      alert("Accepted Volunteer");
+      alert("Accepted Beneficiary's Request");
     } else {
-      alert("Unable to Accept Volunteer");
+      alert("Unable to Accept Beneficiary's Request");
     }
   }
 
-  function handleReject(benUID) {
-    RemoveBeneficiaryFromRequesting(dbUser.uid, benUID);
-    alert("Volunteer has been Rejected");
+  function handleReject(requesterUID, requestUID) {
+    RemoveBeneficiaryRequestFromOrganisationPending(dbUser.uid, requestUID);
+    RemoveBeneficiaryRequestFromBeneficiaryPending(requesterUID, requestUID);
+    alert("Beneficiary's Request has been Rejected");
   }
 
   useEffect(() => {
@@ -73,37 +74,44 @@ export default function SignedUpComponent() {
             <th>Beneficiary Request Description</th>
             <th>Beneficiary Request Location</th>
             <th>Beneficiary Request Date</th>
+            <th>Beneficiary Request Sign Up Deadline</th>
             <th>Beneficiary Request Type</th>
           </tr>
         </thead>
         <tbody>
-          {requestingBeneficiaryList &&
-            requestingBeneficiaryList.map((beneficiary) => {
+          {beneficiaryPendingList &&
+            beneficiaryPendingList.map((request) => {
               const {
-                firstName,
-                lastName,
-                description,
-                address,
-                contact,
-                email,
-                uid,
-              } = beneficiary;
+                requesterFirstName,
+                requesterLastName,
+                requestDescription,
+                requestLocation,
+                requestDate,
+                signupDeadline,
+                Tags,
+                requesterUID,
+                requestUID,
+              } = request;
               return (
                 <tr>
-                  <td>{requestingBeneficiaryList.indexOf(beneficiary)}</td>
-                  <td>{firstName}</td>
-                  <td>{lastName}</td>
-                  <td>{description}</td>
-                  <td>{address}</td>
-                  <td>{contact}</td>
-                  <td>{email}</td>
+                  <td>{beneficiaryPendingList.indexOf(request)}</td>
+                  <td>{requesterFirstName}</td>
+                  <td>{requesterLastName}</td>
+                  <td>{requestDescription}</td>
+                  <td>{requestLocation}</td>
+                  <td>{requestDate}</td>
+                  <td>{signupDeadline}</td>
+                  <td>{Tags}</td>
                   <td>
-                    <Button className="mb-2" onClick={() => handleReject(uid)}>
+                    <Button
+                      className="mb-2"
+                      onClick={() => handleReject(requesterUID, requestUID)}
+                    >
                       Reject
                     </Button>
                     <Button
                       onClick={() => {
-                        handleAccept(uid);
+                        handleAccept(requesterUID, requestUID);
                       }}
                     >
                       Accept
@@ -114,7 +122,7 @@ export default function SignedUpComponent() {
             })}
         </tbody>
       </Table>
-      {requestingBeneficiaryList.length === 0 && (
+      {beneficiaryPendingList.length === 0 && (
         <div style={{ textAlign: "center", margin: "8rem" }}>
           <h2>There are no Beneficiaries under your Organisation right now</h2>
           <br></br>

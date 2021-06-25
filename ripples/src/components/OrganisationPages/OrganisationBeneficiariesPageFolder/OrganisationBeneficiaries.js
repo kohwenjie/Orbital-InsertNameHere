@@ -62,7 +62,6 @@ export default function OrganisationBeneficiaries() {
                 </Tab.Pane>
                 <Tab.Pane eventKey="third">
                   <OrgDisplayBenLinkRequest />
-                  <OrgDisplayBenRequest />
                 </Tab.Pane>
               </Tab.Content>
             </Col>

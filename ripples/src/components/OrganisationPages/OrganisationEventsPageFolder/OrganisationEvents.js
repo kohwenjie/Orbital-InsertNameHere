@@ -6,7 +6,8 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "./MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import OrgDisplayEvents from "./OrgDisplayEvents";
-import OrgOngoingEvents from "./OrgOngoingEvents"
+import OrgDisplayBenRequests from "./OrgDisplayBenRequests";
+import OrgOngoingEvents from "./OrgOngoingEvents";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 
 // const useStyles = makeStyles((theme) => ({
@@ -41,6 +42,11 @@ export default function OrganisationEvents() {
                 <Nav.Item>
                   <Nav.Link eventKey="second">View Ongoing Events</Nav.Link>
                 </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="third">
+                    View Beneficiaries Requests
+                  </Nav.Link>
+                </Nav.Item>
               </Nav>
             </Col>
             <Col sm={10}>
@@ -50,6 +56,9 @@ export default function OrganisationEvents() {
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
                   <OrgOngoingEvents />
+                </Tab.Pane>
+                <Tab.Pane eventKey="third">
+                  <OrgDisplayBenRequests />
                 </Tab.Pane>
               </Tab.Content>
             </Col>

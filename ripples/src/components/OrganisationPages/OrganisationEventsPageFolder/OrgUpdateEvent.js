@@ -13,7 +13,7 @@ export default function OrgUpdateEvent(props) {
     updateEventDescription,
     updateEventDate,
     updateEventLocation,
-    updateSignUpDeadline,
+    updateEventSignUpDeadline,
     updateEventTags,
     parseTags,
   } = useAuth();
@@ -86,7 +86,7 @@ export default function OrgUpdateEvent(props) {
     }
     if (sDeadlineRef.current.value) {
       updates.push(
-        updateSignUpDeadline(sDeadlineRef.current.value, documentUID)
+        updateEventSignUpDeadline(sDeadlineRef.current.value, documentUID)
       );
     }
     if (tags) {
@@ -98,7 +98,7 @@ export default function OrgUpdateEvent(props) {
         history.push("/OrganisationHome");
       })
       .catch(() => {
-        setError("Failed to update account");
+        setError("Failed to update event");
       })
       .finally(() => {
         setLoading(false);

@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
-
+import HistoryComponent from "./HistoryComponent";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -22,7 +22,6 @@ const mainFeaturedPost = {
   linkText: "Continue reading…",
 };
 
-
 export default function BeneficiaryHistory() {
   // const classes = useStyles();
 
@@ -34,8 +33,9 @@ export default function BeneficiaryHistory() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
+        <HistoryComponent />
       </Container>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }

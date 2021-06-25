@@ -34,12 +34,6 @@ export default function BeneficiaryRequest() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
-        <Link
-          to="/BeneficiaryRequestCreate"
-          className="btn btn-primary btn-lg w-100 m-4"
-        >
-          Make a Request!
-        </Link>
         <BenDisplayOrg />
       </Container>
       <Footer />

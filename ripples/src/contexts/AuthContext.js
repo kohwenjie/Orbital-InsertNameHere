@@ -218,7 +218,7 @@ export function AuthProvider({ children }) {
       .collection("user")
       .doc(orgUID)
       .update({
-        beneficiariesRequests:
+        beneficiariesPendingRequest:
           firebase.firestore.FieldValue.arrayUnion(requestUID),
       });
 
@@ -226,7 +226,7 @@ export function AuthProvider({ children }) {
       .collection("user")
       .doc(dbUser.uid)
       .update({
-        request: firebase.firestore.FieldValue.arrayUnion(requestUID),
+        pendingRequests: firebase.firestore.FieldValue.arrayUnion(requestUID),
       });
 
     return (
@@ -234,13 +234,15 @@ export function AuthProvider({ children }) {
         .collection("requests")
         .doc(requestUID)
         .set({
-          requestFirstName: dbUser.firstName,
-          requestLastName: dbUser.lastName,
+          requesterFirstName: dbUser.firstName,
+          requesterLastName: dbUser.lastName,
           requesterUID: currentUser.uid,
           requestDescription: requestDescription,
           requestLocation: requestLocation,
           requestDate: requestDate,
           signupDeadline: signupDeadline,
+          requestUID: requestUID,
+          organisationUID: orgUID,
           Tags: tags,
         })
         // .then(() => {
@@ -303,7 +305,7 @@ export function AuthProvider({ children }) {
     });
   }
 
-  function updateSignUpDeadline(newSignupDeadline, docUID) {
+  function updateEventSignUpDeadline(newSignupDeadline, docUID) {
     database.collection("events").doc(docUID).update({
       signupDeadline: newSignupDeadline,
     });
@@ -314,6 +316,37 @@ export function AuthProvider({ children }) {
       Tags: newTags,
     });
   }
+
+  function updateRequestDescription(newRequestDescription, docUID) {
+    database.collection("requests").doc(docUID).update({
+      requestDescription: newRequestDescription,
+    });
+  }
+
+  function updateRequestDate(newRequestDate, docUID) {
+    database.collection("requests").doc(docUID).update({
+      requestDate: newRequestDate,
+    });
+  }
+
+  function updateRequestLocation(newRequestLocation, docUID) {
+    database.collection("requests").doc(docUID).update({
+      requestLocation: newRequestLocation,
+    });
+  }
+
+  function updateRequestSignUpDeadline(newRequestSignupDeadline, docUID) {
+    database.collection("requests").doc(docUID).update({
+      signupDeadline: newRequestSignupDeadline,
+    });
+  }
+
+  function updateRequestTags(newTags, docUID) {
+    database.collection("requests").doc(docUID).update({
+      Tags: newTags,
+    });
+  }
+
   function AddEventToHistory(documentUID, volUID) {
     database
       .collection("user")
@@ -373,6 +406,71 @@ export function AuthProvider({ children }) {
       .update({
         requestingBeneficiaries:
           firebase.firestore.FieldValue.arrayRemove(benUID),
+      })
+      // .then(() => {
+      //   Alert.alert("Volunteer Rejected");
+      // })
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
+  }
+
+  function AddBeneficiaryRequestToOrganisationEvent(orgUID, requestUID) {
+    database
+      .collection("user")
+      .doc(orgUID)
+      .update({
+        events: firebase.firestore.FieldValue.arrayUnion(requestUID),
+      })
+      // .then(() => {
+      //   Alert.alert("Volunteer Confirmed");
+      // })
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
+  }
+
+  function RemoveBeneficiaryRequestFromOrganisationPending(orgUID, requestUID) {
+    database
+      .collection("user")
+      .doc(orgUID)
+      .update({
+        beneficiariesPendingRequest:
+          firebase.firestore.FieldValue.arrayRemove(requestUID),
+      })
+      // .then(() => {
+      //   Alert.alert("Volunteer Rejected");
+      // })
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
+  }
+
+  function AddBeneficiaryRequestToBenficiaryConfirmed(benUID, requestUID) {
+    database
+      .collection("user")
+      .doc(benUID)
+      .update({
+        confirmedRequests: firebase.firestore.FieldValue.arrayUnion(requestUID),
+      })
+      // .then(() => {
+      //   Alert.alert("Volunteer Confirmed");
+      // })
+      .then(getUpdatedDBUser(currentUser.uid));
+    // .catch((error) => {
+    //   Alert.alert(error.messaege);
+    // });
+  }
+
+  function RemoveBeneficiaryRequestFromBeneficiaryPending(benUID, requestUID) {
+    database
+      .collection("user")
+      .doc(benUID)
+      .update({
+        pendingRequests: firebase.firestore.FieldValue.arrayRemove(requestUID),
       })
       // .then(() => {
       //   Alert.alert("Volunteer Rejected");
@@ -448,8 +546,13 @@ export function AuthProvider({ children }) {
     updateEventDescription,
     updateEventLocation,
     updateEventDate,
-    updateSignUpDeadline,
+    updateEventSignUpDeadline,
     updateEventTags,
+    updateRequestDescription,
+    updateRequestDate,
+    updateRequestLocation,
+    updateRequestSignUpDeadline,
+    updateRequestTags,
     addEvent,
     addRequest,
     requestOrgLink,
@@ -464,6 +567,10 @@ export function AuthProvider({ children }) {
     AddOrganisationToBeneficiary,
     AddEventToHistory,
     RemoveEventFromCommitments,
+    AddBeneficiaryRequestToOrganisationEvent,
+    RemoveBeneficiaryRequestFromOrganisationPending,
+    AddBeneficiaryRequestToBenficiaryConfirmed,
+    RemoveBeneficiaryRequestFromBeneficiaryPending,
     parseTags,
   };
 

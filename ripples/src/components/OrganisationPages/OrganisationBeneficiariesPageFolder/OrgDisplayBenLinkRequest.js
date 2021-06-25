@@ -3,7 +3,7 @@ import { Table, Button } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export default function SignedUpComponent() {
+export default function OrgDisplayBenLinkRequest() {
   const {
     dbUser,
     RemoveBeneficiaryFromRequesting,
@@ -74,6 +74,7 @@ export default function SignedUpComponent() {
             <th>Beneficiary Address</th>
             <th>Beneficiary Contact</th>
             <th>Beneficiary Email</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -98,10 +99,14 @@ export default function SignedUpComponent() {
                   <td>{contact}</td>
                   <td>{email}</td>
                   <td>
-                    <Button className="mb-2" onClick={() => handleReject(uid)}>
+                    <Button
+                      className="mb-2 btn-sm"
+                      onClick={() => handleReject(uid)}
+                    >
                       Reject
                     </Button>
                     <Button
+                      className="btn-sm"
                       onClick={() => {
                         handleAccept(uid);
                       }}
