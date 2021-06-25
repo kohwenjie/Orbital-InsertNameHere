@@ -209,12 +209,31 @@ export function AuthProvider({ children }) {
     requestLocation,
     requestDate,
     signupDeadline,
-    tags
+    tags,
+    orgUID
   ) {
+    const requestUID = uuidv4();
+
+    database
+      .collection("user")
+      .doc(orgUID)
+      .update({
+        beneficiariesRequests:
+          firebase.firestore.FieldValue.arrayUnion(requestUID),
+      });
+
+    database
+      .collection("user")
+      .doc(dbUser.uid)
+      .update({
+        request: firebase.firestore.FieldValue.arrayUnion(requestUID),
+      });
+
     return (
       database
         .collection("requests")
-        .add({
+        .doc(requestUID)
+        .set({
           requestFirstName: dbUser.firstName,
           requestLastName: dbUser.lastName,
           requesterUID: currentUser.uid,

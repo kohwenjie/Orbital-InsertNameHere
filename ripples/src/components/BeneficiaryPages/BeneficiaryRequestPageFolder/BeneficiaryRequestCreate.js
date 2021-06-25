@@ -4,7 +4,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 
-export default function BeneficiaryRequestCreate() {
+export default function BeneficiaryRequestCreate(props) {
   const [requestDescription, setRequestDescription] = useState();
   const [requestLocation, setRequestLocation] = useState();
   const [requestDate, setRequestDate] = useState();
@@ -16,6 +16,8 @@ export default function BeneficiaryRequestCreate() {
   const history = useHistory();
 
   console.log(dbUser);
+  console.log(props.location.aboutProps);
+  console.log(props.location.aboutProps.organisationUID);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,7 +39,8 @@ export default function BeneficiaryRequestCreate() {
         requestLocation,
         requestDate,
         signupDeadline,
-        tags
+        tags,
+        props.location.aboutProps.organisationUID
       );
 
       setRequestDescription("");

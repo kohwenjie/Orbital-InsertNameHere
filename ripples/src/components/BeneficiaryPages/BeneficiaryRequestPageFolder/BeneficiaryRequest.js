@@ -6,6 +6,7 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import { Link } from "react-router-dom";
+import BenDisplayOrg from "./BenDisplayOrg";
 
 // const useStyles = makeStyles((theme) => ({
 //   mainGrid: {
@@ -39,6 +40,7 @@ export default function BeneficiaryRequest() {
         >
           Make a Request!
         </Link>
+        <BenDisplayOrg />
       </Container>
       <Footer />
     </React.Fragment>

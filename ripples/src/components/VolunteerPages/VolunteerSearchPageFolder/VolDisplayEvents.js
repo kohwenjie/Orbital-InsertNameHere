@@ -6,6 +6,7 @@ import VolDisplayFullEvent from "./VolDisplayFullEvent";
 export default function VolDisplayEvents() {
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState();
+
   const fetchEvents = async () => {
     let arr = [];
     database
@@ -13,7 +14,7 @@ export default function VolDisplayEvents() {
       .get()
       .then((querySnapshot) => {
         // console.log(querySnapshot);
-        querySnapshot.forEach( async (doc) => {
+        querySnapshot.forEach(async (doc) => {
           //check to see if the event is passed the sign up Date
           if (new Date() < new Date(doc.data().signupDeadline)) {
             console.log(doc.data());
@@ -29,7 +30,6 @@ export default function VolDisplayEvents() {
   useEffect(() => {
     fetchEvents();
   }, []);
-
 
   return (
     <CardDeck
@@ -66,7 +66,7 @@ export default function VolDisplayEvents() {
                     {organisationName}
                   </Card.Subtitle>
                   <Card.Text>Event Date:{eventDate}</Card.Text>
-                  <VolDisplayFullEvent e={event}/>
+                  <VolDisplayFullEvent e={event} />
                 </Card.Body>
               </Card>
             </>
