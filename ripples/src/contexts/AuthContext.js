@@ -299,8 +299,8 @@ export function AuthProvider({ children }) {
       .doc(volUID)
       .update({
         history: firebase.firestore.FieldValue.arrayUnion(documentUID),
-      }).then(getUpdatedDBUser());
-
+      })
+      .then(getUpdatedDBUser());
   }
 
   function RemoveEventFromCommitments(documentUID, volUID) {
@@ -309,7 +309,8 @@ export function AuthProvider({ children }) {
       .doc(volUID)
       .update({
         commitments: firebase.firestore.FieldValue.arrayRemove(documentUID),
-      }).then(getUpdatedDBUser());
+      })
+      .then(getUpdatedDBUser());
   }
 
   function RemoveVolunteerFromSignUp(documentUID, volUID) {
@@ -389,9 +390,10 @@ export function AuthProvider({ children }) {
   function parseTags(tags) {
     let string = tags[0];
     tags.forEach((tag) => {
-      string = string + ", " + tag;
+      if (tag !== tags[0]) {
+        string = string + ", " + tag;
+      }
     });
-    console.log(string);
     return string;
   }
 
@@ -441,7 +443,7 @@ export function AuthProvider({ children }) {
     AddOrganisationToBeneficiary,
     AddEventToHistory,
     RemoveEventFromCommitments,
-    parseTags
+    parseTags,
   };
 
   return (

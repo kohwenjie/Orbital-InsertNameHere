@@ -18,7 +18,6 @@ export default function OrgDisplayFullEvent(props) {
     Tags,
     documentUID,
   } = event;
-  console.log(Tags);
 
   function openModal() {
     setOpen(true);

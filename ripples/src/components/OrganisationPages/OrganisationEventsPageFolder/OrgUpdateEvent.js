@@ -1,23 +1,13 @@
 import React, { useState, useRef } from "react";
 import { Card, Button, Modal, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 
 export default function OrgUpdateEvent(props) {
   const [open, setOpen] = useState(false);
   const event = props.e;
-  const {
-    eventName,
-    eventDescription,
-    eventLocation,
-    eventDate,
-    signupDeadline,
-    organisationName,
-    organisationUID,
-    Tags,
-    documentUID,
-  } = event;
+  const { eventName, Tags, documentUID } = event;
   const {
     updateEventName,
     updateEventDescription,
@@ -25,6 +15,7 @@ export default function OrgUpdateEvent(props) {
     updateEventLocation,
     updateSignUpDeadline,
     updateEventTags,
+    parseTags,
   } = useAuth();
   const eNameRef = useRef();
   const eDescriptionRef = useRef();
@@ -34,7 +25,7 @@ export default function OrgUpdateEvent(props) {
   const [eDate, setEDate] = useState();
   const [sDeadline, setSDeadline] = useState();
   const [tags, setTags] = useState([]);
-  const [eType, setEType] = useState();
+  const [eType, setEType] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -48,6 +39,7 @@ export default function OrgUpdateEvent(props) {
   }
 
   const handleChange = (tag) => {
+    console.log("before: ", tags);
     let tempTags = tags;
     if (tempTags.some((t) => t === tag)) {
       tempTags = tempTags.filter((t) => t !== tag);
@@ -55,11 +47,22 @@ export default function OrgUpdateEvent(props) {
       tempTags.push(tag);
     }
     setTags(tempTags);
+    console.log("after: ", tags);
   };
 
   function handleSubmit(e) {
     e.preventDefault();
-    tags.push(eType);
+
+    if (tags.length === 0) {
+      setTags(Tags);
+    } else {
+      if (eType === "") {
+        return setError("Please select an Event Type!");
+      } else if (tags.length === 0) {
+        return setError("Please select at least 1 Tag");
+      }
+      tags.push(eType);
+    }
 
     const updates = [];
     setLoading(true);
@@ -164,7 +167,11 @@ export default function OrgUpdateEvent(props) {
                 />
               </Form.Group>
               <div key={"inline-checkbox"}>
-                <h6>Select Category: </h6>
+                <h6>Select Category:</h6>
+                <h6 color={"blue"}>
+                  (Old tags will be used by default unless new tags chosen)
+                </h6>
+                <h6>Previous Tags: {parseTags(Tags)}</h6>
                 <Form.Check
                   inline
                   type={"checkbox"}
@@ -284,7 +291,9 @@ export default function OrgUpdateEvent(props) {
                   type={"radio"}
                   id={"Hybrid"}
                   label={"Hybrid"}
-                  onChange={() => setEType("Hybrid")}
+                  onChange={() => {
+                    setEType("Hybrid");
+                  }}
                 />
               </div>
 

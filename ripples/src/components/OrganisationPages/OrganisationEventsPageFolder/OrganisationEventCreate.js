@@ -28,6 +28,12 @@ export default function OrganisationEventCreate() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (eventType === "") {
+      return setError("Please select an Event Type!");
+    } else if (tags.length === 0) {
+      return setError("Please select at least 1 Tag");
+    }
     tags.push(eventType);
     let currentDate = new Date();
     let signupDate = new Date(signupDeadline);
@@ -52,6 +58,7 @@ export default function OrganisationEventCreate() {
       setEventDate("");
       setSignupDeadline("");
       setTags([]);
+      alert("New event has been successfully created!");
       history.push("/OrganisationEvents");
     }
   }
