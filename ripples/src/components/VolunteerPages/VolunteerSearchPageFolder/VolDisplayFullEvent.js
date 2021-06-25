@@ -77,7 +77,7 @@ export default function VolDisplayFullEvent(props) {
           <p>Location: {eventLocation}</p>
           <p>Brought to you by: {organisationName}</p>
           <p>Tags: {parseTags(Tags)}</p>
-          <h7>{eventDescription}</h7>
+          <h6>{eventDescription}</h6>
         </Modal.Body>
         <ShowSignedUpMessage />
         <Modal.Footer>
