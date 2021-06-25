@@ -46,7 +46,6 @@ export default function OrganisationEventCreate() {
         tags
       );
 
-
       setEventName("");
       setEventDescription("");
       setEventLocation("");

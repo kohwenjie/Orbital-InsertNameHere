@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 export default function VolDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const { currentUser, signupEvent } = useAuth();
+  const { currentUser, signupEvent, parseTags } = useAuth();
   const history = useHistory();
   const event = props.e;
   const {
@@ -76,7 +76,7 @@ export default function VolDisplayFullEvent(props) {
           <p>Sign up before: {signupDeadline}</p>
           <p>Location: {eventLocation}</p>
           <p>Brought to you by: {organisationName}</p>
-          <p>Tags: {Tags}</p>
+          <p>Tags: {parseTags(Tags)}</p>
           <h7>{eventDescription}</h7>
         </Modal.Body>
         <ShowSignedUpMessage />

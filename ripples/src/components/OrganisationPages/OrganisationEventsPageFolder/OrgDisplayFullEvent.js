@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import OrgUpdateEvent from "./OrgUpdateEvent";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export default function OrgDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
+  const { parseTags } = useAuth();
   const event = props.e;
   const {
     eventName,
@@ -16,6 +18,7 @@ export default function OrgDisplayFullEvent(props) {
     Tags,
     documentUID,
   } = event;
+  console.log(Tags);
 
   function openModal() {
     setOpen(true);
@@ -42,7 +45,7 @@ export default function OrgDisplayFullEvent(props) {
           <p>Sign up before: {signupDeadline}</p>
           <p>Location: {eventLocation}</p>
           <p>Brought to you by: {organisationName}</p>
-          <p>Tags: {Tags}</p>
+          <p>Tags: {parseTags(Tags)}</p>
           <h6>{eventDescription}</h6>
         </Modal.Body>
         <Modal.Footer>

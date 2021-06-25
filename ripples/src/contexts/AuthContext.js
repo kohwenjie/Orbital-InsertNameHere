@@ -386,6 +386,15 @@ export function AuthProvider({ children }) {
       });
   }
 
+  function parseTags(tags) {
+    let string = tags[0];
+    tags.forEach((tag) => {
+      string = string + ", " + tag;
+    });
+    console.log(string);
+    return string;
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -432,6 +441,7 @@ export function AuthProvider({ children }) {
     AddOrganisationToBeneficiary,
     AddEventToHistory,
     RemoveEventFromCommitments,
+    parseTags
   };
 
   return (
