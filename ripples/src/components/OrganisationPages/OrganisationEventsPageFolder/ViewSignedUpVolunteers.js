@@ -8,7 +8,7 @@ export default function ViewSignedUpVolunteers(props) {
   const [signedUpVolunteersArr, setSignedUpVolunteersArr] = useState([]);
   const [volunteersProfile, setVolunteersProfile] = useState([]);
   const { RemoveVolunteerFromSignUp, AddVolunteerToConfirmed } = useAuth();
-  const [update, setUpdate] = useState();
+  const [update, setUpdate] = useState(true);
   const event = props.e;
   const { eventName, signedUpVolunteers, confirmedVolunteers, documentUID } =
     event;
@@ -38,7 +38,7 @@ export default function ViewSignedUpVolunteers(props) {
 
   useEffect(() => {
     fetchVolunteers();
-  }, [open]);
+  }, [open, update]);
 
   function openModal() {
     setOpen(true);
@@ -57,10 +57,11 @@ export default function ViewSignedUpVolunteers(props) {
       RemoveVolunteerFromSignUp(documentUID, volUID);
       AddVolunteerToConfirmed(documentUID, volUID);
       //testing useState to rerender
+      setVolunteersProfile(
+        volunteersProfile.filter((profile) => profile.uid !== volUID)
+      );
 
       alert("Accepted Volunteer");
-      closeModal();
-      openModal();
     } else {
       alert("Unable to Accept Volunteer");
     }
@@ -93,14 +94,21 @@ export default function ViewSignedUpVolunteers(props) {
             <tbody>
               {volunteersProfile &&
                 volunteersProfile.map((profile) => {
-                  const { firstName, lastName, contact, email, uid } = profile;
+                  const {
+                    firstName,
+                    lastName,
+                    contact,
+                    email,
+                    uid,
+                    description,
+                  } = profile;
                   return (
                     <tr key={volunteersProfile.indexOf(profile) + 1}>
                       <td>{volunteersProfile.indexOf(profile) + 1}</td>
                       <td>{firstName + " " + lastName}</td>
                       <td>{contact}</td>
                       <td>{email}</td>
-                      <td>description yet to implement</td>
+                      <td>{description}</td>
                       <td>
                         <Button onClick={() => handleReject(uid)}>
                           Reject

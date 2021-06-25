@@ -4,20 +4,34 @@ import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export default function SignedUpComponent() {
-  const { dbUser } = useAuth();
+  const { dbUser, RemoveEventFromCommitments, AddEventToHistory } = useAuth();
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState();
+  const [newUser, setNewUser] = useState();
 
   const fetchEvents = async () => {
     let arr = [];
+    console.log(dbUser.commitments);
+
+    //shift events from commitments to history and display history events
     database
       .collection("events")
       .where("confirmedVolunteers", "array-contains", dbUser.uid)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          arr.push(doc.data());
-          setIdentity(doc.id);
+          if (new Date() > new Date(doc.data().eventDate)) {
+            if (
+              dbUser.commitments.includes(doc.data().documentUID) &&
+              !dbUser.history.includes(doc.data().documentUID)
+            ) {
+              RemoveEventFromCommitments(doc.data().documentUID, dbUser.uid);
+              AddEventToHistory(doc.data().documentUID, dbUser.uid);
+              console.log(dbUser.history);
+            }
+            arr.push(doc.data());
+            setIdentity(doc.id);
+          }
         });
       })
       .then(setEvents(arr));
@@ -29,7 +43,6 @@ export default function SignedUpComponent() {
 
   return (
     <>
-
       <Table striped bordered hover size="sm">
         <thead>
           <tr>

@@ -4,7 +4,7 @@ import { Card, CardDeck } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import OrgDisplayFullEvent from "./OrgDisplayFullEvent";
 import ViewSignedUpVolunteers from "./ViewSignedUpVolunteers";
-import { Divider } from "@material-ui/core";
+
 
 export default function OrgDisplayEvents() {
   const [events, setEvents] = useState([]);

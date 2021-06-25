@@ -83,6 +83,13 @@ export default function OrgHistoryEvents() {
             </>
           );
         })}
+        {events.length === 0 && (
+        <div style={{ textAlign: "center", margin: "8rem" }}>
+          <h2>Oops You have no History to display!</h2>
+          <br></br>
+          <h3>Proceed to Search to start finding an event!</h3>
+        </div>
+      )}
     </CardDeck>
   );
 }
