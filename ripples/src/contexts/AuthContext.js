@@ -208,7 +208,8 @@ export function AuthProvider({ children }) {
     requestDescription,
     requestLocation,
     requestDate,
-    signupDeadline
+    signupDeadline,
+    tags
   ) {
     return (
       database
@@ -221,6 +222,7 @@ export function AuthProvider({ children }) {
           requestLocation: requestLocation,
           requestDate: requestDate,
           signupDeadline: signupDeadline,
+          Tags: tags,
         })
         // .then(() => {
         //   Alert.alert("Request Created!");
