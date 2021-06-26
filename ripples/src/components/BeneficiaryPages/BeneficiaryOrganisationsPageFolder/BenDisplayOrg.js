@@ -35,6 +35,7 @@ export default function BenDisplayOrg() {
         flexWrap: "wrap",
         justifyContent: "center",
       }}
+      key="1"
     >
       {organisations &&
         organisations.map((organisation) => {
@@ -50,6 +51,7 @@ export default function BenDisplayOrg() {
                   boxSizing: "border-box",
                 }}
                 className="box m-4"
+                key={identity}
               >
                 <Card.Img
                   variant="top"
@@ -68,6 +70,12 @@ export default function BenDisplayOrg() {
             </>
           );
         })}
+      {organisations.length === 0 && (
+        <div style={{ textAlign: "center", margin: "8rem" }}>
+          <h2>There are no Organisations to display</h2>
+          <br></br>
+        </div>
+      )}
     </CardDeck>
   );
 }

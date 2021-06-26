@@ -75,8 +75,9 @@ export default function SignedUpComponent() {
       </Table>
       {organisationList.length === 0 && (
         <div style={{ textAlign: "center", margin: "8rem" }}>
-          <h2>There are no Beneficiaries under your Organisation right now</h2>
+          <h2>You have not linked up with any Organisations</h2>
           <br></br>
+          <h3>Please proceed to link up with Organisations under the organisations Tab</h3>
         </div>
       )}
     </>

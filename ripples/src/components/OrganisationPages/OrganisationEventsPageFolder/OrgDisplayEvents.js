@@ -5,7 +5,6 @@ import { useAuth } from "../../../contexts/AuthContext";
 import OrgDisplayFullEvent from "./OrgDisplayFullEvent";
 import ViewSignedUpVolunteers from "./ViewSignedUpVolunteers";
 
-
 export default function OrgDisplayEvents() {
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState([]);
@@ -33,7 +32,6 @@ export default function OrgDisplayEvents() {
     fetchEvents();
   }, []);
 
-
   return (
     <CardDeck
       style={{
@@ -42,6 +40,7 @@ export default function OrgDisplayEvents() {
         flexWrap: "wrap",
         justifyContent: "center",
       }}
+      key="1"
     >
       {events &&
         events.map((event) => {
@@ -67,7 +66,7 @@ export default function OrgDisplayEvents() {
                   boxSizing: "border-box",
                 }}
                 className="box m-4"
-                key={events.indexOf(event) + 1}
+                key={identity}
               >
                 <Card.Img
                   variant="top"

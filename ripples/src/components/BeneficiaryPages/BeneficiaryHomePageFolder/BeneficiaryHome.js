@@ -13,12 +13,11 @@ import Footer from "../SharedComponent/Footer";
 // }));
 
 const mainFeaturedPost = {
-  title: "THIS IS A Beneficiary HOMEPAGE",
+  title: "Welcome to Ripples for Beneficiaries!",
   description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+    "Here at Ripples, we aim to improve your day with our services. Feel free to contact us for any assistance!",
   image: "https://source.unsplash.com/random",
-  imgText: "main image description",
-  linkText: "Continue reading…",
+  imgText: "Welcome page introduction ",
 };
 
 export default function BeneficiaryHome() {

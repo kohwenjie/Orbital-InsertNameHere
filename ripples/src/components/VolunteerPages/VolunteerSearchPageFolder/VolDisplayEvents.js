@@ -54,6 +54,7 @@ export default function VolDisplayEvents() {
                   boxSizing: "border-box",
                 }}
                 className="box m-4"
+                key = {identity}
               >
                 <Card.Img
                   variant="top"

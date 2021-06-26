@@ -5,7 +5,6 @@ import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
-import { Link } from "react-router-dom";
 import BenDisplayOrg from "./BenDisplayOrg";
 
 // const useStyles = makeStyles((theme) => ({
@@ -15,12 +14,8 @@ import BenDisplayOrg from "./BenDisplayOrg";
 // }));
 
 const mainFeaturedPost = {
-  title: "THIS IS A Beneficiary Request PAGE",
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+  title: "View Your Pending Request Here",
   image: "https://source.unsplash.com/random",
-  imgText: "main image description",
-  linkText: "Continue reading…",
 };
 
 export default function BeneficiaryRequest() {

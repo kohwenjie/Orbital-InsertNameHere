@@ -71,7 +71,7 @@ export default function OrgDisplayBenLinkRequest() {
       </Table>
       {confirmedRequestsList.length === 0 && (
         <div style={{ textAlign: "center", margin: "8rem" }}>
-          <h2>There are no Beneficiaries under your Organisation right now</h2>
+          <h2>You do not have any request to display</h2>
           <br></br>
         </div>
       )}
