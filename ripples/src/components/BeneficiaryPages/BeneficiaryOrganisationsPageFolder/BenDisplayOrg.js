@@ -39,7 +39,7 @@ export default function BenDisplayOrg() {
     >
       {organisations &&
         organisations.map((organisation) => {
-          const { name, description, address, email, contact } = organisation;
+          const { name, description, address } = organisation;
           return (
             <>
               <Card

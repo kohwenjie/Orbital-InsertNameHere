@@ -90,7 +90,7 @@ export default function OrgDisplayBenLinkRequest() {
                 uid,
               } = beneficiary;
               return (
-                <tr>
+                <tr key={identity}>
                   <td>{requestingBeneficiaryList.indexOf(beneficiary)}</td>
                   <td>{firstName}</td>
                   <td>{lastName}</td>

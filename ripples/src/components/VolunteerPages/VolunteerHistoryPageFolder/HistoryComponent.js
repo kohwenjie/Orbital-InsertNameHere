@@ -7,7 +7,6 @@ export default function HistoryComponent() {
   const { dbUser, RemoveEventFromCommitments, AddEventToHistory } = useAuth();
   const [events, setEvents] = useState([]);
   const [identity, setIdentity] = useState();
-  const [newUser, setNewUser] = useState();
 
   const fetchEvents = async () => {
     let arr = [];
@@ -46,6 +45,7 @@ export default function HistoryComponent() {
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
+            <th>S/N</th>
             <th>Event Name</th>
             <th>Event Date</th>
             <th>Event Location</th>
@@ -58,7 +58,8 @@ export default function HistoryComponent() {
               const { eventName, eventDescription, eventLocation, eventDate } =
                 event;
               return (
-                <tr>
+                <tr key={events.indexOf(event) + 1}>
+                  <td>{events.indexOf(event) + 1}</td>
                   <td>{eventName}</td>
                   <td>{eventDate}</td>
                   <td>{eventLocation}</td>

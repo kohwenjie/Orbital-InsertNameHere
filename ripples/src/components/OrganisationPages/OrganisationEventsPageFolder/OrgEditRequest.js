@@ -14,7 +14,6 @@ export default function OrgUpdateEvent(props) {
     updateRequestLocation,
     updateRequestSignUpDeadline,
     updateRequestTags,
-    parseTags,
   } = useAuth();
   const rDescriptionRef = useRef();
   const rLocationRef = useRef();

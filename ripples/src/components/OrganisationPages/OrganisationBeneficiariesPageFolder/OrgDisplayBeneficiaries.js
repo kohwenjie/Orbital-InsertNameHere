@@ -52,10 +52,9 @@ export default function SignedUpComponent() {
                 address,
                 contact,
                 email,
-                uid,
               } = beneficiary;
               return (
-                <tr>
+                <tr key={identity}>
                   <td>{beneficiaryList.indexOf(beneficiary)}</td>
                   <td>{firstName}</td>
                   <td>{lastName}</td>

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
 
 export default function VolDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const { currentUser, signupEvent, parseTags } = useAuth();
-  const history = useHistory();
   const event = props.e;
   const {
     eventName,

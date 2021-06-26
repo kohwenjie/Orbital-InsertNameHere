@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Table, Alert } from "react-bootstrap";
+import { Button, Modal, Table } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
@@ -8,7 +8,6 @@ export default function ViewSignedUpVolunteers(props) {
   const [signedUpVolunteersArr, setSignedUpVolunteersArr] = useState([]);
   const [volunteersProfile, setVolunteersProfile] = useState([]);
   const { RemoveVolunteerFromSignUp, AddVolunteerToConfirmed } = useAuth();
-  const [update, setUpdate] = useState(true);
   const event = props.e;
   const { eventName, signedUpVolunteers, confirmedVolunteers, documentUID } =
     event;
@@ -38,7 +37,7 @@ export default function ViewSignedUpVolunteers(props) {
 
   useEffect(() => {
     fetchVolunteers();
-  }, [open, update]);
+  }, [open]);
 
   function openModal() {
     setOpen(true);

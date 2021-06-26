@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 export default function OrgDisplayFullEvent(props) {
@@ -11,9 +11,8 @@ export default function OrgDisplayFullEvent(props) {
     eventDate,
     signupDeadline,
     organisationName,
-    organisationUID,
+
     Tags,
-    documentUID,
   } = event;
 
   function openModal() {

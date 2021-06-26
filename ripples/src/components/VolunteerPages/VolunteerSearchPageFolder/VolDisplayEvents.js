@@ -73,6 +73,12 @@ export default function VolDisplayEvents() {
             </>
           );
         })}
+      {events.length === 0 && (
+        <div style={{ textAlign: "center", margin: "8rem" }}>
+          <h2>Oops There is no Event to Display!</h2>
+          <br></br>
+        </div>
+      )}
     </CardDeck>
   );
 }

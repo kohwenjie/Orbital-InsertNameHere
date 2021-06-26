@@ -1,7 +1,5 @@
 import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-// import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
@@ -10,12 +8,6 @@ import OrgDisplayBeneficiaries from "./OrgDisplayBeneficiaries";
 import OrgDisplayBenLinkRequest from "./OrgDisplayBenLinkRequest";
 import OrgDisplayBenRequest from "./OrgDisplayBenRequest";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
-
-// const useStyles = makeStyles((theme) => ({
-//   mainGrid: {
-//     marginTop: theme.spacing(3),
-//   },
-// }));
 
 const mainFeaturedPost = {
   title: "View Beneficiaries Under You",

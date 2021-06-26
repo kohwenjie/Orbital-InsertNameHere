@@ -43,13 +43,13 @@ export default function SignedUpComponent() {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody key={identity}>
+        <tbody>
           {organisationList &&
             organisationList.map((organisation) => {
               const { name, description, address, contact, email, uid } =
                 organisation;
               return (
-                <tr>
+                <tr key={identity}>
                   <td>{organisationList.indexOf(organisation) + 1}</td>
                   <td>{name}</td>
                   <td>{description}</td>

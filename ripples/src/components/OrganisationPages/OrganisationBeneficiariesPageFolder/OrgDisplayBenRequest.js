@@ -39,21 +39,6 @@ export default function OrgDisplayBenLinkRequest() {
     });
   };
 
-  //   for (var i = 0; i < dbUserBenPendingRequestArr.length; i++) {
-  //     database
-  //       .collection("requests")
-  //       .doc(dbUser.beneficiariesPendingRequest[i])
-  //       .get()
-  //       .then((doc) => {
-  //         arr.push(doc.data());
-  //         console.log(doc.data());
-  //         setIdentity(doc.id);
-  //       })
-  //       .then(setBeneficiaryPendingList(arr));
-  //   }
-  //   console.log("pending list:", beneficiaryPendingList);
-  // };
-
   console.log(beneficiaryPendingList);
 
   function handleAccept(request) {
@@ -96,7 +81,7 @@ export default function OrgDisplayBenLinkRequest() {
     <>
       <Table striped bordered hover size="sm">
         <thead>
-          <tr>
+          <tr key={identity}>
             <th>S/N</th>
             <th>Beneficiary First Name</th>
             <th>Beneficiary Last Name</th>

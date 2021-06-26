@@ -56,7 +56,7 @@ export default function ConfirmedComponent() {
               const { eventName, eventDescription, eventLocation, eventDate } =
                 event;
               return (
-                <tr>
+                <tr key={events.indexOf(event) + 1}>
                   <td>{events.indexOf(event) + 1}</td>
                   <td>{eventName}</td>
                   <td>{eventDate}</td>

@@ -12,7 +12,7 @@ export default function OrganisationEventCreate() {
   const [signupDeadline, setSignupDeadline] = useState();
   const [tags, setTags] = useState([]);
   const [eventType, setEventType] = useState();
-  const { addEvent, dbUser, getUpdatedDBUser } = useAuth();
+  const { addEvent } = useAuth();
   const [error, setError] = useState("");
   const history = useHistory();
 

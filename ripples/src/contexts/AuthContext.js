@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Alert } from "react-bootstrap";
 import { auth, database } from "../firebase";
 import firebase from "firebase/app";
 import "firebase/auth";

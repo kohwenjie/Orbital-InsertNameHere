@@ -59,11 +59,9 @@ export default function ViewPendingRequest() {
                 requestLocation,
                 requestDate,
                 Tags,
-                requesterUID,
-                requestUID,
               } = request;
               return (
-                <tr>
+                <tr key={identity}>
                   <td>{pendingRequestsList.indexOf(request) + 1}</td>
                   <td>{requestDescription}</td>
                   <td>{requestLocation}</td>

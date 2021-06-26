@@ -54,16 +54,10 @@ export default function ViewPastRequest() {
         <tbody>
           {confirmedRequestsList &&
             confirmedRequestsList.map((request) => {
-              const {
-                requestDescription,
-                requestLocation,
-                requestDate,
-                Tags,
-                requesterUID,
-                requestUID,
-              } = request;
+              const { requestDescription, requestLocation, requestDate, Tags } =
+                request;
               return (
-                <tr key={confirmedRequestsList.indexOf(request) + 1}>
+                <tr key={identity}>
                   <td>{confirmedRequestsList.indexOf(request) + 1}</td>
                   <td>{requestDescription}</td>
                   <td>{requestLocation}</td>

@@ -14,9 +14,7 @@ export default function OrgDisplayFullEvent(props) {
     eventDate,
     signupDeadline,
     organisationName,
-    organisationUID,
     Tags,
-    documentUID,
   } = event;
 
   function openModal() {

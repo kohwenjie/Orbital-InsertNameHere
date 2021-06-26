@@ -44,14 +44,10 @@ export default function OrgHistoryEvents() {
         events.map((event) => {
           const {
             eventName,
-            eventDescription,
-            eventLocation,
             eventDate,
-            signupDeadline,
+
             organisationName,
-            organisationUID,
-            Tags,
-            documentUID,
+
           } = event;
           return (
             <>
