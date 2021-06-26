@@ -66,7 +66,7 @@ export default function BenDisplayFullOrg(props) {
       <Modal show={open} onHide={closeModal}>
         <Modal.Body>
           <img
-            class="img-fluid"
+            className="img-fluid"
             src="https://ivhq.imgix.net/images/pages/volunteer-activity-ideas/volunteer-acitivty-ideascommunity-senior.png?w=850&fit=max&auto=compress%2Cformat"
             alt=""
           />

@@ -50,7 +50,7 @@ export default function SignedUpComponent() {
                 organisation;
               return (
                 <tr>
-                  <td>{organisationList.indexOf(organisation)}</td>
+                  <td>{organisationList.indexOf(organisation) + 1}</td>
                   <td>{name}</td>
                   <td>{description}</td>
                   <td>{address}</td>
@@ -77,7 +77,10 @@ export default function SignedUpComponent() {
         <div style={{ textAlign: "center", margin: "8rem" }}>
           <h2>You have not linked up with any Organisations</h2>
           <br></br>
-          <h3>Please proceed to link up with Organisations under the organisations Tab</h3>
+          <h3>
+            Please proceed to link up with Organisations under the organisations
+            Tab
+          </h3>
         </div>
       )}
     </>
