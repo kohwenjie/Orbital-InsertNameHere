@@ -16,7 +16,7 @@ const mainFeaturedPost = {
   title: "Welcome to Ripples for Beneficiaries!",
   description:
     "Here at Ripples, we aim to improve your day with our services. Feel free to contact us for any assistance!",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
   imgText: "Welcome page introduction ",
 };
 
@@ -32,7 +32,7 @@ export default function BeneficiaryHome() {
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
       </Container>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }

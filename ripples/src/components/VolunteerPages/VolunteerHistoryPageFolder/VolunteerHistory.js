@@ -16,7 +16,7 @@ import HistoryComponent from "./HistoryComponent";
 
 const mainFeaturedPost = {
   title: "View Past Events Here",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
 };
 
 export default function VolunteerHistory() {

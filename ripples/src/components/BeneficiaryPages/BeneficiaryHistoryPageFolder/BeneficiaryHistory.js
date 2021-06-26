@@ -15,7 +15,7 @@ import HistoryComponent from "./HistoryComponent";
 
 const mainFeaturedPost = {
   title: "View Your previous Requests",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
   imgText: "main image description",
 };
 

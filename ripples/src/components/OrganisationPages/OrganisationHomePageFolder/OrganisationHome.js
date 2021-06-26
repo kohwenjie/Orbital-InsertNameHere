@@ -17,7 +17,7 @@ const mainFeaturedPost = {
   title: "THIS IS A Organisation Home PAGE",
   description:
     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
   imgText: "main image description",
   linkText: "Continue reading…",
 };

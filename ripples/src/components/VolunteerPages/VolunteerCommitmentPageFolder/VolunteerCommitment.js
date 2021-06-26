@@ -17,7 +17,7 @@ import { Tab, Row, Col, Nav } from "react-bootstrap";
 
 const mainFeaturedPost = {
   title: "View Your Commitments here",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
 };
 
 export default function VolunteerCommitment() {

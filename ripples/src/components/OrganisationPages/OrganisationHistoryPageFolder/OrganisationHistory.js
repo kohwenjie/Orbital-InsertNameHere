@@ -15,7 +15,7 @@ import OrgHistoryEvents from "./OrgDisplayEvents";
 
 const mainFeaturedPost = {
   title: "Your Events History ",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
 };
 
 export default function OrganisationHistory() {
@@ -30,7 +30,6 @@ export default function OrganisationHistory() {
           <MainFeaturedPost post={mainFeaturedPost} />
         </main>
         <OrgHistoryEvents />
-        
       </Container>
       <Footer />
     </React.Fragment>

@@ -16,7 +16,7 @@ import BenDisplayOrg from "./BenDisplayOrg";
 
 const mainFeaturedPost = {
   title: "Find Your Organisations Here",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
 };
 
 export default function BeneficiaryOrganisations() {

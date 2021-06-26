@@ -15,7 +15,7 @@ import VolDisplayEvents from "./VolDisplayEvents";
 
 const mainFeaturedPost = {
   title: "Search for an Event!",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
 };
 
 export default function VolunteerSearch() {

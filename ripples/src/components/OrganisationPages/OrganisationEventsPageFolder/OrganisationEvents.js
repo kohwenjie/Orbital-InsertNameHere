@@ -18,7 +18,7 @@ import { Tab, Row, Col, Nav } from "react-bootstrap";
 
 const mainFeaturedPost = {
   title: "View or Create New Events Here!",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
 };
 
 export default function OrganisationEvents() {

@@ -19,7 +19,7 @@ import { Tab, Row, Col, Nav } from "react-bootstrap";
 
 const mainFeaturedPost = {
   title: "View Beneficiaries Under You",
-  image: "https://source.unsplash.com/random",
+  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
 };
 
 export default function OrganisationBeneficiaries() {

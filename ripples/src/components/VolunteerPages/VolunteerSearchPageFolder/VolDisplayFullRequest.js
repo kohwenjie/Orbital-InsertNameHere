@@ -49,14 +49,14 @@ export default function VolDisplayFullEvent(props) {
   }
 
   useEffect(() => {
-    if (
-      confirmedVolunteers.includes(currentUser.uid) ||
-      signedUpVolunteers.includes(currentUser.uid)
-    ) {
-      setDisabled(true);
-    } else {
-      setDisabled(false);
-    }
+    // if (
+    //   confirmedVolunteers.includes(currentUser.uid) ||
+    //   signedUpVolunteers.includes(currentUser.uid)
+    // ) {
+    //   setDisabled(true);
+    // } else {
+    setDisabled(false);
+    // }
   }, []);
 
   return (
