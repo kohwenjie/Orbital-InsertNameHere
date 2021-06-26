@@ -19,11 +19,15 @@ export default function OrgDisplayBenLinkRequest() {
 
   const fetchEvents = async () => {
     let arr = [];
+    let dbUserBenPendingRequestArr = [];
+    if (dbUser.beneficiariesPendingRequest) {
+      dbUserBenPendingRequestArr = dbUser.beneficiariesPendingRequest;
+    }
 
-    for (var i = 0; i < dbUser.beneficiariesPendingRequest.length; i++) {
+    dbUserBenPendingRequestArr.forEach((rq) => {
       database
         .collection("requests")
-        .doc(dbUser.beneficiariesPendingRequest[i])
+        .doc(rq)
         .get()
         .then((doc) => {
           arr.push(doc.data());
@@ -31,8 +35,24 @@ export default function OrgDisplayBenLinkRequest() {
           setIdentity(doc.id);
         })
         .then(setBeneficiaryPendingList(arr));
-    }
+      console.log("pending list:", beneficiaryPendingList);
+    });
   };
+
+  //   for (var i = 0; i < dbUserBenPendingRequestArr.length; i++) {
+  //     database
+  //       .collection("requests")
+  //       .doc(dbUser.beneficiariesPendingRequest[i])
+  //       .get()
+  //       .then((doc) => {
+  //         arr.push(doc.data());
+  //         console.log(doc.data());
+  //         setIdentity(doc.id);
+  //       })
+  //       .then(setBeneficiaryPendingList(arr));
+  //   }
+  //   console.log("pending list:", beneficiaryPendingList);
+  // };
 
   console.log(beneficiaryPendingList);
 
@@ -103,7 +123,7 @@ export default function OrgDisplayBenLinkRequest() {
               } = request;
               return (
                 <tr>
-                  <td>{beneficiaryPendingList.indexOf(request)}</td>
+                  <td>{beneficiaryPendingList.indexOf(request) + 1}</td>
                   <td>{requesterFirstName}</td>
                   <td>{requesterLastName}</td>
                   <td>{requestDescription}</td>

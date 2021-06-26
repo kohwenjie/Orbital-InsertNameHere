@@ -43,7 +43,7 @@ export default function SignedUpComponent() {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody key={identity}>
           {organisationList &&
             organisationList.map((organisation) => {
               const { name, description, address, contact, email, uid } =

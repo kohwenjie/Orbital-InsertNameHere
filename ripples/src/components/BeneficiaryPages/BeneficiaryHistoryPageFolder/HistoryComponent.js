@@ -13,11 +13,16 @@ export default function OrgDisplayBenLinkRequest() {
 
   const fetchEvents = async () => {
     let arr = [];
+    let dbUserConfirmedRequestArr = [];
 
-    for (var i = 0; i < dbUser.confirmedRequests.length; i++) {
+    if (dbUser.confirmedRequests) {
+      dbUserConfirmedRequestArr = dbUser.confirmedRequests;
+    }
+
+    dbUserConfirmedRequestArr.forEach((rq) => {
       database
         .collection("requests")
-        .doc(dbUser.confirmedRequests[i])
+        .doc(rq)
         .get()
         .then((doc) => {
           arr.push(doc.data());
@@ -25,10 +30,10 @@ export default function OrgDisplayBenLinkRequest() {
           setIdentity(doc.id);
         })
         .then(setConfirmedRequestsList(arr));
-    }
-  };
+    });
 
-  console.log(confirmedRequestsList);
+    console.log(confirmedRequestsList);
+  };
 
   useEffect(() => {
     fetchEvents();
