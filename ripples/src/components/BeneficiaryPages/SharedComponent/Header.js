@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const sections = [
   { title: "Home", url: "/BeneficiaryHome" },
   { title: "Request", url: "/BeneficiaryRequest" },
-  { title: "History", url: "/BeneficiaryHistory" },
+  { title: "Data Log", url: "/BeneficiaryDataLog" },
   { title: "Organisations", url: "/BeneficiaryOrganisations" },
   { title: "Settings", url: "/BeneficiarySetting" },
 ];

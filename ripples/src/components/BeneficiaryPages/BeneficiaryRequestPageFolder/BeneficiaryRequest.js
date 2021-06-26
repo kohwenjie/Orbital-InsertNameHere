@@ -14,7 +14,7 @@ import BenDisplayOrg from "./BenDisplayOrg";
 // }));
 
 const mainFeaturedPost = {
-  title: "View Your Pending Request Here",
+  title: "Create Request to Linked-Up Organisations Here!",
   image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
 };
 

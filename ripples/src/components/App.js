@@ -29,7 +29,7 @@ import OrganisationSetting from "./OrganisationPages/OrganisationSettingPageFold
 import BeneficiaryHome from "./BeneficiaryPages/BeneficiaryHomePageFolder/BeneficiaryHome";
 import BeneficiaryRequest from "./BeneficiaryPages/BeneficiaryRequestPageFolder/BeneficiaryRequest";
 import BeneficiaryRequestCreate from "./BeneficiaryPages/BeneficiaryRequestPageFolder/BeneficiaryRequestCreate";
-import BeneficiaryHistory from "./BeneficiaryPages/BeneficiaryHistoryPageFolder/BeneficiaryHistory";
+import BeneficiaryDataLog from "./BeneficiaryPages/BeneficiaryDataLogPageFolder/BeneficiaryDataLog";
 import BeneficiaryOrganisations from "./BeneficiaryPages/BeneficiaryOrganisationsPageFolder/BeneficiaryOrganisations";
 import BeneficiarySetting from "./BeneficiaryPages/BeneficiarySettingPageFolder/BeneficiarySetting";
 
@@ -107,8 +107,8 @@ function App() {
                 component={BeneficiaryRequestCreate}
               />
               <PrivateRoute
-                path="/BeneficiaryHistory"
-                component={BeneficiaryHistory}
+                path="/BeneficiaryDataLog"
+                component={BeneficiaryDataLog}
               />
               <PrivateRoute
                 path="/BeneficiaryOrganisations"

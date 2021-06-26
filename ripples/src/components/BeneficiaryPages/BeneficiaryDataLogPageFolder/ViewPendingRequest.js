@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export default function OrgDisplayBenLinkRequest() {
+export default function ViewPendingRequest() {
   const { dbUser } = useAuth();
-  const [confirmedRequestsList, setConfirmedRequestsList] = useState([]);
+  const [pendingRequestsList, setPendingRequestsList] = useState([]);
   const [identity, setIdentity] = useState();
 
   console.log(dbUser);
-  console.log(dbUser.confirmedRequests);
+  console.log(dbUser.pendingRequests);
 
-  const fetchEvents = async () => {
+  const fetchRequest = async () => {
     let arr = [];
-    let dbUserConfirmedRequestArr = [];
+    let dbUserPendingRequestArr = [];
 
     if (dbUser.confirmedRequests) {
-      dbUserConfirmedRequestArr = dbUser.confirmedRequests;
+      dbUserPendingRequestArr = dbUser.pendingRequests;
     }
 
-    dbUserConfirmedRequestArr.forEach((rq) => {
+    dbUserPendingRequestArr.forEach((rq) => {
       database
         .collection("requests")
         .doc(rq)
@@ -29,14 +29,14 @@ export default function OrgDisplayBenLinkRequest() {
           console.log(doc.data());
           setIdentity(doc.id);
         })
-        .then(setConfirmedRequestsList(arr));
+        .then(setPendingRequestsList(arr));
     });
 
-    console.log(confirmedRequestsList);
+    console.log(pendingRequestsList);
   };
 
   useEffect(() => {
-    fetchEvents();
+    fetchRequest();
   }, []);
 
   return (
@@ -52,8 +52,8 @@ export default function OrgDisplayBenLinkRequest() {
           </tr>
         </thead>
         <tbody>
-          {confirmedRequestsList &&
-            confirmedRequestsList.map((request) => {
+          {pendingRequestsList &&
+            pendingRequestsList.map((request) => {
               const {
                 requestDescription,
                 requestLocation,
@@ -64,7 +64,7 @@ export default function OrgDisplayBenLinkRequest() {
               } = request;
               return (
                 <tr>
-                  <td>{confirmedRequestsList.indexOf(request) + 1}</td>
+                  <td>{pendingRequestsList.indexOf(request) + 1}</td>
                   <td>{requestDescription}</td>
                   <td>{requestLocation}</td>
                   <td>{requestDate}</td>
@@ -74,9 +74,9 @@ export default function OrgDisplayBenLinkRequest() {
             })}
         </tbody>
       </Table>
-      {confirmedRequestsList.length === 0 && (
+      {pendingRequestsList.length === 0 && (
         <div style={{ textAlign: "center", margin: "8rem" }}>
-          <h2>You do not have any request to display</h2>
+          <h2>You do not have any Pending Request to display</h2>
           <br></br>
         </div>
       )}
