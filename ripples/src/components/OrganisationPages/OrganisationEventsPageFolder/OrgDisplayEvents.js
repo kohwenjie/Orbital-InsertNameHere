@@ -70,7 +70,7 @@ export default function OrgDisplayEvents() {
               >
                 <Card.Img
                   variant="top"
-                  src="https://ivhq.imgix.net/images/pages/volunteer-activity-ideas/volunteer-acitivty-ideascommunity-senior.png?w=850&fit=max&auto=compress%2Cformat"
+                  src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
                   // will add image into the event document in firestore then extract to display
                 />
                 <Card.Body>

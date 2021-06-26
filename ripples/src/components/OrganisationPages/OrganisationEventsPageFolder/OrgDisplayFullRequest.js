@@ -37,7 +37,7 @@ export default function OrgDisplayFullEvent(props) {
         <Modal.Body>
           <img
             className="img-fluid"
-            src="https://ivhq.imgix.net/images/pages/volunteer-activity-ideas/volunteer-acitivty-ideascommunity-senior.png?w=850&fit=max&auto=compress%2Cformat"
+            src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
             alt=""
           />
           <h4>
