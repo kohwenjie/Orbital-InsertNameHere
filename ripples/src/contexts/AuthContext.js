@@ -416,12 +416,12 @@ export function AuthProvider({ children }) {
     // });
   }
 
-  function AddBeneficiaryRequestToOrganisationEvent(orgUID, requestUID) {
+  function AddBeneficiaryRequestToOrganisationEvent(orgUID, request) {
     database
       .collection("user")
       .doc(orgUID)
       .update({
-        events: firebase.firestore.FieldValue.arrayUnion(requestUID),
+        events: firebase.firestore.FieldValue.arrayUnion(request.requestUID),
       })
       // .then(() => {
       //   Alert.alert("Volunteer Confirmed");
@@ -430,6 +430,23 @@ export function AuthProvider({ children }) {
     // .catch((error) => {
     //   Alert.alert(error.messaege);
     // });
+
+    // need to bring in all request information
+
+    database.collection("events").doc(request.requestUID).set({
+      eventDescription: request.requestDescription,
+      eventLocation: request.requestLocation,
+      eventDate: request.requestDate,
+      signupDeadline: request.signupDeadline,
+      Tags: request.Tags,
+      name: dbUser.name,
+      organisationUID: currentUser.uid,
+      documentUID: request.requestUID,
+      signedUpVolunteers: [],
+      confirmedVolunteers: [],
+      rejectedVolunteers: [],
+      cancelledEvent: false,
+    });
   }
 
   function RemoveBeneficiaryRequestFromOrganisationPending(orgUID, requestUID) {

@@ -36,16 +36,25 @@ export default function OrgDisplayBenLinkRequest() {
 
   console.log(beneficiaryPendingList);
 
-  function handleAccept(requesterUID, requestUID) {
+  function handleAccept(request) {
     if (
-      dbUser.beneficiariesPendingRequest.includes(requestUID) &&
+      dbUser.beneficiariesPendingRequest.includes(request.requestUID) &&
       dbUser.beneficiariesPendingRequest.length > 0 &&
-      !dbUser.events.includes(requestUID)
+      !dbUser.events.includes(request.requestUID)
     ) {
-      RemoveBeneficiaryRequestFromOrganisationPending(dbUser.uid, requestUID);
-      AddBeneficiaryRequestToOrganisationEvent(dbUser.uid, requestUID);
-      RemoveBeneficiaryRequestFromBeneficiaryPending(requesterUID, requestUID);
-      AddBeneficiaryRequestToBenficiaryConfirmed(requesterUID, requestUID);
+      RemoveBeneficiaryRequestFromOrganisationPending(
+        dbUser.uid,
+        request.requestUID
+      );
+      AddBeneficiaryRequestToOrganisationEvent(dbUser.uid, request);
+      RemoveBeneficiaryRequestFromBeneficiaryPending(
+        request.requesterUID,
+        request.requestUID
+      );
+      AddBeneficiaryRequestToBenficiaryConfirmed(
+        request.requesterUID,
+        request.requestUID
+      );
 
       alert("Accepted Beneficiary's Request");
     } else {
@@ -111,7 +120,7 @@ export default function OrgDisplayBenLinkRequest() {
                     </Button>
                     <Button
                       onClick={() => {
-                        handleAccept(requesterUID, requestUID);
+                        handleAccept(request);
                       }}
                     >
                       Accept
