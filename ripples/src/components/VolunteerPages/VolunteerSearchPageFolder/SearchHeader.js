@@ -72,8 +72,6 @@ export default function MainFeaturedPost(props) {
             <Link variant="subtitle1" href="#">
               {post.linkText}
             </Link>
-
-            <Button>Filter</Button>
           </div>
         </Grid>
       </Grid>

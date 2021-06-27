@@ -48,7 +48,7 @@ export default function BeneficiaryRequestCreate(props) {
       setRequestDate("");
       setSignupDeadline("");
       setTags([]);
-      alert("New event has been successfully created!");
+      alert("New Request has been successfully created!");
       history.push("/BeneficiaryRequest");
     }
   }
@@ -79,7 +79,7 @@ export default function BeneficiaryRequestCreate(props) {
             <Form.Group id="eventDate" className="mb-4">
               <TextField
                 id="date"
-                label="Date of Request"
+                label="Request Event Date"
                 type="date"
                 value={requestDate}
                 onChange={(e) => {

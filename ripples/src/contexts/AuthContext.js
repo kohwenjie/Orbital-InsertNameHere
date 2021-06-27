@@ -431,21 +431,31 @@ export function AuthProvider({ children }) {
     // });
 
     // need to bring in all request information
+    const newTags = request.Tags;
+    newTags.concat("Beneficiary Request");
 
-    database.collection("events").doc(request.requestUID).set({
-      eventDescription: request.requestDescription,
-      eventLocation: request.requestLocation,
-      eventDate: request.requestDate,
-      signupDeadline: request.signupDeadline,
-      Tags: request.Tags,
-      name: dbUser.name,
-      organisationUID: currentUser.uid,
-      documentUID: request.requestUID,
-      signedUpVolunteers: [],
-      confirmedVolunteers: [],
-      rejectedVolunteers: [],
-      cancelledEvent: false,
-    });
+    database
+      .collection("events")
+      .doc(request.requestUID)
+      .set({
+        eventName:
+          request.requesterFirstName +
+          " " +
+          request.requesterLastName +
+          "'s Request",
+        eventDescription: request.requestDescription,
+        eventLocation: request.requestLocation,
+        eventDate: request.requestDate,
+        signupDeadline: request.signupDeadline,
+        Tags: newTags,
+        name: dbUser.name,
+        organisationUID: currentUser.uid,
+        documentUID: request.requestUID,
+        signedUpVolunteers: [],
+        confirmedVolunteers: [],
+        rejectedVolunteers: [],
+        cancelledEvent: false,
+      });
   }
 
   function RemoveBeneficiaryRequestFromOrganisationPending(orgUID, requestUID) {
@@ -596,3 +606,4 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
+

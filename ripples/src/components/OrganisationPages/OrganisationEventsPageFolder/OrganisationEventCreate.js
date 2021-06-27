@@ -130,8 +130,8 @@ export default function OrganisationEventCreate() {
               <Form.Check
                 inline
                 type={"checkbox"}
-                id={"Animal Welfare Tag"}
-                label={"Animal Welfare Tag"}
+                id={"Animal Welfare"}
+                label={"Animal Welfare"}
                 onChange={() => handleChange("Animal Welfare")}
               />
               <Form.Check

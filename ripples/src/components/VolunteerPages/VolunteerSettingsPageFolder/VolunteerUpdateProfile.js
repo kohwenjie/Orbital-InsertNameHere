@@ -39,12 +39,6 @@ export default function VolunteerUpdateProfile() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
-    if (
-      contactRef.current.value < 80000000 ||
-      contactRef.current.value > 100000000
-    ) {
-      return setError("Contact Number is invalid");
-    }
 
     const updates = [];
     setLoading(true);
@@ -79,6 +73,12 @@ export default function VolunteerUpdateProfile() {
       );
     }
     if (contactRef.current.value) {
+      if (
+        contactRef.current.value < 80000000 ||
+        contactRef.current.value > 100000000
+      ) {
+        return setError("Contact Number is invalid");
+      }
       updates.push(updateContact(contactRef.current.value, currentUser.uid));
     }
     if (dobRef.current.value) {

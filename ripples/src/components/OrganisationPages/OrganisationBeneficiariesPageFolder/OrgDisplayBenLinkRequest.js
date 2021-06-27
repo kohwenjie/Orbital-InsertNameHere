@@ -68,8 +68,7 @@ export default function OrgDisplayBenLinkRequest() {
         <thead>
           <tr>
             <th>S/N</th>
-            <th>Beneficiary First Name</th>
-            <th>Beneficiary Last Name</th>
+            <th>Beneficiary Name</th>
             <th>Beneficiary Description</th>
             <th>Beneficiary Address</th>
             <th>Beneficiary Contact</th>
@@ -91,9 +90,8 @@ export default function OrgDisplayBenLinkRequest() {
               } = beneficiary;
               return (
                 <tr key={identity}>
-                  <td>{requestingBeneficiaryList.indexOf(beneficiary)}</td>
-                  <td>{firstName}</td>
-                  <td>{lastName}</td>
+                  <td>{requestingBeneficiaryList.indexOf(beneficiary) + 1}</td>
+                  <td>{firstName} {lastName}</td>
                   <td>{description}</td>
                   <td>{address}</td>
                   <td>{contact}</td>

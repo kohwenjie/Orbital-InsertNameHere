@@ -14,12 +14,12 @@ import { useAuth } from "../../../contexts/AuthContext";
 // }));
 
 const mainFeaturedPost = {
-  title: "THIS IS A Organisation Home PAGE",
+  title: "Welcome to Ripples for Organisations!",
   description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+    "We hope that our services available will be able to aid you in helping the community.",
   image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
   imgText: "main image description",
-  linkText: "Continue reading…",
+
 };
 
 export default function OrganisationHome() {

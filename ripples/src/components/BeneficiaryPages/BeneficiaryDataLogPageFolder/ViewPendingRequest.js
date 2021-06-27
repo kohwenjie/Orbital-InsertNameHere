@@ -7,15 +7,18 @@ export default function ViewPendingRequest() {
   const { dbUser } = useAuth();
   const [pendingRequestsList, setPendingRequestsList] = useState([]);
   const [identity, setIdentity] = useState();
+  const [user, setUser] = useState();
 
   console.log(dbUser);
   console.log(dbUser.pendingRequests);
+
+  
 
   const fetchRequest = async () => {
     let arr = [];
     let dbUserPendingRequestArr = [];
 
-    if (dbUser.confirmedRequests) {
+    if (dbUser.pendingRequests) {
       dbUserPendingRequestArr = dbUser.pendingRequests;
     }
 
@@ -54,12 +57,8 @@ export default function ViewPendingRequest() {
         <tbody>
           {pendingRequestsList &&
             pendingRequestsList.map((request) => {
-              const {
-                requestDescription,
-                requestLocation,
-                requestDate,
-                Tags,
-              } = request;
+              const { requestDescription, requestLocation, requestDate, Tags } =
+                request;
               return (
                 <tr key={identity}>
                   <td>{pendingRequestsList.indexOf(request) + 1}</td>

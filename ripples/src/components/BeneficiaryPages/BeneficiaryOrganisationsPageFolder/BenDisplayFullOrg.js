@@ -35,7 +35,7 @@ export default function BenDisplayFullOrg(props) {
     if (disabled) {
       return (
         <Alert show variant="info">
-          Looks like you are already linked to this organisation!
+          Looks like you have already requested or are already linked to this organisation!
         </Alert>
       );
     }
