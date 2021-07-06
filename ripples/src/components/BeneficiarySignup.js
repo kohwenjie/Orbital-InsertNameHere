@@ -13,6 +13,8 @@ export default function BeneficiarySignup() {
   const [username, setUsername] = useState("");
   const descriptionRef = useRef();
   const [description, setDescription] = useState("");
+  const restrictionsRef = useRef();
+  const [restrictions, setRestrictions] = useState("");
   const emailRef = useRef();
   const [email, setEmail] = useState("");
   const passwordRef = useRef();
@@ -50,6 +52,7 @@ export default function BeneficiarySignup() {
         lastName: lastName,
         username: username,
         description: description,
+        restrictions: restrictions,
         email: email,
         password: password,
         address: address,
@@ -113,7 +116,10 @@ export default function BeneficiarySignup() {
                 placeholder="Username"
               />
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mt-3 mb-3"
+            >
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -122,6 +128,21 @@ export default function BeneficiarySignup() {
                 onChange={(e) => setDescription(e.target.value)}
                 required
                 placeholder="Description of Yourself"
+              />
+            </Form.Group>
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mt-3 mb-3"
+            >
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={restrictionsRef}
+                value={restrictions}
+                onChange={(e) => setRestrictions(e.target.value)}
+                required
+                placeholder="Health Conditions that you have
+                eg. Vegetarian, Diabetes, Injured Right Leg, High Blood Pressure"
               />
             </Form.Group>
             <Form.Group id="email" className="mt-3 mb-3">

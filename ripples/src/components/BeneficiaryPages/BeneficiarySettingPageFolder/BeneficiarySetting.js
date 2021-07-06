@@ -3,7 +3,7 @@ import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
-import BeneficiaryUpdateProfile from "./BeneficiaryUpdateProfile";
+import BeneficiaryProfile from "./BeneficiaryProfile";
 import Footer from "../SharedComponent/Footer";
 
 // const useStyles = makeStyles((theme) => ({
@@ -20,11 +20,9 @@ export default function BeneficiarySetting() {
       <CssBaseline />
       <Container maxWidth="lg">
         <Header />
-        <div>
-          <br />
-        </div>
+        {/* <MainFeaturedPost post={mainFeaturedPost} /> */}
         <main>
-          <BeneficiaryUpdateProfile />
+          <BeneficiaryProfile />
         </main>
       </Container>
       <Footer />

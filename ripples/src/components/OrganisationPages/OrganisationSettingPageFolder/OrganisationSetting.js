@@ -3,7 +3,7 @@ import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
-import OrganisationUpdateProfile from "./OrganisationUpdateProfile";
+import OrganisationProfile from "./OrganisationProfile";
 import Footer from "../SharedComponent/Footer";
 
 // const useStyles = makeStyles((theme) => ({
@@ -24,7 +24,7 @@ export default function OrganisationSetting() {
           <br />
         </div>
         <main>
-          <OrganisationUpdateProfile />
+          <OrganisationProfile />
         </main>
       </Container>
       <Footer />

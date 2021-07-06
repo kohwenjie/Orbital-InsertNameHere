@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Modal, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
@@ -9,6 +9,7 @@ export default function VolunteerUpdateProfile() {
   const lastNameRef = useRef();
   const usernameRef = useRef();
   const descriptionRef = useRef();
+  const certificationRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -21,6 +22,7 @@ export default function VolunteerUpdateProfile() {
     updateLastName,
     updateUsername,
     updateDescription,
+    updateCertification,
     updateAuthEmail,
     updateDatabaseEmail,
     updateAuthPassword,
@@ -30,6 +32,7 @@ export default function VolunteerUpdateProfile() {
   } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const history = useHistory();
 
   console.log(dbUser);
@@ -72,6 +75,11 @@ export default function VolunteerUpdateProfile() {
         updateDescription(descriptionRef.current.value, currentUser.uid)
       );
     }
+    if (certificationRef.current.value) {
+      updates.push(
+        updateCertification(certificationRef.current.value, currentUser.uid)
+      );
+    }
     if (contactRef.current.value) {
       if (
         contactRef.current.value < 80000000 ||
@@ -97,10 +105,21 @@ export default function VolunteerUpdateProfile() {
       });
   }
 
+  function openModal() {
+    setOpen(true);
+  }
+
+  function closeModal() {
+    setOpen(false);
+  }
+
   return (
     <>
-      <Card>
-        <Card.Body>
+      <Button onClick={openModal} variant="outline-success" size="sm">
+        Edit Profile
+      </Button>
+      <Modal show={open} onHide={closeModal}>
+        <Modal.Body>
           <h2 className="text-center mb-20">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
@@ -121,7 +140,24 @@ export default function VolunteerUpdateProfile() {
               className="mb-2"
             >
               <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3} ref={descriptionRef} />
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={descriptionRef}
+                placeholder="Description of Yourself"
+              />
+            </Form.Group>
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mb-2"
+            >
+              <Form.Label>Certifications</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={certificationRef}
+                placeholder="eg. CPR AED - Able to perform resuscitation of victims who are in a cardiac arrest"
+              />
             </Form.Group>
             <Form.Group id="email" className="mb-2">
               <Form.Label>Email</Form.Label>
@@ -167,11 +203,13 @@ export default function VolunteerUpdateProfile() {
               Update my profile!
             </Button>
           </Form>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2 mb-3">
-        <Link to="/">Cancel my changes</Link>
-      </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" className="w-100" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

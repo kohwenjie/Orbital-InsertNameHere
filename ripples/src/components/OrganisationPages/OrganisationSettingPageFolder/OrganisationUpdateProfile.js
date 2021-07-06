@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Modal, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
@@ -22,6 +22,7 @@ export default function OrganisationUpdateProfile() {
   } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const history = useHistory();
 
   function handleSubmit(e) {
@@ -70,10 +71,21 @@ export default function OrganisationUpdateProfile() {
       });
   }
 
+  function openModal() {
+    setOpen(true);
+  }
+
+  function closeModal() {
+    setOpen(false);
+  }
+
   return (
     <>
-      <Card>
-        <Card.Body>
+      <Button onClick={openModal} variant="outline-success" size="sm">
+        Edit Profile
+      </Button>
+      <Modal show={open} onHide={closeModal}>
+        <Modal.Body>
           <h2 className="text-center mb-20">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
@@ -84,7 +96,7 @@ export default function OrganisationUpdateProfile() {
               <Form.Label>Description</Form.Label>
               <Form.Control as="textarea" rows={3} ref={descriptionRef} />
             </Form.Group>
-            <Form.Group id="email">
+            <Form.Group id="email" className="mb-2">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -92,7 +104,7 @@ export default function OrganisationUpdateProfile() {
                 defaultValue={currentUser.email}
               />
             </Form.Group>
-            <Form.Group id="password">
+            <Form.Group id="password" className="mb-2">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -100,7 +112,7 @@ export default function OrganisationUpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
-            <Form.Group id="confirmpassword">
+            <Form.Group id="confirmpassword" className="mb-2">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
@@ -115,7 +127,7 @@ export default function OrganisationUpdateProfile() {
               <Form.Label>Address</Form.Label>
               <Form.Control as="textarea" rows={3} ref={addressRef} />
             </Form.Group>
-            <Form.Group id="contact">
+            <Form.Group id="contact" className="mb-2">
               <Form.Label>Contact</Form.Label>
               <Form.Control type="contact" ref={contactRef} />
             </Form.Group>
@@ -123,11 +135,13 @@ export default function OrganisationUpdateProfile() {
               Update Profile
             </Button>
           </Form>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2 mb-3">
-        <Link to="/">Cancel Changes</Link>
-      </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" className="w-100" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

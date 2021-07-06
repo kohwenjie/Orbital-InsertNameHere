@@ -4,7 +4,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
-import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
 import Footer from "../SharedComponent/Footer";
 import VolunteerProfile from "./VolunteerProfile";
 
@@ -28,10 +27,8 @@ export default function VolunteerSetting() {
       <Container maxWidth="lg">
         <Header />
         <MainFeaturedPost post={mainFeaturedPost} />
-
         <main>
-          {/* <VolunteerProfile /> */}
-          <VolunteerUpdateProfile />
+          <VolunteerProfile />
         </main>
       </Container>
       <Footer />

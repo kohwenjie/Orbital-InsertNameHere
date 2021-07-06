@@ -13,6 +13,8 @@ export default function VolunteerSignup() {
   const [username, setUsername] = useState("");
   const descriptionRef = useRef();
   const [description, setDescription] = useState("");
+  const certificationRef = useRef();
+  const [certification, setCertification] = useState("");
   const emailRef = useRef();
   const [email, setEmail] = useState("");
   const passwordRef = useRef();
@@ -49,6 +51,7 @@ export default function VolunteerSignup() {
         lastName: lastName,
         username: username,
         description: description,
+        certification: certification,
         email: email,
         password: password,
         contact: contact,
@@ -111,15 +114,33 @@ export default function VolunteerSignup() {
                 placeholder="Username"
               />
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mt-3 mb-3"
+            >
               <Form.Control
                 as="textarea"
-                rows={3}
+                rows={2}
                 ref={descriptionRef}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
                 placeholder="Description of Yourself"
+              />
+            </Form.Group>
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mt-3 mb-3"
+            >
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={certificationRef}
+                value={certification}
+                onChange={(e) => setCertification(e.target.value)}
+                required
+                placeholder="List your certifications with a short description
+                eg. CPR AED - Able to perform resuscitation of victims who are in a cardiac arrest"
               />
             </Form.Group>
             <Form.Group id="email" className="mt-3 mb-3">

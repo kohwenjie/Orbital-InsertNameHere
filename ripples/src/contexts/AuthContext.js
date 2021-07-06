@@ -133,6 +133,14 @@ export function AuthProvider({ children }) {
       .then(getUpdatedDBUser(currentUser.uid));
   }
 
+  function updateCertification(certification, uid) {
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ certification: certification })
+      .then(getUpdatedDBUser(currentUser.uid));
+  }
+
   function updateAddress(address, uid) {
     return database
       .collection("user")
@@ -565,6 +573,7 @@ export function AuthProvider({ children }) {
     updateFirstName,
     updateLastName,
     updateDescription,
+    updateCertification,
     updateAddress,
     updateContact,
     updateDob,
@@ -606,4 +615,3 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
-
