@@ -10,7 +10,9 @@ export default function HistoryComponent() {
 
   const fetchEvents = async () => {
     let arr = [];
+    console.log(dbUser);
     console.log(dbUser.commitments);
+    console.log(dbUser.history);
 
     //shift events from commitments to history and display history events
     database
@@ -20,13 +22,11 @@ export default function HistoryComponent() {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           if (new Date() > new Date(doc.data().eventDate)) {
-            if (
-              dbUser.commitments.includes(doc.data().documentUID) &&
-              !dbUser.history.includes(doc.data().documentUID)
-            ) {
+            if (dbUser.commitments.includes(doc.data().documentUID)) {
               RemoveEventFromCommitments(doc.data().documentUID, dbUser.uid);
+            }
+            if (!dbUser.history.includes(doc.data().documentUID)) {
               AddEventToHistory(doc.data().documentUID, dbUser.uid);
-              console.log(dbUser.history);
             }
             arr.push(doc.data());
             setIdentity(doc.id);
