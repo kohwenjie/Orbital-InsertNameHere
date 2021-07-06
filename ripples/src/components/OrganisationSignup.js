@@ -116,16 +116,14 @@ export default function OrganisationSignup() {
                 placeholder="Organisation Name"
               />
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group id="contact" className="mt-3 mb-3">
               <Form.Control
-                as="textarea"
-                rows={3}
-                ref={descriptionRef}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                type="contact"
+                ref={contactRef}
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
                 required
-                placeholder="Description of Your Organisation
-                e.g. Your Organisation's Values, Purpose, types of Activities"
+                placeholder="Organisation Contact Number"
               />
             </Form.Group>
             <Form.Group
@@ -142,16 +140,19 @@ export default function OrganisationSignup() {
                 placeholder="Organisation Address"
               />
             </Form.Group>
-            <Form.Group id="contact" className="mt-3 mb-3">
+            <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Control
-                type="contact"
-                ref={contactRef}
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
+                as="textarea"
+                rows={3}
+                ref={descriptionRef}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 required
-                placeholder="Organisation Contact Number"
+                placeholder="Description of Your Organisation
+                e.g. Your Organisation's Values, Purpose, types of Activities"
               />
             </Form.Group>
+
             <Button disabled={loading} className="w-100" type="submit">
               Sign Up my Organisation!
             </Button>

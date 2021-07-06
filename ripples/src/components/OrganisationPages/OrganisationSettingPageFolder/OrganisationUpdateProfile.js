@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Modal, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function OrganisationUpdateProfile() {
   const emailRef = useRef();
@@ -89,13 +89,6 @@ export default function OrganisationUpdateProfile() {
           <h2 className="text-center mb-20">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group
-              controlId="exampleForm.ControlTextarea1"
-              className="mb-2"
-            >
-              <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3} ref={descriptionRef} />
-            </Form.Group>
             <Form.Group id="email" className="mb-2">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -120,6 +113,10 @@ export default function OrganisationUpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
+            <Form.Group id="contact" className="mb-2">
+              <Form.Label>Contact</Form.Label>
+              <Form.Control type="contact" ref={contactRef} />
+            </Form.Group>
             <Form.Group
               controlId="exampleForm.ControlTextarea1"
               className="mb-2"
@@ -127,10 +124,16 @@ export default function OrganisationUpdateProfile() {
               <Form.Label>Address</Form.Label>
               <Form.Control as="textarea" rows={3} ref={addressRef} />
             </Form.Group>
-            <Form.Group id="contact" className="mb-2">
-              <Form.Label>Contact</Form.Label>
-              <Form.Control type="contact" ref={contactRef} />
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mb-2"
+            >
+              <Form.Label>Description</Form.Label>
+              <Form.Control as="textarea" rows={3} ref={descriptionRef} />
             </Form.Group>
+
+            <br></br>
+
             <Button disabled={loading} className="w-100" type="submit">
               Update Profile
             </Button>

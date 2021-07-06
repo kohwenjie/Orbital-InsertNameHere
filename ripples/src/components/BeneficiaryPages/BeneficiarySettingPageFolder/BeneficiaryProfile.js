@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../../contexts/AuthContext";
-import { Card, CardGroup } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import BeneficiaryUpdateProfile from "./BeneficiaryUpdateProfile";
 
 export default function BeneficiaryProfile() {

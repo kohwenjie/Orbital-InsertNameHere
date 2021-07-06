@@ -86,6 +86,16 @@ export default function BeneficiarySignup() {
           </h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+            {/* <Form.Group id="username" className="mt-3 mb-3">
+              <Form.Control
+                type="username"
+                ref={usernameRef}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                placeholder="Username"
+              />
+            </Form.Group> */}
             <Form.Group id="email" className="mt-3 mb-3">
               <Form.Control
                 type="email"
@@ -167,17 +177,20 @@ export default function BeneficiarySignup() {
                 }}
               />
             </Form.Group>
-
-            {/* <Form.Group id="username" className="mt-3 mb-3">
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mt-3 mb-3"
+            >
               <Form.Control
-                type="username"
-                ref={usernameRef}
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                as="textarea"
+                rows={3}
+                ref={addressRef}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
                 required
-                placeholder="Username"
+                placeholder="Address"
               />
-            </Form.Group> */}
+            </Form.Group>
             <Form.Group
               controlId="exampleForm.ControlTextarea1"
               className="mt-3 mb-3"
@@ -208,20 +221,6 @@ export default function BeneficiarySignup() {
               />
             </Form.Group>
 
-            <Form.Group
-              controlId="exampleForm.ControlTextarea1"
-              className="mt-3 mb-3"
-            >
-              <Form.Control
-                as="textarea"
-                rows={3}
-                ref={addressRef}
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                required
-                placeholder="Address"
-              />
-            </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               I am a Beneficiary!
             </Button>

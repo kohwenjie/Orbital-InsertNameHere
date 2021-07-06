@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Modal, Alert } from "react-bootstrap";
+import { Form, Button, Modal, Alert, Col } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 
 export default function VolunteerUpdateProfile() {
@@ -123,13 +123,60 @@ export default function VolunteerUpdateProfile() {
           <h2 className="text-center mb-20">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="firstName" className="mb-2">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control type="firstName" ref={firstNameRef} />
+            <Form.Group id="email" className="mb-2">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                ref={emailRef}
+                defaultValue={currentUser.email}
+              />
             </Form.Group>
-            <Form.Group id="lastName" className="mb-2">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control type="lastNameRef" ref={lastNameRef} />
+            <Form.Group id="password" className="mb-2">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                ref={passwordRef}
+                placeholder="Leave blank to keep the same"
+              />
+            </Form.Group>
+            <Form.Group id="confirmpassword" className="mb-2">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                ref={passwordConfirmRef}
+                placeholder="Leave blank to keep the same"
+              />
+            </Form.Group>
+            <br></br>
+            <Form.Row>
+              <Col>
+                <Form.Group id="firstName" className="mb-2">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control type="firstName" ref={firstNameRef} />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group id="lastName" className="mb-2">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control type="lastNameRef" ref={lastNameRef} />
+                </Form.Group>
+              </Col>
+            </Form.Row>
+            <Form.Group id="contact" className="mb-2">
+              <Form.Label>Contact</Form.Label>
+              <Form.Control type="contact" ref={contactRef} />
+            </Form.Group>
+            <Form.Group id="dob" className="mt-3 mb-3">
+              <TextField
+                id="date"
+                inputRef={dobRef}
+                label="Date of Birth"
+                type="date"
+                defaultValue={dbUser.dob}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
             </Form.Group>
             {/* <Form.Group id="username" className="mb-2">
               <Form.Label>Username</Form.Label>
@@ -159,46 +206,7 @@ export default function VolunteerUpdateProfile() {
                 placeholder="eg. CPR AED - Able to perform resuscitation of victims who are in a cardiac arrest"
               />
             </Form.Group>
-            <Form.Group id="email" className="mb-2">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                ref={emailRef}
-                defaultValue={currentUser.email}
-              />
-            </Form.Group>
-            <Form.Group id="password" className="mb-2">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                ref={passwordRef}
-                placeholder="Leave blank to keep the same"
-              />
-            </Form.Group>
-            <Form.Group id="confirmpassword" className="mb-2">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                ref={passwordConfirmRef}
-                placeholder="Leave blank to keep the same"
-              />
-            </Form.Group>
-            <Form.Group id="contact" className="mb-2">
-              <Form.Label>Contact</Form.Label>
-              <Form.Control type="contact" ref={contactRef} />
-            </Form.Group>
-            <Form.Group id="dob" className="mt-3 mb-3">
-              <TextField
-                id="date"
-                inputRef={dobRef}
-                label="Date of Birth"
-                type="date"
-                defaultValue={dbUser.dob}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </Form.Group>
+            <br></br>
             <Button disabled={loading} className="w-100" type="submit">
               Update my profile!
             </Button>
