@@ -87,6 +87,7 @@ export default function ViewSignedUpVolunteers(props) {
                 <th>Contact</th>
                 <th>Email</th>
                 <th>Description</th>
+                <th>Certifications</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -100,6 +101,7 @@ export default function ViewSignedUpVolunteers(props) {
                     email,
                     uid,
                     description,
+                    certification,
                   } = profile;
                   return (
                     <tr key={volunteersProfile.indexOf(profile) + 1}>
@@ -108,6 +110,7 @@ export default function ViewSignedUpVolunteers(props) {
                       <td>{contact}</td>
                       <td>{email}</td>
                       <td>{description}</td>
+                      <td>{certification}</td>
                       <td>
                         <Button onClick={() => handleReject(uid)}>
                           Reject
