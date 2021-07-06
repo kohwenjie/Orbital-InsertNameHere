@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, Col } from "react-bootstrap";
 import { TextField } from "@material-ui/core";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
@@ -9,8 +9,8 @@ export default function VolunteerSignup() {
   const [firstName, setFirstName] = useState("");
   const lastNameRef = useRef();
   const [lastName, setLastName] = useState("");
-  const usernameRef = useRef();
-  const [username, setUsername] = useState("");
+  // const usernameRef = useRef();
+  // const [username, setUsername] = useState("");
   const descriptionRef = useRef();
   const [description, setDescription] = useState("");
   const certificationRef = useRef();
@@ -49,7 +49,7 @@ export default function VolunteerSignup() {
       const userDetails = {
         firstName: firstName,
         lastName: lastName,
-        username: username,
+        // username: username,
         description: description,
         certification: certification,
         email: email,
@@ -84,27 +84,88 @@ export default function VolunteerSignup() {
           </h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="firstName" className="mt-3 mb-3">
+          <Form.Group id="email" className="mt-3 mb-3">
               <Form.Control
-                type="firstName"
-                ref={firstNameRef}
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                type="email"
+                ref={emailRef}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="First Name"
+                placeholder="Email"
               />
             </Form.Group>
-            <Form.Group id="lastName" className="mt-3 mb-3">
+            <Form.Group id="password" className="mt-3 mb-3">
               <Form.Control
-                type="lastNameRef"
-                ref={lastNameRef}
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                type="password"
+                ref={passwordRef}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Last Name"
+                placeholder="Password"
               />
             </Form.Group>
-            <Form.Group id="username" className="mt-3 mb-3">
+            <Form.Group id="confirmpassword" className="mt-3 mb-3">
+              <Form.Control
+                type="password"
+                ref={passwordConfirmRef}
+                required
+                placeholder="Confirm Password"
+              />
+            </Form.Group>
+            <br></br>
+            <Form.Row>
+            <Col>
+              <Form.Group id="firstName" className="mt-3 mb-3">
+                <Form.Control
+                  type="firstName"
+                  ref={firstNameRef}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                  placeholder="First Name"
+                />
+              </Form.Group>
+              </Col>
+              <Col>
+              <Form.Group id="lastName" className="mt-3 mb-3" >
+                <Form.Control
+                  type="lastNameRef"
+                  ref={lastNameRef}
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                  placeholder="Last Name"
+                />
+              </Form.Group>
+              </Col>
+            </Form.Row>
+            
+            <Form.Group id="contact" className="mt-3 mb-3">
+              <Form.Control
+                type="contact"
+                ref={contactRef}
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                required
+                placeholder="Contact Number"
+              />
+            </Form.Group>
+            <Form.Group id="dob" className="mt-3 mb-3">
+              <TextField
+                id="date"
+                inputRef={dobRef}
+                value={dob}
+                required
+                onChange={(e) => setDob(e.target.value)}
+                label="Date of Birth"
+                type="date"
+                defaultValue="2017-05-24"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Form.Group>
+            {/* <Form.Group id="username" className="mt-3 mb-3">
               <Form.Control
                 type="username"
                 ref={usernameRef}
@@ -113,7 +174,7 @@ export default function VolunteerSignup() {
                 required
                 placeholder="Username"
               />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group
               controlId="exampleForm.ControlTextarea1"
               className="mt-3 mb-3"
@@ -143,59 +204,7 @@ export default function VolunteerSignup() {
                 eg. CPR AED - Able to perform resuscitation of victims who are in a cardiac arrest"
               />
             </Form.Group>
-            <Form.Group id="email" className="mt-3 mb-3">
-              <Form.Control
-                type="email"
-                ref={emailRef}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="Email"
-              />
-            </Form.Group>
-            <Form.Group id="password" className="mt-3 mb-3">
-              <Form.Control
-                type="password"
-                ref={passwordRef}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="Password"
-              />
-            </Form.Group>
-            <Form.Group id="confirmpassword" className="mt-3 mb-3">
-              <Form.Control
-                type="password"
-                ref={passwordConfirmRef}
-                required
-                placeholder="Confirm Password"
-              />
-            </Form.Group>
-            <Form.Group id="contact" className="mt-3 mb-3">
-              <Form.Control
-                type="contact"
-                ref={contactRef}
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-                required
-                placeholder="Contact Number"
-              />
-            </Form.Group>
-            <Form.Group id="dob" className="mt-3 mb-3">
-              <TextField
-                id="date"
-                inputRef={dobRef}
-                value={dob}
-                required
-                onChange={(e) => setDob(e.target.value)}
-                label="Date of Birth"
-                type="date"
-                defaultValue="2017-05-24"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </Form.Group>
+            
             <Button disabled={loading} className="w-100" type="submit">
               I want to sign up as a Volunteer!
             </Button>

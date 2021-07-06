@@ -7,7 +7,7 @@ import { TextField } from "@material-ui/core";
 export default function VolunteerUpdateProfile() {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
-  const usernameRef = useRef();
+  // const usernameRef = useRef();
   const descriptionRef = useRef();
   const certificationRef = useRef();
   const emailRef = useRef();
@@ -20,7 +20,7 @@ export default function VolunteerUpdateProfile() {
     dbUser,
     updateFirstName,
     updateLastName,
-    updateUsername,
+    // updateUsername,
     updateDescription,
     updateCertification,
     updateAuthEmail,
@@ -67,9 +67,9 @@ export default function VolunteerUpdateProfile() {
     if (lastNameRef.current.value) {
       updates.push(updateLastName(lastNameRef.current.value, currentUser.uid));
     }
-    if (usernameRef.current.value) {
-      updates.push(updateUsername(usernameRef.current.value, currentUser.uid));
-    }
+    // if (usernameRef.current.value) {
+    //   updates.push(updateUsername(usernameRef.current.value, currentUser.uid));
+    // }
     if (descriptionRef.current.value) {
       updates.push(
         updateDescription(descriptionRef.current.value, currentUser.uid)
@@ -131,10 +131,10 @@ export default function VolunteerUpdateProfile() {
               <Form.Label>Last Name</Form.Label>
               <Form.Control type="lastNameRef" ref={lastNameRef} />
             </Form.Group>
-            <Form.Group id="username" className="mb-2">
+            {/* <Form.Group id="username" className="mb-2">
               <Form.Label>Username</Form.Label>
               <Form.Control type="username" ref={usernameRef} />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group
               controlId="exampleForm.ControlTextarea1"
               className="mb-2"

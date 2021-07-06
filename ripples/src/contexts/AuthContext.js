@@ -101,13 +101,13 @@ export function AuthProvider({ children }) {
       .then(getUpdatedDBUser(currentUser.uid));
   }
 
-  function updateUsername(username, uid) {
-    return database
-      .collection("user")
-      .doc(uid)
-      .update({ username: username })
-      .then(getUpdatedDBUser(currentUser.uid));
-  }
+  // function updateUsername(username, uid) {
+  //   return database
+  //     .collection("user")
+  //     .doc(uid)
+  //     .update({ username: username })
+  //     .then(getUpdatedDBUser(currentUser.uid));
+  // }
 
   function updateFirstName(firstName, uid) {
     return database
@@ -569,7 +569,7 @@ export function AuthProvider({ children }) {
     updateDatabaseEmail,
     updateAuthPassword,
     updateDatabasePassword,
-    updateUsername,
+    // updateUsername,
     updateFirstName,
     updateLastName,
     updateDescription,

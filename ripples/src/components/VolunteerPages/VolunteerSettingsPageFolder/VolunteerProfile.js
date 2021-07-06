@@ -8,7 +8,7 @@ export default function VolunteerProfile() {
   const {
     firstName,
     lastName,
-    username,
+    // username,
     description,
     certification,
     email,
@@ -29,7 +29,7 @@ export default function VolunteerProfile() {
       <Card style={{ width: "100%" }}>
         <Card.Body>
           <Card.Text class="text-center fs-3">
-            {username} <VolunteerUpdateProfile />
+          {firstName} {lastName} <VolunteerUpdateProfile />
           </Card.Text>
         </Card.Body>
       </Card>

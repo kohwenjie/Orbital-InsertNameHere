@@ -78,27 +78,6 @@ export default function OrganisationSignup() {
           </h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="name" className="mt-3 mb-3">
-              <Form.Control
-                type="name"
-                ref={nameRef}
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                placeholder="Organisation Name"
-              />
-            </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Control
-                as="textarea"
-                rows={3}
-                ref={descriptionRef}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-                placeholder="Description of Yourself"
-              />
-            </Form.Group>
             <Form.Group id="email" className="mt-3 mb-3">
               <Form.Control
                 type="email"
@@ -125,6 +104,28 @@ export default function OrganisationSignup() {
                 ref={passwordConfirmRef}
                 required
                 placeholder="Confirm Password"
+              />
+            </Form.Group>
+            <Form.Group id="name" className="mt-3 mb-3">
+              <Form.Control
+                type="name"
+                ref={nameRef}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                placeholder="Organisation Name"
+              />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+              <Form.Control
+                as="textarea"
+                rows={3}
+                ref={descriptionRef}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                placeholder="Description of Your Organisation
+                e.g. Your Organisation's Values, Purpose, types of Activities"
               />
             </Form.Group>
             <Form.Group

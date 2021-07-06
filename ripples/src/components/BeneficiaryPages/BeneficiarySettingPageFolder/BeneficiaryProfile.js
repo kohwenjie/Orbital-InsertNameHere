@@ -8,7 +8,7 @@ export default function BeneficiaryProfile() {
   const {
     firstName,
     lastName,
-    username,
+    // username,
     description,
     restrictions,
     email,
@@ -24,7 +24,7 @@ export default function BeneficiaryProfile() {
       <Card style={{ width: "100%" }}>
         <Card.Body>
           <Card.Text class="text-center fs-3">
-            {username} <BeneficiaryUpdateProfile />
+            {firstName} {lastName} <BeneficiaryUpdateProfile />
           </Card.Text>
           <Card.Text class="text-center fs-5">
             Total Number of Requests: {requestCounter}
