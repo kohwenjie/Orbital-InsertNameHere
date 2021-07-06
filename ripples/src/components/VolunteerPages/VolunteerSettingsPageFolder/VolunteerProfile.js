@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Card, CardGroup } from "react-bootstrap";
 import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
@@ -16,8 +16,14 @@ export default function VolunteerProfile() {
     dob,
     points,
     eventCounter,
+    history,
+    commitments,
     userType,
   } = dbUser;
+
+  const numEvents = history.length;
+  const totalPoints = numEvents * 3;
+
   return (
     <>
       <Card style={{ width: "100%" }}>
@@ -31,14 +37,14 @@ export default function VolunteerProfile() {
         <Card>
           <Card.Body>
             <Card.Text class="text-center fs-5">
-              Current Points: {points}
+              Current Points: {totalPoints}
             </Card.Text>
           </Card.Body>
         </Card>
         <Card>
           <Card.Body>
             <Card.Text class="text-center fs-5">
-              Total Events Participated: {eventCounter}
+              Total Events Participated: {numEvents}
             </Card.Text>
           </Card.Body>
         </Card>
