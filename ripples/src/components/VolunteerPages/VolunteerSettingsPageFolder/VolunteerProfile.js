@@ -21,7 +21,7 @@ export default function VolunteerProfile() {
     userType,
   } = dbUser;
 
-  const numEvents = history.length;
+  const numEvents = commitments.length;
   const totalPoints = numEvents * 3;
 
   return (
