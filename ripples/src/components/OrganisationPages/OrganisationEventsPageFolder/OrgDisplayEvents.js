@@ -4,7 +4,7 @@ import { Card, CardDeck } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import OrgDisplayFullEvent from "./OrgDisplayFullEvent";
 import ViewSignedUpVolunteers from "./ViewSignedUpVolunteers";
-import ViweEnquiries from "./ViewEnquiries";
+import OrgViewEnquiries from "./OrgViewEnquiries";
 
 export default function OrgDisplayEvents() {
   const [events, setEvents] = useState([]);
@@ -78,7 +78,7 @@ export default function OrgDisplayEvents() {
                   <Card.Text>Event Date:{eventDate}</Card.Text>
                   <OrgDisplayFullEvent e={event} />
                   <ViewSignedUpVolunteers e={event} />
-                  <ViweEnquiries e={event} />
+                  <OrgViewEnquiries e={event} />
                 </Card.Body>
               </Card>
             </>

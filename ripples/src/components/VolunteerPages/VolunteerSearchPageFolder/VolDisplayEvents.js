@@ -2,6 +2,7 @@ import { database } from "../../../firebase";
 import React, { useState, useEffect } from "react";
 import { Card, CardDeck } from "react-bootstrap";
 import VolDisplayFullEvent from "./VolDisplayFullEvent";
+import VolViewUpdates from "./VolViewUpdates";
 
 export default function VolDisplayEvents() {
   const [events, setEvents] = useState([]);
@@ -67,7 +68,7 @@ export default function VolDisplayEvents() {
                     {organisationName}
                   </Card.Subtitle>
                   <Card.Text>Event Date:{eventDate}</Card.Text>
-                  <VolDisplayFullEvent e={event} />
+                  <VolDisplayFullEvent e={event} /> <VolViewUpdates e={event} />
                 </Card.Body>
               </Card>
             </>

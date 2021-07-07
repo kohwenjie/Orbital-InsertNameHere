@@ -342,6 +342,15 @@ export function AuthProvider({ children }) {
     });
   }
 
+  function updateUpdates(update, docUID) {
+    database
+      .collection("events")
+      .doc(docUID)
+      .update({
+        updates: firebase.firestore.FieldValue.arrayUnion(update),
+      });
+  }
+
   function AddEventToHistory(documentUID, volUID) {
     database
       .collection("user")
@@ -426,7 +435,7 @@ export function AuthProvider({ children }) {
         confirmedVolunteers: [],
         rejectedVolunteers: [],
         cancelledEvent: false,
-        enquiries: []
+        enquiries: [],
       });
   }
 
@@ -527,6 +536,7 @@ export function AuthProvider({ children }) {
     updateRequestLocation,
     updateRequestSignUpDeadline,
     updateRequestTags,
+    updateUpdates,
     addEvent,
     addRequest,
     requestOrgLink,

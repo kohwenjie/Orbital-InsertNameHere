@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import OrgEditEvent from "./OrgEditEvent";
 import OrgUpdateEvent from "./OrgUpdateEvent";
 import { useAuth } from "../../../contexts/AuthContext";
 
@@ -7,6 +8,7 @@ export default function OrgDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
   const { parseTags } = useAuth();
   const event = props.e;
+  console.log(event);
   const {
     eventName,
     eventDescription,
@@ -49,6 +51,7 @@ export default function OrgDisplayFullEvent(props) {
           <Button variant="secondary" onClick={closeModal}>
             Close
           </Button>
+          <OrgEditEvent e={event} />
           <OrgUpdateEvent e={event} />
         </Modal.Footer>
       </Modal>

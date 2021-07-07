@@ -8,6 +8,7 @@ export default function ViewEnquiries(props) {
   const [enquiriesArr, setEnquiriesArr] = useState([]);
   const [enquiriesDetails, setEnquiriesDetail] = useState([]);
   const event = props.e;
+  console.log(event);
   const { enquiries } = event;
 
   const fetchVolunteers = async () => {
