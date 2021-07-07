@@ -7,14 +7,7 @@ export default function BenDisplayFullOrg(props) {
   const [disabled, setDisabled] = useState(false);
   const { currentUser, requestOrgLink } = useAuth();
   const organisation = props.o;
-  const {
-    name,
-    description,
-    address,
-    email,
-    contact,
-    uid,
-  } = organisation;
+  const { name, description, address, email, contact, uid } = organisation;
 
   function openModal() {
     setOpen(true);
@@ -35,23 +28,15 @@ export default function BenDisplayFullOrg(props) {
     if (disabled) {
       return (
         <Alert show variant="info">
-          Looks like you have already requested or are already linked to this organisation!
+          Looks like you have already requested or are already linked to this
+          organisation!
         </Alert>
       );
     }
     return <></>;
   }
 
-  useEffect(() => {
-    // if (
-    //   beneficiaries.includes(currentUser.uid) ||
-    //   requestingBeneficiaries.includes(currentUser.uid)
-    // ) {
-    //   setDisabled(true);
-    // } else {
-    //   setDisabled(false);
-    // }
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>

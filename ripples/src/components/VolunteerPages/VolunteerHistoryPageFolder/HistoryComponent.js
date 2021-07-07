@@ -14,7 +14,6 @@ export default function HistoryComponent() {
     console.log(dbUser.commitments);
     console.log(dbUser.history);
 
-    //shift events from commitments to history and display history events
     database
       .collection("events")
       .where("confirmedVolunteers", "array-contains", dbUser.uid)

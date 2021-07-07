@@ -9,8 +9,6 @@ export default function VolunteerSignup() {
   const [firstName, setFirstName] = useState("");
   const lastNameRef = useRef();
   const [lastName, setLastName] = useState("");
-  // const usernameRef = useRef();
-  // const [username, setUsername] = useState("");
   const descriptionRef = useRef();
   const [description, setDescription] = useState("");
   const certificationRef = useRef();
@@ -49,7 +47,6 @@ export default function VolunteerSignup() {
       const userDetails = {
         firstName: firstName,
         lastName: lastName,
-        // username: username,
         description: description,
         certification: certification,
         email: email,

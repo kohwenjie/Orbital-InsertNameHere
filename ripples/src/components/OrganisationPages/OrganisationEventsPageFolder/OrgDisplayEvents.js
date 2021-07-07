@@ -19,7 +19,6 @@ export default function OrgDisplayEvents() {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          // setIdentity will cause rendering, which is required or nothing will show
           if (new Date() < new Date(doc.data().eventDate)) {
             arr.push(doc.data());
             setIdentity(doc.id);
@@ -58,7 +57,6 @@ export default function OrgDisplayEvents() {
                 style={{
                   minWidth: "17rem",
                   maxWidth: "17rem",
-                  // maxHeight: "23rem",
                   flex: 1,
                   boxSizing: "border-box",
                 }}
@@ -68,7 +66,6 @@ export default function OrgDisplayEvents() {
                 <Card.Img
                   variant="top"
                   src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
-                  // will add image into the event document in firestore then extract to display
                 />
                 <Card.Body>
                   <Card.Title>{eventName}</Card.Title>

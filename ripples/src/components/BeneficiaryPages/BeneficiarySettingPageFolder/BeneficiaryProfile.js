@@ -8,7 +8,6 @@ export default function BeneficiaryProfile() {
   const {
     firstName,
     lastName,
-    // username,
     description,
     restrictions,
     email,

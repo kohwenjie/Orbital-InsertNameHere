@@ -1,5 +1,4 @@
 import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
@@ -9,20 +8,12 @@ import OrgDisplayEvents from "./OrgDisplayEvents";
 import OrgOngoingEvents from "./OrgOngoingEvents";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 
-// const useStyles = makeStyles((theme) => ({
-//   mainGrid: {
-//     marginTop: theme.spacing(3),
-//   },
-// }));
-
 const mainFeaturedPost = {
   title: "View or Create New Events Here!",
   image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
 };
 
 export default function OrganisationEvents() {
-  // const classes = useStyles();
-
   return (
     <React.Fragment>
       <CssBaseline />

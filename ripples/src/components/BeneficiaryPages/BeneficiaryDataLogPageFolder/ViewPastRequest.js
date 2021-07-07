@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export default function ViewPastRequest() {
-  const { dbUser, addRequest } = useAuth();
+  const { dbUser } = useAuth();
   const [confirmedRequestsList, setConfirmedRequestsList] = useState([]);
   const [identity, setIdentity] = useState();
 

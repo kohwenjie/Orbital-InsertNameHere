@@ -7,7 +7,6 @@ import { TextField } from "@material-ui/core";
 export default function BeneficiaryUpdateProfile() {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
-  // const usernameRef = useRef();
   const descriptionRef = useRef();
   const restrictionsRef = useRef();
   const emailRef = useRef();
@@ -21,7 +20,6 @@ export default function BeneficiaryUpdateProfile() {
     dbUser,
     updateFirstName,
     updateLastName,
-    // updateUsername,
     updateDescription,
     updateAuthEmail,
     updateDatabaseEmail,
@@ -65,9 +63,6 @@ export default function BeneficiaryUpdateProfile() {
     if (lastNameRef.current.value) {
       updates.push(updateLastName(lastNameRef.current.value, currentUser.uid));
     }
-    // if (usernameRef.current.value) {
-    //   updates.push(updateUsername(usernameRef.current.value, currentUser.uid));
-    // }
     if (descriptionRef.current.value) {
       updates.push(
         updateDescription(descriptionRef.current.value, currentUser.uid)
@@ -113,11 +108,6 @@ export default function BeneficiaryUpdateProfile() {
           <h2 className="text-center mb-20">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            {/* <Form.Group id="username">
-              <Form.Label>Username</Form.Label>
-              <Form.Control type="username" ref={usernameRef} />
-            </Form.Group> */}
-
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control

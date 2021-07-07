@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-// import IconButton from "@material-ui/core/IconButton";
-// import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 import { Link, useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
@@ -51,7 +49,6 @@ export default function Header(props) {
       history.push("/Login");
       setDBUser();
       setCurrentUser();
-      // console.log("logged out: ", dbUser, currentUser);
     } catch {
       setError("Failed to log out");
     }
@@ -60,7 +57,6 @@ export default function Header(props) {
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
-        {/* WE ARE GOING TO MAKE THIS BUTTON BELOW LINK TO THE PROFILE PAGE AND THE SAME FOR BENE AND ORG*/}
         <Button size="small">
           <b>{dbUser.name}</b>
         </Button>

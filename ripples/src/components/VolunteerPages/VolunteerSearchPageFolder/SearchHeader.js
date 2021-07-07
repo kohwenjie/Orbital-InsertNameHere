@@ -5,7 +5,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
-import { Button } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -46,7 +45,6 @@ export default function MainFeaturedPost(props) {
       className={classes.mainFeaturedPost}
       style={{ backgroundImage: `url(${post.image})` }}
     >
-      {/* Increase the priority of the hero background image */}
       {
         <img
           style={{ display: "none" }}

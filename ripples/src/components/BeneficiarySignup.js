@@ -9,8 +9,6 @@ export default function BeneficiarySignup() {
   const [firstName, setFirstName] = useState("");
   const lastNameRef = useRef();
   const [lastName, setLastName] = useState("");
-  // const usernameRef = useRef();
-  // const [username, setUsername] = useState("");
   const descriptionRef = useRef();
   const [description, setDescription] = useState("");
   const restrictionsRef = useRef();
@@ -50,7 +48,6 @@ export default function BeneficiarySignup() {
       const userDetails = {
         firstName: firstName,
         lastName: lastName,
-        // username: username,
         description: description,
         restrictions: restrictions,
         email: email,
@@ -86,16 +83,6 @@ export default function BeneficiarySignup() {
           </h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            {/* <Form.Group id="username" className="mt-3 mb-3">
-              <Form.Control
-                type="username"
-                ref={usernameRef}
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                placeholder="Username"
-              />
-            </Form.Group> */}
             <Form.Group id="email" className="mt-3 mb-3">
               <Form.Control
                 type="email"

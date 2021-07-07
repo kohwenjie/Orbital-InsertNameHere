@@ -13,13 +13,10 @@ export default function VolDisplayEvents() {
       .collection("requests")
       .get()
       .then((querySnapshot) => {
-        // console.log(querySnapshot);
         querySnapshot.forEach(async (doc) => {
-          //check to see if the event is passed the sign up Date
           if (new Date() < new Date(doc.data().signupDeadline)) {
             console.log(doc.data());
             arr.push(await doc.data());
-            // setIdentity will cause rendering, which is required or nothing will show
             setIdentity(doc.id);
           }
         });
@@ -54,7 +51,6 @@ export default function VolDisplayEvents() {
                 style={{
                   minWidth: "17rem",
                   maxWidth: "17rem",
-                  // maxHeight: "23rem",
                   flex: 1,
                   boxSizing: "border-box",
                 }}
@@ -63,7 +59,6 @@ export default function VolDisplayEvents() {
                 <Card.Img
                   variant="top"
                   src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
-                  // will add image into the event document in firestore then extract to display
                 />
                 <Card.Body>
                   <Card.Title>

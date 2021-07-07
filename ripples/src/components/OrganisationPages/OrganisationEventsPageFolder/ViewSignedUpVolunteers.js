@@ -55,7 +55,6 @@ export default function ViewSignedUpVolunteers(props) {
     ) {
       RemoveVolunteerFromSignUp(documentUID, volUID);
       AddVolunteerToConfirmed(documentUID, volUID);
-      //testing useState to rerender
       setVolunteersProfile(
         volunteersProfile.filter((profile) => profile.uid !== volUID)
       );

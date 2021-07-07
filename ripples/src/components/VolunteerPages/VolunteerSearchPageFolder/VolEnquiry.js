@@ -1,31 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Button, Modal, Alert, Form } from "react-bootstrap";
+import React, { useState, useRef } from "react";
+import { Button, Modal, Form } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export default function VolEnquiry(props) {
   const [enquiry, setEnquiry] = useState("");
   const enquiryRef = useRef();
   const [open, setOpen] = useState(false);
-  const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const { currentUser, dbUser, sendEnquiry } = useAuth();
   const event = props.e;
-  const {
-    eventName,
-    eventDescription,
-    eventLocation,
-    eventDate,
-    signupDeadline,
-    tags,
-    name,
-    organisationUID,
-    documentUID,
-    enquiries,
-    signedUpVolunteers,
-    confirmedVolunteers,
-    rejectedVolunteers,
-    cancelledEvent,
-  } = event;
+  const { organisationUID, documentUID } = event;
 
   console.log(currentUser);
   console.log(dbUser);

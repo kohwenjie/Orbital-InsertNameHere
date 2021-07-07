@@ -7,7 +7,6 @@ export default function ViewPendingRequest() {
   const { dbUser } = useAuth();
   const [pendingRequestsList, setPendingRequestsList] = useState([]);
   const [identity, setIdentity] = useState();
-  const [user, setUser] = useState();
 
   console.log(dbUser);
   console.log(dbUser.pendingRequests);

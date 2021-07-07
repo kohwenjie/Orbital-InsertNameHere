@@ -17,7 +17,6 @@ export default function OrgHistoryEvents() {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          // setIdentity will cause rendering, which is required or nothing will show
           if (new Date(doc.data().eventDate) < new Date()) {
             arr.push(doc.data());
             setIdentity(doc.id);
@@ -47,7 +46,6 @@ export default function OrgHistoryEvents() {
             eventDate,
 
             organisationName,
-
           } = event;
           return (
             <>
@@ -55,7 +53,6 @@ export default function OrgHistoryEvents() {
                 style={{
                   minWidth: "17rem",
                   maxWidth: "17rem",
-                  // maxHeight: "23rem",
                   flex: 1,
                   boxSizing: "border-box",
                 }}
@@ -65,7 +62,6 @@ export default function OrgHistoryEvents() {
                 <Card.Img
                   variant="top"
                   src="https://ivhq.imgix.net/images/pages/volunteer-activity-ideas/volunteer-acitivty-ideascommunity-senior.png?w=850&fit=max&auto=compress%2Cformat"
-                  // will add image into the event document in firestore then extract to display
                 />
                 <Card.Body>
                   <Card.Title>{eventName}</Card.Title>
@@ -79,7 +75,7 @@ export default function OrgHistoryEvents() {
             </>
           );
         })}
-        {events.length === 0 && (
+      {events.length === 0 && (
         <div style={{ textAlign: "center", margin: "8rem" }}>
           <h2>Oops You have no History to display!</h2>
           <br></br>

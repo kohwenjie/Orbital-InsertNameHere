@@ -44,7 +44,6 @@ export default function OrgDisplayBenLinkRequest() {
     ) {
       RemoveBeneficiaryFromRequesting(dbUser.uid, benUID);
       AddBeneficiaryToBenficiaries(dbUser.uid, benUID);
-      //testing useState to rerender
       AddOrganisationToBeneficiary(benUID, dbUser.uid);
 
       alert("Accepted Volunteer");
@@ -91,7 +90,9 @@ export default function OrgDisplayBenLinkRequest() {
               return (
                 <tr key={identity}>
                   <td>{requestingBeneficiaryList.indexOf(beneficiary) + 1}</td>
-                  <td>{firstName} {lastName}</td>
+                  <td>
+                    {firstName} {lastName}
+                  </td>
                   <td>{description}</td>
                   <td>{address}</td>
                   <td>{contact}</td>

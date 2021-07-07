@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Card, CardGroup } from "react-bootstrap";
 import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
@@ -8,15 +8,11 @@ export default function VolunteerProfile() {
   const {
     firstName,
     lastName,
-    // username,
     description,
     certification,
     email,
     contact,
     dob,
-    points,
-    eventCounter,
-    history,
     commitments,
     userType,
   } = dbUser;
@@ -29,7 +25,7 @@ export default function VolunteerProfile() {
       <Card style={{ width: "100%" }}>
         <Card.Body>
           <Card.Text class="text-center fs-3">
-          {firstName} {lastName} <VolunteerUpdateProfile />
+            {firstName} {lastName} <VolunteerUpdateProfile />
           </Card.Text>
         </Card.Body>
       </Card>

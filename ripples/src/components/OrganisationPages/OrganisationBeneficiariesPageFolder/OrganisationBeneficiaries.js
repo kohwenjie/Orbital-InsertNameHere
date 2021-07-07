@@ -15,8 +15,6 @@ const mainFeaturedPost = {
 };
 
 export default function OrganisationBeneficiaries() {
-  // const classes = useStyles();
-
   return (
     <React.Fragment>
       <CssBaseline />

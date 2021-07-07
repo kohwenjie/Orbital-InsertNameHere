@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
-import { database } from "../../../firebase";
-import { useAuth } from "../../../contexts/AuthContext";
 
 export default function VolViewUpdates(props) {
   const [open, setOpen] = useState(false);
-  // enquiriesArr and setEnquiriesArr
   const [updatesArr, setUpdatesArr] = useState([]);
   const event = props.e;
   const { updates, documentUID } = event;
 
   const fetchVolunteers = async () => {
-    let arr = [];
     if (updates.length > 0) {
       let updateArr = [];
       updates.forEach((update) => updateArr.push(update));
@@ -22,6 +18,7 @@ export default function VolViewUpdates(props) {
   useEffect(() => {
     fetchVolunteers();
   }, [open]);
+
   function openModal() {
     setOpen(true);
   }

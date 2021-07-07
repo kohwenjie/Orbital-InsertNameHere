@@ -18,10 +18,8 @@ export default function OrgOngoingEvents() {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          //only show events whose EVENT DATE is TODAY
           if (new Date(doc.data().eventDate) === new Date()) {
             arr.push(doc.data());
-            // setIdentity will cause rendering, which is required or nothing will show
             setIdentity(doc.id);
           }
         });
@@ -57,7 +55,6 @@ export default function OrgOngoingEvents() {
                 style={{
                   minWidth: "17rem",
                   maxWidth: "17rem",
-                  // maxHeight: "23rem",
                   flex: 1,
                   boxSizing: "border-box",
                 }}
@@ -67,7 +64,6 @@ export default function OrgOngoingEvents() {
                 <Card.Img
                   variant="top"
                   src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
-                  // will add image into the event document in firestore then extract to display
                 />
                 <Card.Body>
                   <Card.Title>{eventName}</Card.Title>

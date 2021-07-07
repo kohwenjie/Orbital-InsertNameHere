@@ -1,5 +1,4 @@
 import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Header from "../SharedComponent/Header";
@@ -9,12 +8,6 @@ import ViewPastRequest from "./ViewPastRequest";
 import ViewPendingRequest from "./ViewPendingRequest";
 import { Nav, Tab, Row, Col } from "react-bootstrap";
 
-// const useStyles = makeStyles((theme) => ({
-//   mainGrid: {
-//     marginTop: theme.spacing(3),
-//   },
-// }));
-
 const mainFeaturedPost = {
   title: "View Your Requests Here",
   image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
@@ -22,8 +15,6 @@ const mainFeaturedPost = {
 };
 
 export default function BeneficiaryDataLog() {
-  // const classes = useStyles();
-
   return (
     <React.Fragment>
       <CssBaseline />

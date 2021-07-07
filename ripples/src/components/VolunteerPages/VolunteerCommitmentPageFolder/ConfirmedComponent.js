@@ -11,7 +11,6 @@ export default function ConfirmedComponent() {
 
   console.log(dbUser);
   console.log(dbUser.uid);
-  // event array stalls the eventUIDs only
   console.log(eventArray);
 
   const fetchEvents = async () => {
