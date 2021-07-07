@@ -84,7 +84,7 @@ export default function VolunteerSignup() {
           </h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-          <Form.Group id="email" className="mt-3 mb-3">
+            <Form.Group id="email" className="mt-3 mb-3">
               <Form.Control
                 type="email"
                 ref={emailRef}
@@ -114,32 +114,32 @@ export default function VolunteerSignup() {
             </Form.Group>
             <br></br>
             <Form.Row>
-            <Col>
-              <Form.Group id="firstName" className="mt-3 mb-3">
-                <Form.Control
-                  type="firstName"
-                  ref={firstNameRef}
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  required
-                  placeholder="First Name"
-                />
-              </Form.Group>
+              <Col>
+                <Form.Group id="firstName" className="mt-3 mb-3">
+                  <Form.Control
+                    type="firstName"
+                    ref={firstNameRef}
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required
+                    placeholder="First Name"
+                  />
+                </Form.Group>
               </Col>
               <Col>
-              <Form.Group id="lastName" className="mt-3 mb-3" >
-                <Form.Control
-                  type="lastNameRef"
-                  ref={lastNameRef}
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  required
-                  placeholder="Last Name"
-                />
-              </Form.Group>
+                <Form.Group id="lastName" className="mt-3 mb-3">
+                  <Form.Control
+                    type="lastNameRef"
+                    ref={lastNameRef}
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                    placeholder="Last Name"
+                  />
+                </Form.Group>
               </Col>
             </Form.Row>
-            
+
             <Form.Group id="contact" className="mt-3 mb-3">
               <Form.Control
                 type="contact"
@@ -165,16 +165,6 @@ export default function VolunteerSignup() {
                 }}
               />
             </Form.Group>
-            {/* <Form.Group id="username" className="mt-3 mb-3">
-              <Form.Control
-                type="username"
-                ref={usernameRef}
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                placeholder="Username"
-              />
-            </Form.Group> */}
             <Form.Group
               controlId="exampleForm.ControlTextarea1"
               className="mt-3 mb-3"
@@ -204,7 +194,7 @@ export default function VolunteerSignup() {
                 eg. CPR AED - Able to perform resuscitation of victims who are in a cardiac arrest"
               />
             </Form.Group>
-            
+
             <Button disabled={loading} className="w-100" type="submit">
               I want to sign up as a Volunteer!
             </Button>

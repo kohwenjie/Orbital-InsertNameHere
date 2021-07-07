@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
+import VolEnquiry from "./VolEnquiry";
 
 export default function VolDisplayFullEvent(props) {
   const [open, setOpen] = useState(false);
@@ -79,11 +80,12 @@ export default function VolDisplayFullEvent(props) {
         </Modal.Body>
         <ShowSignedUpMessage />
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
-            Close
-          </Button>
           <Button variant="primary" onClick={signup} disabled={disabled}>
             Sign Up Now
+          </Button>
+          <VolEnquiry e={event} />
+          <Button variant="secondary" onClick={closeModal}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>

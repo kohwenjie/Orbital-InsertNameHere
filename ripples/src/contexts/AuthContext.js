@@ -24,9 +24,6 @@ export function AuthProvider({ children }) {
       .then((user) => {
         setDBUser(user.data());
       });
-    // .then(() => {
-    //   console.log("get updated DBUser:", dbUser);
-    // });
   }
 
   function signup(email, password, obj) {
@@ -63,12 +60,6 @@ export function AuthProvider({ children }) {
     return currentUser
       .updateEmail(email)
       .then(getUpdatedDBUser(currentUser.uid));
-    // .then(() => {
-    //   Alert.alert("Email was changed");
-    // })
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
   }
 
   function updateDatabaseEmail(email, uid) {
@@ -80,17 +71,9 @@ export function AuthProvider({ children }) {
   }
 
   function updateAuthPassword(password) {
-    return (
-      currentUser
-        .updatePassword(password)
-        // .then(() => {
-        //   Alert.alert("Password was changed");
-        // })
-        .then(getUpdatedDBUser(currentUser.uid))
-    );
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
+    return currentUser
+      .updatePassword(password)
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
   function updateDatabasePassword(password, uid) {
@@ -100,14 +83,6 @@ export function AuthProvider({ children }) {
       .update({ password: password })
       .then(getUpdatedDBUser(currentUser.uid));
   }
-
-  // function updateUsername(username, uid) {
-  //   return database
-  //     .collection("user")
-  //     .doc(uid)
-  //     .update({ username: username })
-  //     .then(getUpdatedDBUser(currentUser.uid));
-  // }
 
   function updateFirstName(firstName, uid) {
     return database
@@ -181,36 +156,54 @@ export function AuthProvider({ children }) {
         events: firebase.firestore.FieldValue.arrayUnion(eventUID),
       });
 
-    return (
-      database
-        .collection("events")
-        .doc(eventUID)
-        .set({
-          eventName: eventName,
-          eventDescription: eventDescription,
-          eventLocation: eventLocation,
-          eventDate: eventDate,
-          signupDeadline: signupDeadline,
-          Tags: Tags,
-          name: dbUser.name,
-          organisationUID: currentUser.uid,
-          documentUID: eventUID,
-          signedUpVolunteers: [],
-          confirmedVolunteers: [],
-          rejectedVolunteers: [],
-          cancelledEvent: false,
-        })
-        // .then(() => {
-        //   Alert.alert("Event created!");
-        // })
-        .then(getUpdatedDBUser(currentUser.uid))
-    );
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
+    return database
+      .collection("events")
+      .doc(eventUID)
+      .set({
+        eventName: eventName,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventDate: eventDate,
+        signupDeadline: signupDeadline,
+        Tags: Tags,
+        name: dbUser.name,
+        organisationUID: currentUser.uid,
+        documentUID: eventUID,
+        signedUpVolunteers: [],
+        confirmedVolunteers: [],
+        rejectedVolunteers: [],
+        cancelledEvent: false,
+      })
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
-  //need add request uid to beneficiary's array of request
+  function sendEnquiry(eventUID, volUID, orgUID, message) {
+    const enquiryUID = uuidv4();
+
+    database
+      .collection("events")
+      .doc(eventUID)
+      .update({
+        enquiries: firebase.firestore.FieldValue.arrayUnion(enquiryUID),
+      });
+
+    database
+      .collection("enquiries")
+      .doc(enquiryUID)
+      .set({
+        eventUID: eventUID,
+        volunteerUID: volUID,
+        organisationUID: orgUID,
+        enquiry: message,
+      })
+      .then(() => {
+        console.log("Document successfully written!");
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
+  }
+
   function addRequest(
     requestDescription,
     requestLocation,
@@ -236,30 +229,22 @@ export function AuthProvider({ children }) {
         pendingRequests: firebase.firestore.FieldValue.arrayUnion(requestUID),
       });
 
-    return (
-      database
-        .collection("requests")
-        .doc(requestUID)
-        .set({
-          requesterFirstName: dbUser.firstName,
-          requesterLastName: dbUser.lastName,
-          requesterUID: currentUser.uid,
-          requestDescription: requestDescription,
-          requestLocation: requestLocation,
-          requestDate: requestDate,
-          signupDeadline: signupDeadline,
-          requestUID: requestUID,
-          organisationUID: orgUID,
-          Tags: tags,
-        })
-        // .then(() => {
-        //   Alert.alert("Request Created!");
-        // })
-        .then(getUpdatedDBUser(currentUser.uid))
-    );
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
+    return database
+      .collection("requests")
+      .doc(requestUID)
+      .set({
+        requesterFirstName: dbUser.firstName,
+        requesterLastName: dbUser.lastName,
+        requesterUID: currentUser.uid,
+        requestDescription: requestDescription,
+        requestLocation: requestLocation,
+        requestDate: requestDate,
+        signupDeadline: signupDeadline,
+        requestUID: requestUID,
+        organisationUID: orgUID,
+        Tags: tags,
+      })
+      .then(getUpdatedDBUser(currentUser.uid));
   }
 
   function signupEvent(docUID, userUID) {
@@ -269,13 +254,7 @@ export function AuthProvider({ children }) {
       .update({
         signedUpVolunteers: firebase.firestore.FieldValue.arrayUnion(userUID),
       })
-      // .then(() => {
-      //   Alert.alert("Signed Up!");
-      // })
       .then(getUpdatedDBUser(currentUser.uid));
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
   }
 
   function requestOrgLink(orgUID, benUID) {
@@ -381,13 +360,7 @@ export function AuthProvider({ children }) {
       .update({
         signedUpVolunteers: firebase.firestore.FieldValue.arrayRemove(volUID),
       })
-      // .then(() => {
-      //   Alert.alert("Volunteer Rejected");
-      // })
       .then(getUpdatedDBUser(currentUser.uid));
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
   }
 
   function AddVolunteerToConfirmed(documentUID, volUID) {
@@ -397,13 +370,7 @@ export function AuthProvider({ children }) {
       .update({
         confirmedVolunteers: firebase.firestore.FieldValue.arrayUnion(volUID),
       })
-      // .then(() => {
-      //   Alert.alert("Volunteer Confirmed");
-      // })
       .then(getUpdatedDBUser(currentUser.uid));
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
   }
 
   function RemoveBeneficiaryFromRequesting(orgUID, benUID) {
@@ -414,13 +381,7 @@ export function AuthProvider({ children }) {
         requestingBeneficiaries:
           firebase.firestore.FieldValue.arrayRemove(benUID),
       })
-      // .then(() => {
-      //   Alert.alert("Volunteer Rejected");
-      // })
       .then(getUpdatedDBUser(currentUser.uid));
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
   }
 
   function AddBeneficiaryRequestToOrganisationEvent(orgUID, request) {
@@ -430,15 +391,8 @@ export function AuthProvider({ children }) {
       .update({
         events: firebase.firestore.FieldValue.arrayUnion(request.requestUID),
       })
-      // .then(() => {
-      //   Alert.alert("Volunteer Confirmed");
-      // })
       .then(getUpdatedDBUser(currentUser.uid));
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
 
-    // need to bring in all request information
     const newTags = request.Tags;
     newTags.concat("Beneficiary Request");
 
@@ -474,13 +428,7 @@ export function AuthProvider({ children }) {
         beneficiariesPendingRequest:
           firebase.firestore.FieldValue.arrayRemove(requestUID),
       })
-      // .then(() => {
-      //   Alert.alert("Volunteer Rejected");
-      // })
       .then(getUpdatedDBUser(currentUser.uid));
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
   }
 
   function AddBeneficiaryRequestToBenficiaryConfirmed(benUID, requestUID) {
@@ -490,13 +438,7 @@ export function AuthProvider({ children }) {
       .update({
         confirmedRequests: firebase.firestore.FieldValue.arrayUnion(requestUID),
       })
-      // .then(() => {
-      //   Alert.alert("Volunteer Confirmed");
-      // })
       .then(getUpdatedDBUser(currentUser.uid));
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
   }
 
   function RemoveBeneficiaryRequestFromBeneficiaryPending(benUID, requestUID) {
@@ -506,13 +448,7 @@ export function AuthProvider({ children }) {
       .update({
         pendingRequests: firebase.firestore.FieldValue.arrayRemove(requestUID),
       })
-      // .then(() => {
-      //   Alert.alert("Volunteer Rejected");
-      // })
       .then(getUpdatedDBUser(currentUser.uid));
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
   }
 
   function AddBeneficiaryToBenficiaries(orgUID, benUID) {
@@ -522,13 +458,7 @@ export function AuthProvider({ children }) {
       .update({
         beneficiaries: firebase.firestore.FieldValue.arrayUnion(benUID),
       })
-      // .then(() => {
-      //   Alert.alert("Volunteer Confirmed");
-      // })
       .then(getUpdatedDBUser(currentUser.uid));
-    // .catch((error) => {
-    //   Alert.alert(error.messaege);
-    // });
   }
 
   function AddOrganisationToBeneficiary(benUID, orgUID) {
@@ -569,7 +499,6 @@ export function AuthProvider({ children }) {
     updateDatabaseEmail,
     updateAuthPassword,
     updateDatabasePassword,
-    // updateUsername,
     updateFirstName,
     updateLastName,
     updateDescription,
@@ -592,6 +521,7 @@ export function AuthProvider({ children }) {
     addRequest,
     requestOrgLink,
     signupEvent,
+    sendEnquiry,
     getUpdatedDBUser,
     setDBUser,
     setCurrentUser,

@@ -178,10 +178,6 @@ export default function VolunteerUpdateProfile() {
                 }}
               />
             </Form.Group>
-            {/* <Form.Group id="username" className="mb-2">
-              <Form.Label>Username</Form.Label>
-              <Form.Control type="username" ref={usernameRef} />
-            </Form.Group> */}
             <Form.Group
               controlId="exampleForm.ControlTextarea1"
               className="mb-2"
