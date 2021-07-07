@@ -15,7 +15,7 @@ export default function VolDisplayFullEvent(props) {
     eventDate,
     signupDeadline,
     organisationName,
-    Tags,
+    tags,
     documentUID,
     confirmedVolunteers,
     signedUpVolunteers,
@@ -75,7 +75,7 @@ export default function VolDisplayFullEvent(props) {
           <p>Sign up before: {signupDeadline}</p>
           <p>Location: {eventLocation}</p>
           <p>Brought to you by: {organisationName}</p>
-          <p>Tags: {parseTags(Tags)}</p>
+          <p>Tags: {parseTags(tags)}</p>
           <h6>{eventDescription}</h6>
         </Modal.Body>
         <ShowSignedUpMessage />

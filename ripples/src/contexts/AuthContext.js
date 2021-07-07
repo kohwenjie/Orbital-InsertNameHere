@@ -146,7 +146,7 @@ export function AuthProvider({ children }) {
     eventLocation,
     eventDate,
     signupDeadline,
-    Tags
+    tags
   ) {
     const eventUID = uuidv4();
     database
@@ -165,7 +165,7 @@ export function AuthProvider({ children }) {
         eventLocation: eventLocation,
         eventDate: eventDate,
         signupDeadline: signupDeadline,
-        Tags: Tags,
+        tags: tags,
         name: dbUser.name,
         organisationUID: currentUser.uid,
         documentUID: eventUID,
@@ -251,7 +251,7 @@ export function AuthProvider({ children }) {
         signupDeadline: signupDeadline,
         requestUID: requestUID,
         organisationUID: orgUID,
-        Tags: tags,
+        tags: tags,
       })
       .then(getUpdatedDBUser(currentUser.uid));
   }
@@ -308,7 +308,7 @@ export function AuthProvider({ children }) {
 
   function updateEventTags(newTags, docUID) {
     database.collection("events").doc(docUID).update({
-      Tags: newTags,
+      tags: newTags,
     });
   }
 
@@ -338,7 +338,7 @@ export function AuthProvider({ children }) {
 
   function updateRequestTags(newTags, docUID) {
     database.collection("requests").doc(docUID).update({
-      Tags: newTags,
+      tags: newTags,
     });
   }
 
@@ -402,8 +402,8 @@ export function AuthProvider({ children }) {
       })
       .then(getUpdatedDBUser(currentUser.uid));
 
-    const newTags = request.Tags;
-    newTags.concat("Beneficiary Request");
+    const newTags = request.tags;
+    newTags.push("Beneficiary Request");
 
     database
       .collection("events")
@@ -418,7 +418,7 @@ export function AuthProvider({ children }) {
         eventLocation: request.requestLocation,
         eventDate: request.requestDate,
         signupDeadline: request.signupDeadline,
-        Tags: newTags,
+        tags: newTags,
         name: dbUser.name,
         organisationUID: currentUser.uid,
         documentUID: request.requestUID,
@@ -426,6 +426,7 @@ export function AuthProvider({ children }) {
         confirmedVolunteers: [],
         rejectedVolunteers: [],
         cancelledEvent: false,
+        enquiries: []
       });
   }
 

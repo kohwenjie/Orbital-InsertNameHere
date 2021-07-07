@@ -3,11 +3,9 @@ import { Button, Modal, Table } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export default function ViweEnquiries(props) {
+export default function ViewEnquiries(props) {
   const [open, setOpen] = useState(false);
-  //   signedUpVolunteersArr and setSignUpVolunteersArr
   const [enquiriesArr, setEnquiriesArr] = useState([]);
-  //   volunteersProfile and setVolunteersProfile
   const [enquiriesDetails, setEnquiriesDetail] = useState([]);
   const event = props.e;
   const { enquiries } = event;

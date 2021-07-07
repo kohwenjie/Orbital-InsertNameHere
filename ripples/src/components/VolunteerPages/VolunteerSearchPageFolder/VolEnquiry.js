@@ -16,7 +16,7 @@ export default function VolEnquiry(props) {
     eventLocation,
     eventDate,
     signupDeadline,
-    Tags,
+    tags,
     name,
     organisationUID,
     documentUID,

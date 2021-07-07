@@ -7,7 +7,7 @@ import { TextField } from "@material-ui/core";
 export default function OrgUpdateEvent(props) {
   const [open, setOpen] = useState(false);
   const request = props.r;
-  const { requesterFirstName, requesterLastName, Tags, requestUID } = request;
+  const { requesterFirstName, requesterLastName, tags, requestUID } = request;
   const {
     updateRequestDescription,
     updateRequestDate,
@@ -21,7 +21,7 @@ export default function OrgUpdateEvent(props) {
   const sDeadlineRef = useRef();
   const [rDate, setRDate] = useState();
   const [sDeadline, setSDeadline] = useState();
-  const [tags, setTags] = useState([]);
+  const [eTags, setETags] = useState([]);
   const [rType, setRType] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -38,15 +38,15 @@ export default function OrgUpdateEvent(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (tags.length === 0) {
-      setTags(Tags);
+    if (eTags.length === 0) {
+      setETags(tags);
     } else {
       if (rType === "") {
         return setError("Please select an Event Type!");
-      } else if (tags.length === 0) {
+      } else if (eTags.length === 0) {
         return setError("Please select at least 1 Tag");
       }
-      tags.push(rType);
+      eTags.push(rType);
     }
 
     const updates = [];
@@ -71,8 +71,8 @@ export default function OrgUpdateEvent(props) {
         updateRequestSignUpDeadline(sDeadlineRef.current.value, requestUID)
       );
     }
-    if (tags) {
-      updates.push(updateRequestTags(tags, requestUID));
+    if (eTags) {
+      updates.push(updateRequestTags(eTags, requestUID));
     }
 
     Promise.all(updates)

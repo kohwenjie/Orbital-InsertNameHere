@@ -4,9 +4,15 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 
-export default function BeneficiaryRequestCreate(props) {
-  const [requestDescription, setRequestDescription] = useState();
-  const [requestLocation, setRequestLocation] = useState();
+export default function BeneficiaryRepeatRequest(props) {
+  const description = props.location.aboutProps.requestDescription;
+  const location = props.location.aboutProps.requestLocation;
+  const organisationUID = props.location.aboutProps.organisationUID;
+  
+  const [requestDescription, setRequestDescription] = useState(
+    description
+  );
+  const [requestLocation, setRequestLocation] = useState(location);
   const [requestDate, setRequestDate] = useState();
   const [signupDeadline, setSignupDeadline] = useState();
   const [tags, setTags] = useState([]);
@@ -17,7 +23,7 @@ export default function BeneficiaryRequestCreate(props) {
 
   console.log(dbUser);
   console.log(props.location.aboutProps);
-  console.log(props.location.aboutProps.organisationUID);
+  console.log(props.location.aboutProps.request);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -40,7 +46,7 @@ export default function BeneficiaryRequestCreate(props) {
         requestDate,
         signupDeadline,
         tags,
-        props.location.aboutProps.organisationUID
+        organisationUID
       );
 
       setRequestDescription("");
@@ -138,7 +144,7 @@ export default function BeneficiaryRequestCreate(props) {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2 mb-3">
-        <Link to="/BeneficiaryRequest">Cancel</Link>
+        <Link to="/BeneficiaryDataLog">Cancel</Link>
       </div>
     </>
   );

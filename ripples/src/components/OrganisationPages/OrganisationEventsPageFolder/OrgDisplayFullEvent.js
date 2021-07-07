@@ -14,7 +14,7 @@ export default function OrgDisplayFullEvent(props) {
     eventDate,
     signupDeadline,
     organisationName,
-    Tags,
+    tags,
   } = event;
 
   function openModal() {
@@ -42,7 +42,7 @@ export default function OrgDisplayFullEvent(props) {
           <p>Sign up before: {signupDeadline}</p>
           <p>Location: {eventLocation}</p>
           <p>Brought to you by: {organisationName}</p>
-          <p>Tags: {parseTags(Tags)}</p>
+          <p>Tags: {parseTags(tags)}</p>
           <h6>{eventDescription}</h6>
         </Modal.Body>
         <Modal.Footer>

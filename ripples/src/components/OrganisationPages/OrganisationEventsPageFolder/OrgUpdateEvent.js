@@ -7,7 +7,7 @@ import { TextField } from "@material-ui/core";
 export default function OrgUpdateEvent(props) {
   const [open, setOpen] = useState(false);
   const event = props.e;
-  const { eventName, Tags, documentUID } = event;
+  const { eventName, tags, documentUID } = event;
   const {
     updateEventName,
     updateEventDescription,
@@ -24,7 +24,7 @@ export default function OrgUpdateEvent(props) {
   const sDeadlineRef = useRef();
   const [eDate, setEDate] = useState();
   const [sDeadline, setSDeadline] = useState();
-  const [tags, setTags] = useState([]);
+  const [eTags, setETags] = useState([]);
   const [eType, setEType] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,29 +39,29 @@ export default function OrgUpdateEvent(props) {
   }
 
   const handleChange = (tag) => {
-    console.log("before: ", tags);
-    let tempTags = tags;
+    console.log("before: ", eTags);
+    let tempTags = eTags;
     if (tempTags.some((t) => t === tag)) {
       tempTags = tempTags.filter((t) => t !== tag);
     } else {
       tempTags.push(tag);
     }
-    setTags(tempTags);
-    console.log("after: ", tags);
+    setETags(tempTags);
+    console.log("after: ", eTags);
   };
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (tags.length === 0) {
-      setTags(Tags);
+    if (eTags.length === 0) {
+      setETags(tags);
     } else {
       if (eType === "") {
         return setError("Please select an Event Type!");
-      } else if (tags.length === 0) {
+      } else if (eTags.length === 0) {
         return setError("Please select at least 1 Tag");
       }
-      tags.push(eType);
+      eTags.push(eType);
     }
 
     const updates = [];
@@ -89,8 +89,8 @@ export default function OrgUpdateEvent(props) {
         updateEventSignUpDeadline(sDeadlineRef.current.value, documentUID)
       );
     }
-    if (tags) {
-      updates.push(updateEventTags(tags, documentUID));
+    if (eTags) {
+      updates.push(updateEventTags(eTags, documentUID));
     }
 
     Promise.all(updates)
@@ -171,7 +171,7 @@ export default function OrgUpdateEvent(props) {
                 <h6 color={"blue"}>
                   (Old tags will be used by default unless new tags chosen)
                 </h6>
-                <h6>Previous Tags: {parseTags(Tags)}</h6>
+                <h6>Previous Tags: {parseTags(tags)}</h6>
                 <Form.Check
                   inline
                   type={"checkbox"}

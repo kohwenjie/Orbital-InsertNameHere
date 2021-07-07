@@ -12,8 +12,6 @@ export default function ViewPendingRequest() {
   console.log(dbUser);
   console.log(dbUser.pendingRequests);
 
-  
-
   const fetchRequest = async () => {
     let arr = [];
     let dbUserPendingRequestArr = [];
@@ -57,7 +55,7 @@ export default function ViewPendingRequest() {
         <tbody>
           {pendingRequestsList &&
             pendingRequestsList.map((request) => {
-              const { requestDescription, requestLocation, requestDate, Tags } =
+              const { requestDescription, requestLocation, requestDate, tags } =
                 request;
               return (
                 <tr key={identity}>
@@ -65,7 +63,7 @@ export default function ViewPendingRequest() {
                   <td>{requestDescription}</td>
                   <td>{requestLocation}</td>
                   <td>{requestDate}</td>
-                  <td>{Tags}</td>
+                  <td>{tags}</td>
                 </tr>
               );
             })}

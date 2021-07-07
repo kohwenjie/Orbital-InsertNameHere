@@ -101,7 +101,7 @@ export default function OrgDisplayBenLinkRequest() {
                 requestLocation,
                 requestDate,
                 signupDeadline,
-                Tags,
+                tags,
                 requesterUID,
                 requestUID,
               } = request;
@@ -115,7 +115,7 @@ export default function OrgDisplayBenLinkRequest() {
                   <td>{requestLocation}</td>
                   <td>{requestDate}</td>
                   <td>{signupDeadline}</td>
-                  <td>{Tags}</td>
+                  <td>{tags}</td>
                   <td>
                     <Button
                       className="mb-2"

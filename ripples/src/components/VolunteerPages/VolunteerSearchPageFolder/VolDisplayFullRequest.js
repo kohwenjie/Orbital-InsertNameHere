@@ -14,7 +14,7 @@ export default function VolDisplayFullEvent(props) {
     requestLocation,
     requestDate,
     signupDeadline,
-    Tags,
+    tags,
     requestUID,
   } = request;
 
@@ -73,7 +73,7 @@ export default function VolDisplayFullEvent(props) {
           <p>Request Date: {requestDate}</p>
           <p>Sign up before: {signupDeadline}</p>
           <p>Request Location: {requestLocation}</p>
-          <p>Tags: {parseTags(Tags)}</p>
+          <p>Tags: {parseTags(tags)}</p>
           <h6>{requestDescription}</h6>
         </Modal.Body>
         <ShowSignedUpMessage />
