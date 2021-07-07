@@ -26,7 +26,6 @@ export default function ViewPastRequest() {
         .doc(rq)
         .get()
         .then((doc) => {
-          
           arr.push(doc.data());
           console.log(doc.data());
           setIdentity(doc.id);

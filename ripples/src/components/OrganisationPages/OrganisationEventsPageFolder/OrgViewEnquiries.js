@@ -48,7 +48,12 @@ export default function ViewEnquiries(props) {
 
   return (
     <>
-      <Button onClick={openModal} variant="outline-success" size="sm">
+      <Button
+        onClick={openModal}
+        variant="outline-success"
+        size="sm"
+        className="mt-1"
+      >
         View Enquiries
       </Button>
       <Modal show={open} onHide={closeModal} size="lg">
