@@ -8,7 +8,7 @@ export default function VolEnquiry(props) {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { currentUser, sendEnquiry } = useAuth();
+  const { currentUser, dbUser, sendEnquiry } = useAuth();
   const event = props.e;
   const {
     eventName,
@@ -27,6 +27,9 @@ export default function VolEnquiry(props) {
     cancelledEvent,
   } = event;
 
+  console.log(currentUser);
+  console.log(dbUser);
+
   function openModal() {
     setOpen(true);
   }
@@ -41,6 +44,8 @@ export default function VolEnquiry(props) {
       documentUID,
       currentUser.uid,
       organisationUID,
+      dbUser.firstName,
+      dbUser.lastName,
       enquiryRef.current.value
     );
 

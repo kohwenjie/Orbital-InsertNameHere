@@ -177,7 +177,14 @@ export function AuthProvider({ children }) {
       .then(getUpdatedDBUser(currentUser.uid));
   }
 
-  function sendEnquiry(eventUID, volUID, orgUID, message) {
+  function sendEnquiry(
+    eventUID,
+    volUID,
+    orgUID,
+    volFirstName,
+    volLastName,
+    message
+  ) {
     const enquiryUID = uuidv4();
 
     database
@@ -194,7 +201,9 @@ export function AuthProvider({ children }) {
         eventUID: eventUID,
         volunteerUID: volUID,
         organisationUID: orgUID,
-        enquiry: message,
+        volFirstName: volFirstName,
+        volLastName: volLastName,
+        message: message,
       })
       .then(() => {
         console.log("Document successfully written!");
