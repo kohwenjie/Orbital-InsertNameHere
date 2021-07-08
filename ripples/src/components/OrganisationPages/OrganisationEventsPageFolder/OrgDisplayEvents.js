@@ -50,7 +50,14 @@ export default function OrgDisplayEvents() {
             eventDate,
 
             organisationName,
+            fileUrl
           } = event;
+          var eventImage
+          if (!fileUrl) {
+            eventImage = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+          } else {
+            eventImage = fileUrl
+          }
           return (
             <>
               <Card
@@ -65,7 +72,7 @@ export default function OrgDisplayEvents() {
               >
                 <Card.Img
                   variant="top"
-                  src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+                  src={eventImage}
                 />
                 <Card.Body>
                   <Card.Title>{eventName}</Card.Title>

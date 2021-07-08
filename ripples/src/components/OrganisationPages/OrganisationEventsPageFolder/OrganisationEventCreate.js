@@ -3,8 +3,10 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
+import { storage } from "../../../firebase"
 
 export default function OrganisationEventCreate() {
+  const [eventImage, setEventImage] = useState("Insert Image for Event");
   const [eventName, setEventName] = useState();
   const [eventDescription, setEventDescription] = useState();
   const [eventLocation, setEventLocation] = useState();
@@ -15,6 +17,16 @@ export default function OrganisationEventCreate() {
   const { addEvent } = useAuth();
   const [error, setError] = useState("");
   const history = useHistory();
+  const [fileUrl, setFileUrl] = useState(null);
+  
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+    setEventImage(file.name)
+    setFileUrl(await fileRef.getDownloadURL());
+  };
 
   const handleChange = (tag) => {
     let tempTags = tags;
@@ -42,6 +54,8 @@ export default function OrganisationEventCreate() {
       setError("Sign Up Date cannot be later than Event Date!");
     } else if (currentDate >= signupDate) {
       setError("Date has already passed, pick another Date!");
+    } else if (!fileUrl) {
+      setError("Please select an Image");
     } else {
       addEvent(
         eventName,
@@ -49,7 +63,8 @@ export default function OrganisationEventCreate() {
         eventLocation,
         eventDate,
         signupDeadline,
-        tags
+        tags,
+        fileUrl
       );
 
       setEventName("");
@@ -252,9 +267,10 @@ export default function OrganisationEventCreate() {
 
             <Form.File
               id="custom-file-translate-scss"
-              label="Insert Image for Event"
+              label={eventImage}
               lang="en"
               className="mb-4"
+              onChange={onFileChange}
               custom
             />
             <Button className="w-100" type="submit">

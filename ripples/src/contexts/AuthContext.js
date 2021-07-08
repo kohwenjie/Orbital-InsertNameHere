@@ -146,7 +146,8 @@ export function AuthProvider({ children }) {
     eventLocation,
     eventDate,
     signupDeadline,
-    tags
+    tags,
+    fileUrl
   ) {
     const eventUID = uuidv4();
     database
@@ -173,6 +174,8 @@ export function AuthProvider({ children }) {
         confirmedVolunteers: [],
         rejectedVolunteers: [],
         cancelledEvent: false,
+        fileUrl: fileUrl,
+        enquiries: [],
       })
       .then(getUpdatedDBUser(currentUser.uid));
   }

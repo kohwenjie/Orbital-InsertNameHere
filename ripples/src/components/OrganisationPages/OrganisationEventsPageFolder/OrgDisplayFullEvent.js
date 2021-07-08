@@ -17,6 +17,7 @@ export default function OrgDisplayFullEvent(props) {
     signupDeadline,
     organisationName,
     tags,
+    fileUrl,
   } = event;
 
   function openModal() {
@@ -36,8 +37,8 @@ export default function OrgDisplayFullEvent(props) {
         <Modal.Body>
           <img
             className="img-fluid"
-            src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
-            alt=""
+            src={fileUrl}
+            alt="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
           />
           <h4>{eventName}</h4>
           <p>Event Date: {eventDate}</p>

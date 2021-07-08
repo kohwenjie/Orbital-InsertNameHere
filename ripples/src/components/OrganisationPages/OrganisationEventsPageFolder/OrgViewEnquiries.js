@@ -3,7 +3,7 @@ import { Button, Modal, Table } from "react-bootstrap";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
 
-export default function ViewEnquiries(props) {
+export default function OrgViewEnquiries(props) {
   const [open, setOpen] = useState(false);
   const [enquiriesArr, setEnquiriesArr] = useState([]);
   const [enquiriesDetails, setEnquiriesDetail] = useState([]);
