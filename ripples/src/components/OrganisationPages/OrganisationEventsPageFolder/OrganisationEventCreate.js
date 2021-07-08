@@ -3,7 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
-import { storage } from "../../../firebase"
+import { storage } from "../../../firebase";
 
 export default function OrganisationEventCreate() {
   const [eventImage, setEventImage] = useState("Insert Image for Event");
@@ -14,17 +14,17 @@ export default function OrganisationEventCreate() {
   const [signupDeadline, setSignupDeadline] = useState();
   const [tags, setTags] = useState([]);
   const [eventType, setEventType] = useState();
-  const { addEvent } = useAuth();
+  const { addEvent, dbUser } = useAuth();
   const [error, setError] = useState("");
   const history = useHistory();
   const [fileUrl, setFileUrl] = useState(null);
-  
+
   const onFileChange = async (e) => {
     const file = e.target.files[0];
     const storageRef = storage.ref();
-    const fileRef = storageRef.child(file.name);
+    const fileRef = storageRef.child(dbUser.uid + "/" + file.name);
     await fileRef.put(file);
-    setEventImage(file.name)
+    setEventImage(file.name);
     setFileUrl(await fileRef.getDownloadURL());
   };
 
@@ -55,7 +55,7 @@ export default function OrganisationEventCreate() {
     } else if (currentDate >= signupDate) {
       setError("Date has already passed, pick another Date!");
     } else if (!fileUrl) {
-      setError("Please select an Image");
+      setError("Please upload an Image for the event");
     } else {
       addEvent(
         eventName,

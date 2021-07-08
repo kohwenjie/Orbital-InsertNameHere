@@ -40,7 +40,13 @@ export default function VolDisplayEvents() {
     >
       {events &&
         events.map((event) => {
-          const { eventName, eventDate, organisationName } = event;
+          const { eventName, eventDate, organisationName, fileUrl } = event;
+          var image
+          if (fileUrl) {
+            image = fileUrl
+          } else {
+            image = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+          }
           return (
             <>
               <Card
@@ -55,7 +61,7 @@ export default function VolDisplayEvents() {
               >
                 <Card.Img
                   variant="top"
-                  src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+                  src={image}
                 />
                 <Card.Body>
                   <Card.Title>{eventName}</Card.Title>

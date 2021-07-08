@@ -3,6 +3,8 @@ import { Button, Modal, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
+import { storage } from "../../../firebase";
+
 
 export default function OrgEditEvent(props) {
   const [open, setOpen] = useState(false);
@@ -15,7 +17,9 @@ export default function OrgEditEvent(props) {
     updateEventLocation,
     updateEventSignUpDeadline,
     updateEventTags,
+    updateFileUrl,
     parseTags,
+    dbUser
   } = useAuth();
   const eNameRef = useRef();
   const eDescriptionRef = useRef();
@@ -29,6 +33,9 @@ export default function OrgEditEvent(props) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const [eventImage, setEventImage] = useState("Insert Image for Event");
+  const [fileUrl, setFileUrl] = useState(null);
+
 
   function openModal() {
     setOpen(true);
@@ -37,6 +44,15 @@ export default function OrgEditEvent(props) {
   function closeModal() {
     setOpen(false);
   }
+
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(dbUser.uid + "/" + file.name);
+    await fileRef.put(file);
+    setEventImage(file.name);
+    setFileUrl(await fileRef.getDownloadURL());
+  };
 
   const handleChange = (tag) => {
     console.log("before: ", eTags);
@@ -91,6 +107,10 @@ export default function OrgEditEvent(props) {
     }
     if (eTags) {
       updates.push(updateEventTags(eTags, documentUID));
+    }
+
+    if (fileUrl) {
+      updates.push(updateFileUrl(fileUrl, documentUID))
     }
 
     Promise.all(updates)
@@ -296,11 +316,13 @@ export default function OrgEditEvent(props) {
               />
             </div>
 
+
             <Form.File
               id="custom-file-translate-scss"
-              label="Insert Image for Event"
+              label={eventImage}
               lang="en"
               className="mb-4"
+              onChange={onFileChange}
               custom
             />
             <Button disabled={loading} className="w-100" type="submit">

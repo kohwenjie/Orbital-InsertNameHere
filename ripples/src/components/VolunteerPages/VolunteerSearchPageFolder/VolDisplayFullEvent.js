@@ -19,6 +19,7 @@ export default function VolDisplayFullEvent(props) {
     documentUID,
     confirmedVolunteers,
     signedUpVolunteers,
+    fileUrl,
   } = event;
 
   function openModal() {
@@ -58,6 +59,13 @@ export default function VolDisplayFullEvent(props) {
     }
   }, []);
 
+  var image;
+  if (fileUrl) {
+    image = fileUrl;
+  } else {
+    image = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900";
+  }
+
   return (
     <>
       <Button onClick={openModal} variant="outline-success" size="sm">
@@ -65,11 +73,7 @@ export default function VolDisplayFullEvent(props) {
       </Button>
       <Modal show={open} onHide={closeModal}>
         <Modal.Body>
-          <img
-            class="img-fluid"
-            src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
-            alt=""
-          />
+          <img class="img-fluid" src={image} alt="" />
           <h4>{eventName}</h4>
           <p>Event Date: {eventDate}</p>
           <p>Sign up before: {signupDeadline}</p>

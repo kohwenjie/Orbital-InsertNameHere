@@ -176,6 +176,7 @@ export function AuthProvider({ children }) {
         cancelledEvent: false,
         fileUrl: fileUrl,
         enquiries: [],
+        updates: [],
       })
       .then(getUpdatedDBUser(currentUser.uid));
   }
@@ -277,6 +278,12 @@ export function AuthProvider({ children }) {
         requestingBeneficiaries:
           firebase.firestore.FieldValue.arrayUnion(benUID),
       });
+  }
+
+  function updateFileUrl(fileUrl, docUID) {
+    database.collection("events").doc(docUID).update({
+      fileUrl: fileUrl,
+    });
   }
 
   function updateEventName(newEventName, docUID) {
@@ -534,6 +541,7 @@ export function AuthProvider({ children }) {
     updateEventDate,
     updateEventSignUpDeadline,
     updateEventTags,
+    updateFileUrl,
     updateRequestDescription,
     updateRequestDate,
     updateRequestLocation,

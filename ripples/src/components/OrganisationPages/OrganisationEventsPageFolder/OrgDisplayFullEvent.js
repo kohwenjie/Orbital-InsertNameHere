@@ -28,6 +28,13 @@ export default function OrgDisplayFullEvent(props) {
     setOpen(false);
   }
 
+  var image;
+  if (fileUrl) {
+    image = fileUrl;
+  } else {
+    image = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+  }
+
   return (
     <>
       <Button onClick={openModal} variant="outline-success" size="sm">
@@ -37,8 +44,8 @@ export default function OrgDisplayFullEvent(props) {
         <Modal.Body>
           <img
             className="img-fluid"
-            src={fileUrl}
-            alt="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+            src={image}
+            alt=""
           />
           <h4>{eventName}</h4>
           <p>Event Date: {eventDate}</p>
