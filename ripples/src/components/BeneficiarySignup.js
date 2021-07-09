@@ -55,8 +55,9 @@ export default function BeneficiarySignup() {
       contactRef.current.value > 100000000
     ) {
       return setError("Contact Number is invalid");
-    } else if (!fileUrl) {
-      setError("Please upload an Image for your Profile!");
+    }     
+    if (!file) {
+      return setError("Please upload an Image for your Profile!");
     }
     const storageRef = storage.ref();
     const fileUID = uuidv4();

@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Modal, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { storage } from "../../../firebase";
 
 export default function OrganisationUpdateProfile() {
   const emailRef = useRef();
@@ -11,6 +13,7 @@ export default function OrganisationUpdateProfile() {
   const addressRef = useRef();
   const contactRef = useRef();
   const {
+    dbUser,
     currentUser,
     updateDescription,
     updateAuthEmail,
@@ -19,13 +22,26 @@ export default function OrganisationUpdateProfile() {
     updateDatabasePassword,
     updateAddress,
     updateContact,
+    updateProfileFileUrl,
   } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const history = useHistory();
 
-  function handleSubmit(e) {
+  const [displayImage, setDisplayImage] = useState(
+    "Please select an Image for your Profile"
+  );
+  const [fileUrl, setFileUrl] = useState(null);
+  const [file, setFile] = useState(null);
+
+  const onFileChange = async (e) => {
+    const currentFile = e.target.files[0];
+    setFile(currentFile);
+    setDisplayImage(currentFile.name);
+  };
+
+  async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
@@ -59,6 +75,17 @@ export default function OrganisationUpdateProfile() {
       updates.push(updateContact(contactRef.current.value, currentUser.uid));
     }
 
+    if (file) {
+      const oldFileUrlRef = dbUser.fileUrl;
+      var oldRef = storage.refFromURL(oldFileUrlRef);
+      const storageRef = storage.ref();
+      const fileUID = uuidv4();
+      const fileRef = storageRef.child(fileUID);
+      await fileRef.put(file);
+      setFileUrl(await fileRef.getDownloadURL());
+      updates.push(updateProfileFileUrl(fileUrl, currentUser.uid));
+    }
+
     Promise.all(updates)
       .then(() => {
         history.push("/");
@@ -69,6 +96,20 @@ export default function OrganisationUpdateProfile() {
       .finally(() => {
         setLoading(false);
       });
+
+    // Delete the file
+    if (oldRef) {
+      oldRef
+        .delete()
+        .then(() => {
+          // File deleted successfully
+          console.log("successfully deleted " + oldRef);
+        })
+        .catch((error) => {
+          // Uh-oh, an error occurred!
+          console.log("unable to delete " + oldRef);
+        });
+    }
   }
 
   function openModal() {
@@ -131,7 +172,14 @@ export default function OrganisationUpdateProfile() {
               <Form.Label>Description</Form.Label>
               <Form.Control as="textarea" rows={3} ref={descriptionRef} />
             </Form.Group>
-
+            <Form.File
+              id="custom-file-translate-scss"
+              label={displayImage}
+              lang="en"
+              className="mb-4"
+              onChange={onFileChange}
+              custom
+            />
             <br></br>
 
             <Button disabled={loading} className="w-100" type="submit">
