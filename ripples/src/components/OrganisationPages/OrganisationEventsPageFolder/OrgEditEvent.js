@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import { storage } from "../../../firebase";
 
-
 export default function OrgEditEvent(props) {
   const [open, setOpen] = useState(false);
   const event = props.e;
@@ -19,7 +18,7 @@ export default function OrgEditEvent(props) {
     updateEventTags,
     updateFileUrl,
     parseTags,
-    dbUser
+    dbUser,
   } = useAuth();
   const eNameRef = useRef();
   const eDescriptionRef = useRef();
@@ -35,7 +34,6 @@ export default function OrgEditEvent(props) {
   const history = useHistory();
   const [eventImage, setEventImage] = useState("Insert Image for Event");
   const [fileUrl, setFileUrl] = useState(null);
-
 
   function openModal() {
     setOpen(true);
@@ -110,8 +108,11 @@ export default function OrgEditEvent(props) {
     }
 
     if (fileUrl) {
-      updates.push(updateFileUrl(fileUrl, documentUID))
+      updates.push(updateFileUrl(fileUrl, documentUID));
     }
+
+    const oldFileUrlRef = event.fileUrl;
+    var oldRef = storage.refFromURL(oldFileUrlRef);
 
     Promise.all(updates)
       .then(() => {
@@ -122,6 +123,18 @@ export default function OrgEditEvent(props) {
       })
       .finally(() => {
         setLoading(false);
+      });
+
+    // Delete the file
+    oldRef
+      .delete()
+      .then(() => {
+        // File deleted successfully
+        console.log("successfully deleted " + oldFileUrlRef);
+      })
+      .catch((error) => {
+        // Uh-oh, an error occurred!
+        console.log("unable to delete " + oldFileUrlRef);
       });
   }
 
@@ -315,7 +328,6 @@ export default function OrgEditEvent(props) {
                 }}
               />
             </div>
-
 
             <Form.File
               id="custom-file-translate-scss"

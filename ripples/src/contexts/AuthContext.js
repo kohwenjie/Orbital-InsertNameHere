@@ -139,6 +139,13 @@ export function AuthProvider({ children }) {
       .update({ dob: dob })
       .then(getUpdatedDBUser(currentUser.uid));
   }
+  function updateProfileFileUrl(fileUrl, uid) {
+    return database
+      .collection("user")
+      .doc(uid)
+      .update({ fileUrl: fileUrl })
+      .then(getUpdatedDBUser(currentUser.uid));
+  }
 
   function addEvent(
     eventName,
@@ -541,7 +548,7 @@ export function AuthProvider({ children }) {
     updateEventDate,
     updateEventSignUpDeadline,
     updateEventTags,
-    updateFileUrl,
+    updateProfileFileUrl,
     updateRequestDescription,
     updateRequestDate,
     updateRequestLocation,

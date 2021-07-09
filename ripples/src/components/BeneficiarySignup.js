@@ -59,7 +59,7 @@ export default function BeneficiarySignup() {
     ) {
       return setError("Contact Number is invalid");
     } else if (!fileUrl) {
-      setError("Please upload an Image for your Profile!");
+      return setError("Please upload an Image for your Profile!");
     }
     try {
       setError("");
