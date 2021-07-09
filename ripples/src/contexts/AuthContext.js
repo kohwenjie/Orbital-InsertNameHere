@@ -548,6 +548,7 @@ export function AuthProvider({ children }) {
     updateEventDate,
     updateEventSignUpDeadline,
     updateEventTags,
+    updateFileUrl,
     updateProfileFileUrl,
     updateRequestDescription,
     updateRequestDate,
