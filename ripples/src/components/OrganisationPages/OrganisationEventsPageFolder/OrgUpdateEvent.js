@@ -44,7 +44,6 @@ export default function OrgEditEvent(props) {
         setLoading(false);
       });
   }
-  
 
   return (
     <>
