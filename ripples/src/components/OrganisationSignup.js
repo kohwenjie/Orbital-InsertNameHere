@@ -28,12 +28,15 @@ export default function OrganisationSignup() {
     "Please select an Image for your Profile"
   );
   const [fileUrl, setFileUrl] = useState(null);
-  const [file, setFile] = useState(null);
 
   const onFileChange = async (e) => {
-    const currentFile = e.target.files[0];
-    setFile(currentFile);
-    setDisplayImage(currentFile.name);
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileUID = uuidv4();
+    const fileRef = storageRef.child(fileUID);
+    await fileRef.put(file);
+    setDisplayImage(file.name);
+    setFileUrl(await fileRef.getDownloadURL());
   };
 
   async function handleSubmit(e) {
@@ -52,16 +55,9 @@ export default function OrganisationSignup() {
       ) {
         return setError("Contact Number is invalid");
       }
-    } 
-
-    if (!file) {
-      return setError("Please upload an Image for your Organisation's Profile!");
+    } else if (!fileUrl) {
+      return setError("Please upload an Image for your Orgnisation's Profile!");
     }
-    const storageRef = storage.ref();
-    const fileUID = uuidv4();
-    const fileRef = storageRef.child(fileUID);
-    await fileRef.put(file);
-    setFileUrl(await fileRef.getDownloadURL());
 
     try {
       setError("");

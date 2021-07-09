@@ -33,15 +33,18 @@ export default function OrganisationUpdateProfile() {
     "Please select an Image for your Profile"
   );
   const [fileUrl, setFileUrl] = useState(null);
-  const [file, setFile] = useState(null);
 
   const onFileChange = async (e) => {
-    const currentFile = e.target.files[0];
-    setFile(currentFile);
-    setDisplayImage(currentFile.name);
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileUID = uuidv4();
+    const fileRef = storageRef.child(fileUID);
+    await fileRef.put(file);
+    setDisplayImage(file.name);
+    setFileUrl(await fileRef.getDownloadURL());
   };
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
@@ -75,16 +78,12 @@ export default function OrganisationUpdateProfile() {
       updates.push(updateContact(contactRef.current.value, currentUser.uid));
     }
 
-    if (file) {
-      const oldFileUrlRef = dbUser.fileUrl;
-      var oldRef = storage.refFromURL(oldFileUrlRef);
-      const storageRef = storage.ref();
-      const fileUID = uuidv4();
-      const fileRef = storageRef.child(fileUID);
-      await fileRef.put(file);
-      setFileUrl(await fileRef.getDownloadURL());
+    if (fileUrl) {
       updates.push(updateProfileFileUrl(fileUrl, currentUser.uid));
     }
+
+    const oldFileUrlRef = dbUser.fileUrl;
+    var oldRef = storage.refFromURL(oldFileUrlRef);
 
     Promise.all(updates)
       .then(() => {
@@ -97,19 +96,16 @@ export default function OrganisationUpdateProfile() {
         setLoading(false);
       });
 
-    // Delete the file
-    if (oldRef) {
-      oldRef
-        .delete()
-        .then(() => {
-          // File deleted successfully
-          console.log("successfully deleted " + oldRef);
-        })
-        .catch((error) => {
-          // Uh-oh, an error occurred!
-          console.log("unable to delete " + oldRef);
-        });
-    }
+    oldRef
+      .delete()
+      .then(() => {
+        // File deleted successfully
+        console.log("successfully deleted " + oldFileUrlRef);
+      })
+      .catch((error) => {
+        // Uh-oh, an error occurred!
+        console.log("unable to delete " + oldFileUrlRef);
+      });
   }
 
   function openModal() {
