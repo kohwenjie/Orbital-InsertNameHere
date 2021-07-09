@@ -3,8 +3,6 @@ import { Form, Button, Modal, Alert, Col } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
-import { v4 as uuidv4 } from "uuid";
-import { storage } from "../../../firebase";
 
 export default function VolunteerUpdateProfile() {
   const firstNameRef = useRef();
@@ -29,24 +27,11 @@ export default function VolunteerUpdateProfile() {
     updateDatabasePassword,
     updateContact,
     updateDob,
-    updateProfileFileUrl,
   } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const history = useHistory();
-
-  const [displayImage, setDisplayImage] = useState(
-    "Please select an Image for your Profile"
-  );
-  const [fileUrl, setFileUrl] = useState(null);
-  const [file, setFile] = useState(null);
-
-  const onFileChange = async (e) => {
-    const currentFile = e.target.files[0];
-    setFile(currentFile);
-    setDisplayImage(currentFile.name);
-  };
 
   console.log(dbUser);
 
@@ -103,17 +88,6 @@ export default function VolunteerUpdateProfile() {
       updates.push(updateDob(dobRef.current.value, currentUser.uid));
     }
 
-    if (file) {
-      const oldFileUrlRef = dbUser.fileUrl;
-      var oldRef = storage.refFromURL(oldFileUrlRef);
-      const storageRef = storage.ref();
-      const fileUID = uuidv4();
-      const fileRef = storageRef.child(fileUID);
-      await fileRef.put(file);
-      setFileUrl(await fileRef.getDownloadURL());
-      updates.push(updateProfileFileUrl(fileUrl, currentUser.uid));
-    }
-
     Promise.all(updates)
       .then(() => {
         history.push("/");
@@ -124,20 +98,6 @@ export default function VolunteerUpdateProfile() {
       .finally(() => {
         setLoading(false);
       });
-
-    // Delete the file
-    if (oldRef) {
-      oldRef
-        .delete()
-        .then(() => {
-          // File deleted successfully
-          console.log("successfully deleted " + oldRef);
-        })
-        .catch((error) => {
-          // Uh-oh, an error occurred!
-          console.log("unable to delete " + oldRef);
-        });
-    }
   }
 
   function openModal() {
@@ -237,16 +197,6 @@ export default function VolunteerUpdateProfile() {
                 placeholder="eg. CPR AED - Able to perform resuscitation of victims who are in a cardiac arrest"
               />
             </Form.Group>
-
-            <Form.File
-              id="custom-file-translate-scss"
-              label={displayImage}
-              lang="en"
-              className="mb-4"
-              onChange={onFileChange}
-              custom
-            />
-
             <br></br>
             <Button disabled={loading} className="w-100" type="submit">
               Update my profile!

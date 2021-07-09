@@ -52,10 +52,8 @@ export default function OrganisationSignup() {
       ) {
         return setError("Contact Number is invalid");
       }
-    } 
-
-    if (!file) {
-      return setError("Please upload an Image for your Organisation's Profile!");
+    } else if (!fileUrl) {
+      setError("Please upload an Image for your Orgnisation's Profile!");
     }
     const storageRef = storage.ref();
     const fileUID = uuidv4();
