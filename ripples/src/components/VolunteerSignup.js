@@ -3,6 +3,8 @@ import { Form, Button, Card, Alert, Col } from "react-bootstrap";
 import { TextField } from "@material-ui/core";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { storage } from "../firebase";
 
 export default function VolunteerSignup() {
   const firstNameRef = useRef();
@@ -28,6 +30,21 @@ export default function VolunteerSignup() {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
+  const [displayImage, setDisplayImage] = useState(
+    "Please select an Image for your Profile"
+  );
+  const [fileUrl, setFileUrl] = useState(null);
+
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileUID = uuidv4();
+    const fileRef = storageRef.child(fileUID);
+    await fileRef.put(file);
+    setDisplayImage(file.name);
+    setFileUrl(await fileRef.getDownloadURL());
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -39,6 +56,9 @@ export default function VolunteerSignup() {
       contactRef.current.value > 100000000
     ) {
       return setError("Contact Number is invalid");
+    }
+    if (!fileUrl) {
+      return setError("Please upload an Image for your Profile!");
     }
 
     try {
@@ -58,6 +78,7 @@ export default function VolunteerSignup() {
         commitments: [],
         history: [],
         userType: "volunteer",
+        fileUrl: fileUrl,
       };
       await signup(
         emailRef.current.value,
@@ -191,6 +212,15 @@ export default function VolunteerSignup() {
                 eg. CPR AED - Able to perform resuscitation of victims who are in a cardiac arrest"
               />
             </Form.Group>
+
+            <Form.File
+              id="custom-file-translate-scss"
+              label={displayImage}
+              lang="en"
+              className="mb-4"
+              onChange={onFileChange}
+              custom
+            />
 
             <Button disabled={loading} className="w-100" type="submit">
               I want to sign up as a Volunteer!

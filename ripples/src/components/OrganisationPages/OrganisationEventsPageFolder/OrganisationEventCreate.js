@@ -4,9 +4,9 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import { storage } from "../../../firebase";
+import { v4 as uuidv4 } from "uuid";
 
 export default function OrganisationEventCreate() {
-  const [eventImage, setEventImage] = useState("Insert Image for Event");
   const [eventName, setEventName] = useState();
   const [eventDescription, setEventDescription] = useState();
   const [eventLocation, setEventLocation] = useState();
@@ -17,14 +17,16 @@ export default function OrganisationEventCreate() {
   const { addEvent, dbUser } = useAuth();
   const [error, setError] = useState("");
   const history = useHistory();
+  const [eventImage, setEventImage] = useState("Insert Image for Event");
   const [fileUrl, setFileUrl] = useState(null);
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
-    const storageRef = storage.ref();
-    const fileRef = storageRef.child(dbUser.uid + "/" + file.name);
-    await fileRef.put(file);
     setEventImage(file.name);
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(uuidv4());
+    await fileRef.put(file);
+
     setFileUrl(await fileRef.getDownloadURL());
   };
 

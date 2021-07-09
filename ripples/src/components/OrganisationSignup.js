@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { storage } from "../firebase";
 
 export default function OrganisationSignup() {
   const nameRef = useRef();
@@ -22,6 +24,21 @@ export default function OrganisationSignup() {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
+  const [displayImage, setDisplayImage] = useState(
+    "Please select an Image for your Profile"
+  );
+  const [fileUrl, setFileUrl] = useState(null);
+
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileUID = uuidv4();
+    const fileRef = storageRef.child(fileUID);
+    await fileRef.put(file);
+    setDisplayImage(file.name);
+    setFileUrl(await fileRef.getDownloadURL());
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -38,6 +55,8 @@ export default function OrganisationSignup() {
       ) {
         return setError("Contact Number is invalid");
       }
+    } else if (!fileUrl) {
+      setError("Please upload an Image for your Orgnisation's Profile!");
     }
 
     try {
@@ -56,6 +75,7 @@ export default function OrganisationSignup() {
         beneficiaries: [],
         history: [],
         userType: "organisation",
+        fileUrl: fileUrl,
       };
       await signup(
         emailRef.current.value,
@@ -152,6 +172,15 @@ export default function OrganisationSignup() {
                 e.g. Your Organisation's Values, Purpose, types of Activities"
               />
             </Form.Group>
+
+            <Form.File
+              id="custom-file-translate-scss"
+              label={displayImage}
+              lang="en"
+              className="mb-4"
+              onChange={onFileChange}
+              custom
+            />
 
             <Button disabled={loading} className="w-100" type="submit">
               Sign Up my Organisation!
