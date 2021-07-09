@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Modal, Alert } from "react-bootstrap";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { storage } from "../../../firebase";
 
 export default function OrganisationUpdateProfile() {
   const emailRef = useRef();
@@ -19,11 +21,27 @@ export default function OrganisationUpdateProfile() {
     updateDatabasePassword,
     updateAddress,
     updateContact,
+    updateProfileFileUrl,
   } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const history = useHistory();
+
+  const [displayImage, setDisplayImage] = useState(
+    "Please select an Image for your Profile"
+  );
+  const [fileUrl, setFileUrl] = useState(null);
+
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileUID = uuidv4();
+    const fileRef = storageRef.child(fileUID);
+    await fileRef.put(file);
+    setDisplayImage(file.name);
+    setFileUrl(await fileRef.getDownloadURL());
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -57,6 +75,9 @@ export default function OrganisationUpdateProfile() {
     }
     if (contactRef.current.value) {
       updates.push(updateContact(contactRef.current.value, currentUser.uid));
+    }
+    if (fileUrl) {
+      updates.push(updateProfileFileUrl(fileUrl, currentUser.uid));
     }
 
     Promise.all(updates)
@@ -131,7 +152,14 @@ export default function OrganisationUpdateProfile() {
               <Form.Label>Description</Form.Label>
               <Form.Control as="textarea" rows={3} ref={descriptionRef} />
             </Form.Group>
-
+            <Form.File
+              id="custom-file-translate-scss"
+              label={displayImage}
+              lang="en"
+              className="mb-4"
+              onChange={onFileChange}
+              custom
+            />
             <br></br>
 
             <Button disabled={loading} className="w-100" type="submit">

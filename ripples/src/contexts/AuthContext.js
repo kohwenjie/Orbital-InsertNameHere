@@ -286,6 +286,12 @@ export function AuthProvider({ children }) {
     });
   }
 
+  function updateProfileFileUrl(fileUrl, userUID) {
+    database.collection("users").doc(userUID).update({
+      fileUrl: fileUrl,
+    });
+  }
+
   function updateEventName(newEventName, docUID) {
     database.collection("events").doc(docUID).update({
       eventName: newEventName,
@@ -542,6 +548,7 @@ export function AuthProvider({ children }) {
     updateEventSignUpDeadline,
     updateEventTags,
     updateFileUrl,
+    updateProfileFileUrl,
     updateRequestDescription,
     updateRequestDate,
     updateRequestLocation,
