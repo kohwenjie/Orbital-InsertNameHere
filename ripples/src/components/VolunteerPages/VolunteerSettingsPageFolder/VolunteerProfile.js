@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Card, CardGroup } from "react-bootstrap";
 import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
+import Image from "react-bootstrap/Image";
 
 export default function VolunteerProfile() {
   const { dbUser } = useAuth();

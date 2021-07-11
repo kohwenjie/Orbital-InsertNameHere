@@ -19,14 +19,14 @@ export default function OrganisationEventCreate() {
   const history = useHistory();
   const [eventImage, setEventImage] = useState("Insert Image for Event");
   const [fileUrl, setFileUrl] = useState(null);
+  const fileUid = uuidv4();
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
-    setEventImage(file.name);
     const storageRef = storage.ref();
-    const fileRef = storageRef.child(uuidv4());
+    const fileRef = storageRef.child(fileUid);
     await fileRef.put(file);
-
+    setEventImage(file.name);
     setFileUrl(await fileRef.getDownloadURL());
   };
 

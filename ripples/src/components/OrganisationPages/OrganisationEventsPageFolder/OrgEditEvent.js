@@ -4,7 +4,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import { storage } from "../../../firebase";
-
+import { v4 as uuidv4 } from "uuid";
 
 export default function OrgEditEvent(props) {
   const [open, setOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function OrgEditEvent(props) {
     updateEventTags,
     updateFileUrl,
     parseTags,
-    dbUser
+    dbUser,
   } = useAuth();
   const eNameRef = useRef();
   const eDescriptionRef = useRef();
@@ -35,7 +35,16 @@ export default function OrgEditEvent(props) {
   const history = useHistory();
   const [eventImage, setEventImage] = useState("Insert Image for Event");
   const [fileUrl, setFileUrl] = useState(null);
+  const fileUid = uuidv4();
 
+  const onFileChange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(fileUid);
+    await fileRef.put(file);
+    setEventImage(file.name);
+    setFileUrl(await fileRef.getDownloadURL());
+  };
 
   function openModal() {
     setOpen(true);
@@ -44,15 +53,6 @@ export default function OrgEditEvent(props) {
   function closeModal() {
     setOpen(false);
   }
-
-  const onFileChange = async (e) => {
-    const file = e.target.files[0];
-    const storageRef = storage.ref();
-    const fileRef = storageRef.child(dbUser.uid + "/" + file.name);
-    await fileRef.put(file);
-    setEventImage(file.name);
-    setFileUrl(await fileRef.getDownloadURL());
-  };
 
   const handleChange = (tag) => {
     console.log("before: ", eTags);
@@ -109,8 +109,31 @@ export default function OrgEditEvent(props) {
       updates.push(updateEventTags(eTags, documentUID));
     }
 
+    var imageChanged = false;
+    const previousImageUrl = event.fileUrl;
     if (fileUrl) {
-      updates.push(updateFileUrl(fileUrl, documentUID))
+      console.log(fileUrl);
+      console.log(previousImageUrl);
+      updates.push(updateFileUrl(fileUrl, documentUID));
+      imageChanged = true;
+    }
+
+    if (imageChanged) {
+      var oldRef = storage.refFromURL(previousImageUrl);
+      console.log(oldRef);
+
+      // Delete the file
+      oldRef
+        .delete()
+        .then(() => {
+          // File deleted successfully
+          console.log(previousImageUrl + " deleted successfully");
+        })
+        .catch((error) => {
+          // Uh-oh, an error occurred!
+          console.log(previousImageUrl + " cant be deleted");
+          console.log(error);
+        });
     }
 
     Promise.all(updates)
@@ -315,7 +338,6 @@ export default function OrgEditEvent(props) {
                 }}
               />
             </div>
-
 
             <Form.File
               id="custom-file-translate-scss"
