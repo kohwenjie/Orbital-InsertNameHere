@@ -287,9 +287,11 @@ export function AuthProvider({ children }) {
   }
 
   function updateProfileFileUrl(fileUrl, userUID) {
-    database.collection("users").doc(userUID).update({
+    database.collection("user").doc(userUID).update({
       fileUrl: fileUrl,
     });
+
+    console.log("update:" + fileUrl);
   }
 
   function updateEventName(newEventName, docUID) {

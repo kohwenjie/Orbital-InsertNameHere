@@ -46,9 +46,7 @@ export default function OrgDisplayEvents() {
         events.map((event) => {
           const {
             eventName,
-
             eventDate,
-
             organisationName,
             fileUrl
           } = event;

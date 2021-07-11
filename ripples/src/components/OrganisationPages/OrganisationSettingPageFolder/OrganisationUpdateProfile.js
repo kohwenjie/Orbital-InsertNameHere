@@ -14,6 +14,7 @@ export default function OrganisationUpdateProfile() {
   const contactRef = useRef();
   const {
     currentUser,
+    dbUser,
     updateDescription,
     updateAuthEmail,
     updateDatabaseEmail,
@@ -32,12 +33,12 @@ export default function OrganisationUpdateProfile() {
     "Please select an Image for your Profile"
   );
   const [fileUrl, setFileUrl] = useState(null);
+  const fileUid = uuidv4();
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
     const storageRef = storage.ref();
-    const fileUID = uuidv4();
-    const fileRef = storageRef.child(fileUID);
+    const fileRef = storageRef.child(fileUid);
     await fileRef.put(file);
     setDisplayImage(file.name);
     setFileUrl(await fileRef.getDownloadURL());
@@ -76,8 +77,31 @@ export default function OrganisationUpdateProfile() {
     if (contactRef.current.value) {
       updates.push(updateContact(contactRef.current.value, currentUser.uid));
     }
+    var imageChanged = false;
+    const previousImageUrl = dbUser.fileUrl;
     if (fileUrl) {
+      console.log(fileUrl);
+      console.log(previousImageUrl);
       updates.push(updateProfileFileUrl(fileUrl, currentUser.uid));
+      imageChanged = true;
+    }
+
+    if (imageChanged) {
+      var oldRef = storage.refFromURL(previousImageUrl);
+      console.log(oldRef);
+
+      // Delete the file
+      oldRef
+        .delete()
+        .then(() => {
+          // File deleted successfully
+          console.log(previousImageUrl + " deleted successfully");
+        })
+        .catch((error) => {
+          // Uh-oh, an error occurred!
+          console.log(previousImageUrl + " cant be deleted");
+          console.log(error);
+        });
     }
 
     Promise.all(updates)

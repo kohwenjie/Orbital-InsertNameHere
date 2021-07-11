@@ -16,12 +16,14 @@ export default function BeneficiaryProfile() {
     dob,
     requestCounter,
     userType,
+    fileUrl
   } = dbUser;
 
   return (
     <>
       <Card style={{ width: "100%" }}>
         <Card.Body>
+        <Card.Img variant="top" src={fileUrl} />
           <Card.Text class="text-center fs-3">
             {firstName} {lastName} <BeneficiaryUpdateProfile />
           </Card.Text>
