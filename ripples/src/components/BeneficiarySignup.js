@@ -36,12 +36,12 @@ export default function BeneficiarySignup() {
     "Please select an Image for your Profile"
   );
   const [fileUrl, setFileUrl] = useState(null);
+  const fileUid = uuidv4();
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
     const storageRef = storage.ref();
-    const fileUID = uuidv4();
-    const fileRef = storageRef.child(fileUID);    
+    const fileRef = storageRef.child(fileUid);
     await fileRef.put(file);
     setDisplayImage(file.name);
     setFileUrl(await fileRef.getDownloadURL());
