@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
     backgroundImage:
-      "url(https://source.unsplash.com/1600x900/?volunteer,volunteerism)",
+      "url(https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Ripples%20Business%20Card.png?alt=media&token=548fd0e4-b9f9-44fc-b4c6-b62f84bfb938)",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
