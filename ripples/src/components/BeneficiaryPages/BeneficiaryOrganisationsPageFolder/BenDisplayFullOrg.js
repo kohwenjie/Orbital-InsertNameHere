@@ -7,7 +7,8 @@ export default function BenDisplayFullOrg(props) {
   const [disabled, setDisabled] = useState(false);
   const { currentUser, requestOrgLink } = useAuth();
   const organisation = props.o;
-  const { name, description, address, email, contact, uid } = organisation;
+  const { name, description, address, email, contact, uid, fileUrl } =
+    organisation;
 
   function openModal() {
     setOpen(true);
@@ -47,14 +48,17 @@ export default function BenDisplayFullOrg(props) {
         <Modal.Body>
           <img
             className="img-fluid"
-            src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
-            alt=""
+            src={fileUrl || "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"}
+            alt="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
           />
           <h4>{name}</h4>
-          <p>Description: {description}</p>
-          <p>Address: {address}</p>
-          <p>Email: {email}</p>
-          <p>Contact: {contact}</p>
+          <br />
+          <h5>Address: {address}</h5>
+          <h5>Email: {email}</h5>
+          <h5>Contact: {contact}</h5>
+          <h5>Description: </h5>
+          <div alignText="center"><h5>{description}</h5></div>
+          
         </Modal.Body>
         <ShowSignedUpMessage />
         <Modal.Footer>

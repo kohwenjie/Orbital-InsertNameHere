@@ -38,7 +38,7 @@ export default function BenDisplayOrg() {
     >
       {organisations &&
         organisations.map((organisation) => {
-          const { name, description, address } = organisation;
+          const { name, description, address, fileUrl } = organisation;
           return (
             <>
               <Card
@@ -53,14 +53,15 @@ export default function BenDisplayOrg() {
               >
                 <Card.Img
                   variant="top"
-                  src="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+                  src={fileUrl || "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"}
+                  height="200px"
                 />
                 <Card.Body>
                   <Card.Title>{name}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     {description}
                   </Card.Subtitle>
-                  <Card.Text>Address:{address}</Card.Text>
+                  <Card.Text>Address: {address}</Card.Text>
                   <BenDisplayFullOrg o={organisation} />
                 </Card.Body>
               </Card>

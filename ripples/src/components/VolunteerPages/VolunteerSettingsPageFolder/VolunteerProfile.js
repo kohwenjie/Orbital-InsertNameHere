@@ -5,7 +5,6 @@ import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
 
 export default function VolunteerProfile() {
   const { dbUser } = useAuth();
-  // const [image, setImage] = useState();
   const {
     firstName,
     lastName,
@@ -69,7 +68,7 @@ export default function VolunteerProfile() {
         <Card.Body>
           <Card.Text class="text-center fs-3">
             <h4>
-              {firstName} {lastName} ({userType})
+              <b>{firstName} {lastName}</b> ({userType.toUpperCase()})
             </h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
