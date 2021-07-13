@@ -74,7 +74,7 @@ export default function MainFeaturedPost(props) {
       <Button>
         <Link
           to="/OrganisationEventCreate"
-          className="btn btn-primary btn-lg w-100 m-4"
+          className="btn btn-primary btn-lg w-100 ms-4 mb-4"
         >
           Create an Event!
         </Link>

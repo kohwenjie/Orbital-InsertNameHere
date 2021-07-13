@@ -7,8 +7,9 @@ import Footer from "../SharedComponent/Footer";
 import OrgHistoryEvents from "./OrgDisplayEvents";
 
 const mainFeaturedPost = {
-  title: "Your Events History ",
-  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
+  title: "Your Events History Here",
+  image:
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Looking%20Back.jpg?alt=media&token=ce9da289-2449-4bd8-a518-92e0dc0be48f",
 };
 
 export default function OrganisationHistory() {
