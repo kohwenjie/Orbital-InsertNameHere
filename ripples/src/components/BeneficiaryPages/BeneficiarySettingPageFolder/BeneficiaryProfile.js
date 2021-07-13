@@ -25,7 +25,7 @@ export default function BeneficiaryProfile() {
         <Card.Body>
           <Image
             src={fileUrl}
-            square
+            roundedCircle
             height="250px"
             width="250px"
             display="center"

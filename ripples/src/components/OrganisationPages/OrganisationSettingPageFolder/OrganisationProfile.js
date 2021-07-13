@@ -12,7 +12,7 @@ export default function OrganisationProfile() {
         <Card.Body>
           <Image
             src={fileUrl}
-            square
+            roundedCircle
             height="250px"
             width="250px"
             display="center"
