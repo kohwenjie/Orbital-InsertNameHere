@@ -11,7 +11,7 @@ const mainFeaturedPost = {
   title: "Welcome to Ripples for Volunteers!",
   description:
     "We hope to be able to help volunteers in making volunteering a much more convenient and meaningful experience!",
-  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
+  image: "gs://orbital-insertnamehere.appspot.com/Ripples Business Card.png",
   imgText: "main image description",
 };
 
