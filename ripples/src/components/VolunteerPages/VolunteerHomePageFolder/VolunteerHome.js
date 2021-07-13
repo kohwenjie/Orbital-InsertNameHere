@@ -54,8 +54,8 @@ export default function VolunteerHome() {
         <Card>
           <Card.Body>
             <Card.Text class="text-center fs-5">Quote of the Day:</Card.Text>
-            <h2>{quote.text}</h2>
-            <h3>{quote.author}</h3>
+            <h5>{quote.text}</h5>
+            <h6>{quote.author}</h6>
           </Card.Body>
         </Card>
       </CardGroup>
