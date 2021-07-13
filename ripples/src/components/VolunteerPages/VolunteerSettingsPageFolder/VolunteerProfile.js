@@ -45,14 +45,22 @@ export default function VolunteerProfile() {
         <Card>
           <Card.Body>
             <Card.Text class="text-center fs-5">
-              Current Points: {totalPoints}
+              <blockquote class="blockquote text-center">
+                <p class="mb-0">Current Points:</p>
+
+                <h3>{totalPoints}</h3>
+              </blockquote>
             </Card.Text>
           </Card.Body>
         </Card>
         <Card>
           <Card.Body>
             <Card.Text class="text-center fs-5">
-              Total Events Participated: {numEvents}
+              <blockquote class="blockquote text-center">
+                <p class="mb-0">Total Events Participated: </p>
+
+                <h3>{numEvents}</h3>
+              </blockquote>
             </Card.Text>
           </Card.Body>
         </Card>
@@ -60,13 +68,25 @@ export default function VolunteerProfile() {
       <Card>
         <Card.Body>
           <Card.Text class="text-center fs-3">
-            {firstName} {lastName} ({userType})
+            <h4>
+              {firstName} {lastName} ({userType})
+            </h4>
           </Card.Text>
-          <Card.Text class="text-center fs-6">Email: {email}</Card.Text>
-          <Card.Text class="text-center fs-6">Contact: {contact}</Card.Text>
-          <Card.Text class="text-center fs-6">Date of Birth: {dob}</Card.Text>
-          <Card.Text class="text-center fs-6">{description}</Card.Text>
-          <Card.Text class="text-center fs-6">{certification}</Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Email: {email}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Contact: {contact}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Date of Birth: {dob}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Description: {description}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Certifications: {certification}</h4>
+          </Card.Text>
         </Card.Body>
       </Card>
     </>

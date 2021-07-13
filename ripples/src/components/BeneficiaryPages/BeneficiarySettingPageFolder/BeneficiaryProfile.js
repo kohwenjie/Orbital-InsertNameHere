@@ -14,7 +14,6 @@ export default function BeneficiaryProfile() {
     address,
     contact,
     dob,
-    requestCounter,
     userType,
     fileUrl,
   } = dbUser;
@@ -36,18 +35,29 @@ export default function BeneficiaryProfile() {
           <Card.Text class="text-center fs-3">
             <BeneficiaryUpdateProfile />
           </Card.Text>
-          <Card.Text class="text-center fs-5">
-            Total Number of Requests: {requestCounter}
-          </Card.Text>
           <Card.Text class="text-center fs-3">
-            {firstName} {lastName} ({userType})
+            <h4 fontWeight= 'bold' >
+              <b>{firstName} {lastName}</b> ({userType.toUpperCase()})
+            </h4>
           </Card.Text>
-          <Card.Text class="text-center fs-6">Email: {email}</Card.Text>
-          <Card.Text class="text-center fs-6">Address: {address}</Card.Text>
-          <Card.Text class="text-center fs-6">Contact: {contact}</Card.Text>
-          <Card.Text class="text-center fs-6">Date of Birth: {dob}</Card.Text>
-          <Card.Text class="text-center fs-6">{description}</Card.Text>
-          <Card.Text class="text-center fs-6">{restrictions}</Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Email: {email}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Address: {address}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Contact: {contact}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Date of Birth: {dob}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Description: {description}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Restrictions: {restrictions}</h4>
+          </Card.Text>
         </Card.Body>
       </Card>
     </>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 function Redirect() {
   const { currentUser, dbUser, getUpdatedDBUser } = useAuth();
@@ -21,6 +22,7 @@ function Redirect() {
 
   return (
     <div>
+      <Spinner animation="grow" variant="info" />
       <h1>Loading please wait</h1>
     </div>
   );

@@ -23,10 +23,18 @@ export default function OrganisationProfile() {
           <Card.Text class="text-center fs-3">
             <OrganisationUpdateProfile />
           </Card.Text>
-          <Card.Text class="text-center fs-6">{name}</Card.Text>
-          <Card.Text class="text-center fs-6">{description}</Card.Text>
-          <Card.Text class="text-center fs-6">Email: {email}</Card.Text>
-          <Card.Text class="text-center fs-6">Contact: {contact}</Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>{name}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Description: {description}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Email: {email}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
+            <h4>Contact: {contact}</h4>
+          </Card.Text>
         </Card.Body>
       </Card>
     </>
