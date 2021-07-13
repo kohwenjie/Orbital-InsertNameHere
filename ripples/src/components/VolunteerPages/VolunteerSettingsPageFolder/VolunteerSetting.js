@@ -8,8 +8,7 @@ import VolunteerProfile from "./VolunteerProfile";
 
 const mainFeaturedPost = {
   title: "View Your Profile!",
-  image:
-    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Profile.jpg?alt=media&token=979db10c-9e48-4283-a87f-ea29a003a542",
+  image: "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Profile.jpg?alt=media&token=cc96cbb7-cea7-418c-8a5e-a32a90eaecb1",
 };
 
 export default function VolunteerSetting() {

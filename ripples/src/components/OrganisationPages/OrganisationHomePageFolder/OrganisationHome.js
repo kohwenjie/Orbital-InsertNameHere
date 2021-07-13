@@ -35,26 +35,26 @@ export default function OrganisationHome() {
       <CardGroup>
         <Card>
           <Card.Body>
-            <Card.Title class="text-center fs-5">Total Events YTD:</Card.Title>
-            <Card.Subtitle class="text-center mb-3">
-              (total number of events created)
-            </Card.Subtitle>
-            <Card.Text class="text-center fs-5">
+            <blockquote class="blockquote text-center">
+              <p class="mb-0">Total Events YTD:</p>
+              <footer class="blockquote-footer">
+                <cite title="Source Title">
+                  (total number of events created)
+                </cite>
+              </footer>
               <h3>{numEvents}</h3>
-            </Card.Text>
+            </blockquote>
           </Card.Body>
         </Card>
         <Card>
           <Card.Body>
-            <Card.Title class="text-center fs-5">
-              Number of Beneficiaries:
-            </Card.Title>
-            <Card.Subtitle class="text-center mb-3">
-              (current number of beneficiaries benefitting from you)
-            </Card.Subtitle>
-            <Card.Text class="text-center fs-5">
+            <blockquote class="blockquote text-center">
+              <p class="mb-0">Number of Beneficiaries:</p>
+              <footer class="blockquote-footer">
+                (current number of beneficiaries benefitting from you)
+              </footer>
               <h3>{numBeneficiaries}</h3>
-            </Card.Text>
+            </blockquote>
           </Card.Body>
         </Card>
       </CardGroup>
