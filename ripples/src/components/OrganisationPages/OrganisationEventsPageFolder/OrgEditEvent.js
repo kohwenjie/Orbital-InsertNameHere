@@ -150,7 +150,7 @@ export default function OrgEditEvent(props) {
 
   return (
     <>
-      <Button onClick={openModal} variant="info">
+      <Button onClick={openModal} variant="warning">
         Edit Event
       </Button>
       <Modal show={open} onHide={closeModal}>

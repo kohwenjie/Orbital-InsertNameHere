@@ -32,21 +32,17 @@ export default function OrgDisplayFullEvent(props) {
   if (fileUrl) {
     image = fileUrl;
   } else {
-    image = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+    image = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900";
   }
 
   return (
     <>
-      <Button onClick={openModal} variant="outline-success" size="sm">
+      <Button onClick={openModal} variant="info" size="sm">
         More Details
       </Button>{" "}
       <Modal show={open} onHide={closeModal}>
         <Modal.Body>
-          <img
-            className="img-fluid"
-            src={image}
-            alt=""
-          />
+          <img className="img-fluid" src={image} alt="" />
           <h4>{eventName}</h4>
           <p>Event Date: {eventDate}</p>
           <p>Sign up before: {signupDeadline}</p>
@@ -56,11 +52,11 @@ export default function OrgDisplayFullEvent(props) {
           <h6>{eventDescription}</h6>
         </Modal.Body>
         <Modal.Footer>
+          <OrgUpdateEvent e={event} />
+          <OrgEditEvent e={event} />
           <Button variant="secondary" onClick={closeModal}>
             Close
           </Button>
-          <OrgEditEvent e={event} />
-          <OrgUpdateEvent e={event} />
         </Modal.Footer>
       </Modal>
     </>

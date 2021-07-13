@@ -44,17 +44,12 @@ export default function OrgDisplayEvents() {
     >
       {events &&
         events.map((event) => {
-          const {
-            eventName,
-            eventDate,
-            organisationName,
-            fileUrl
-          } = event;
-          var eventImage
+          const { eventName, eventDate, organisationName, fileUrl } = event;
+          var eventImage;
           if (!fileUrl) {
-            eventImage = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+            eventImage = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900";
           } else {
-            eventImage = fileUrl
+            eventImage = fileUrl;
           }
           return (
             <>
@@ -68,10 +63,7 @@ export default function OrgDisplayEvents() {
                 className="box m-4"
                 key={identity}
               >
-                <Card.Img
-                  variant="top"
-                  src={eventImage}
-                />
+                <Card.Img variant="top" src={eventImage} />
                 <Card.Body>
                   <Card.Title>{eventName}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
@@ -79,8 +71,8 @@ export default function OrgDisplayEvents() {
                   </Card.Subtitle>
                   <Card.Text>Event Date:{eventDate}</Card.Text>
                   <OrgDisplayFullEvent e={event} />
-                  <ViewSignedUpVolunteers e={event} />
                   <OrgViewEnquiries e={event} />
+                  <ViewSignedUpVolunteers e={event} />
                 </Card.Body>
               </Card>
             </>

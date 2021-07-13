@@ -48,12 +48,7 @@ export default function OrgViewEnquiries(props) {
 
   return (
     <>
-      <Button
-        onClick={openModal}
-        variant="outline-success"
-        size="sm"
-        className="mt-1"
-      >
+      <Button onClick={openModal} variant="success" size="sm">
         View Enquiries
       </Button>
       <Modal show={open} onHide={closeModal} size="lg">

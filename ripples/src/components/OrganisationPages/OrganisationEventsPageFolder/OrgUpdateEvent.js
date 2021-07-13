@@ -47,7 +47,7 @@ export default function OrgEditEvent(props) {
 
   return (
     <>
-      <Button onClick={openModal} variant="info">
+      <Button onClick={openModal} variant="primary">
         Update Event
       </Button>
       <Modal show={open} onHide={closeModal} backdrop="static">
