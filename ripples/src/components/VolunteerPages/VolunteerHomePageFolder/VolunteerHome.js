@@ -59,7 +59,11 @@ export default function VolunteerHome() {
         </Card>
         <Card>
           <Card.Body>
-            <Card.Text class="text-center fs-5">Inspirational Quote</Card.Text>
+            <Card.Text class="text-center fs-5">
+              <p class="mb-0">
+                <h4>Inspirational Quote</h4>
+              </p>
+            </Card.Text>
 
             <blockquote class="blockquote text-center">
               <p class="mb-0">{quote.text}</p>
