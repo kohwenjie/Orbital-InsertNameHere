@@ -36,7 +36,7 @@ export default function OrganisationHome() {
         <Card>
           <Card.Body>
             <Card.Title class="text-center fs-5">Total Events YTD:</Card.Title>
-            <Card.Subtitle class="text-center">
+            <Card.Subtitle class="text-center mb-3">
               (total number of events created)
             </Card.Subtitle>
             <Card.Text class="text-center fs-5">
@@ -49,7 +49,7 @@ export default function OrganisationHome() {
             <Card.Title class="text-center fs-5">
               Number of Beneficiaries:
             </Card.Title>
-            <Card.Subtitle class="text-center">
+            <Card.Subtitle class="text-center mb-3">
               (current number of beneficiaries benefitting from you)
             </Card.Subtitle>
             <Card.Text class="text-center fs-5">

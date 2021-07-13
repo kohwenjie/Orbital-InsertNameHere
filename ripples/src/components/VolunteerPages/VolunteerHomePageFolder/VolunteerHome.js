@@ -46,7 +46,7 @@ export default function VolunteerHome() {
       <CardGroup>
         <Card>
           <Card.Body>
-            <Card.Title class="text-center fs-5">
+            <Card.Title class="text-center fs-5 mb-3">
               Number of Upcoming Events:
             </Card.Title>
             <Card.Text class="text-center fs-5">
