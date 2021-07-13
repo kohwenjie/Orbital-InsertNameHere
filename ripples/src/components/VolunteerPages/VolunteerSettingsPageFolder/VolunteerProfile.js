@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Card, CardGroup } from "react-bootstrap";
 import VolunteerUpdateProfile from "./VolunteerUpdateProfile";

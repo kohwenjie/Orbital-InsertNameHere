@@ -12,14 +12,27 @@ const mainFeaturedPost = {
   title: "Welcome to Ripples for Volunteers!",
   description:
     "We hope to be able to help volunteers in making volunteering a much more convenient and meaningful experience!",
-  image: "gs://orbital-insertnamehere.appspot.com/Ripples Business Card.png",
+  image:
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Ripples%20Business%20Card.png?alt=media&token=548fd0e4-b9f9-44fc-b4c6-b62f84bfb938",
   imgText: "main image description",
 };
 
 export default function VolunteerHome() {
   const { dbUser } = useAuth();
   const { commitments } = dbUser;
+  const [quote, setQuote] = useState({ author: "", text: "" });
   const numEvents = commitments.length;
+
+  useEffect(() => {
+    fetch("https://type.fit/api/quotes")
+      .then(function (response) {
+        return response.json();
+      })
+      .then(async function (data) {
+        const q = data[Math.floor(100 * Math.random())];
+        setQuote(q);
+      });
+  }, []);
 
   return (
     <React.Fragment>
@@ -41,6 +54,8 @@ export default function VolunteerHome() {
         <Card>
           <Card.Body>
             <Card.Text class="text-center fs-5">Quote of the Day:</Card.Text>
+            <h2>{quote.text}</h2>
+            <h3>{quote.author}</h3>
           </Card.Body>
         </Card>
       </CardGroup>
