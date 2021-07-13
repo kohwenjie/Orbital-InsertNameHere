@@ -6,7 +6,6 @@ import Header from "../SharedComponent/Header";
 import MainFeaturedPost from "../SharedComponent/MainFeaturedPost";
 import Footer from "../SharedComponent/Footer";
 import { useAuth } from "../../../contexts/AuthContext";
-import { database } from "../../../firebase";
 
 const mainFeaturedPost = {
   title: "Welcome to Ripples for Volunteers!",

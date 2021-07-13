@@ -5,7 +5,7 @@ export default function VolViewUpdates(props) {
   const [open, setOpen] = useState(false);
   const [updatesArr, setUpdatesArr] = useState([]);
   const event = props.e;
-  const { updates, documentUID } = event;
+  const { updates } = event;
 
   const fetchVolunteers = async () => {
     if (updates.length > 0) {

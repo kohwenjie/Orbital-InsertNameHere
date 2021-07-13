@@ -6,7 +6,6 @@ export default function VolEnquiry(props) {
   const [enquiry, setEnquiry] = useState("");
   const enquiryRef = useRef();
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
   const { currentUser, dbUser, sendEnquiry } = useAuth();
   const event = props.e;
   const { organisationUID, documentUID } = event;
@@ -58,7 +57,7 @@ export default function VolEnquiry(props) {
                 placeholder="Description of Yourself"
               />
             </Form.Group>
-            <Button disabled={loading} className="w-100 mb-2" type="submit">
+            <Button className="w-100 mb-2" type="submit">
               Send Enquiry
             </Button>{" "}
             <Button variant="secondary" className="w-100" onClick={closeModal}>

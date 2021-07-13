@@ -8,7 +8,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Login from "./Login";
 import LoginPage from "./LoginPage";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";

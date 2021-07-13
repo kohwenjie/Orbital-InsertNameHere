@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
 import { database } from "../../../firebase";
-import { useAuth } from "../../../contexts/AuthContext";
 
 export default function OrgViewEnquiries(props) {
   const [open, setOpen] = useState(false);
