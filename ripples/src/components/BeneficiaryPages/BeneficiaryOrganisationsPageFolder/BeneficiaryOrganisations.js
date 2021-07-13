@@ -8,7 +8,8 @@ import BenDisplayOrg from "./BenDisplayOrg";
 
 const mainFeaturedPost = {
   title: "Find Your Organisations Here",
-  image: "https://source.unsplash.com/1600x900/?volunteer,volunteerism",
+  image:
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Helping%20Hands.jpg?alt=media&token=ce59e36b-16dc-420a-9130-758d59924233",
 };
 
 export default function BeneficiaryOrganisations() {

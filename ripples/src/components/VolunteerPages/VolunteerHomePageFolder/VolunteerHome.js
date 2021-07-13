@@ -46,14 +46,11 @@ export default function VolunteerHome() {
       <CardGroup>
         <Card>
           <Card.Body>
+            <Card.Title class="text-center fs-5">
+              Number of Upcoming Events:
+            </Card.Title>
             <Card.Text class="text-center fs-5">
-              <blockquote class="blockquote text-center">
-                <p class="mb-0"> Number of Upcoming Events: </p>
-                <br></br>
-                <footer>
-                  <h3>{numEvents}</h3>
-                </footer>
-              </blockquote>
+              <h3>{numEvents}</h3>
             </Card.Text>
           </Card.Body>
         </Card>
