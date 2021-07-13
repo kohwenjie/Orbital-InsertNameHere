@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../../contexts/AuthContext";
-import { Card } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import BeneficiaryUpdateProfile from "./BeneficiaryUpdateProfile";
 
 export default function BeneficiaryProfile() {
@@ -16,16 +16,25 @@ export default function BeneficiaryProfile() {
     dob,
     requestCounter,
     userType,
-    fileUrl
+    fileUrl,
   } = dbUser;
 
   return (
     <>
       <Card style={{ width: "100%" }}>
         <Card.Body>
-        <Card.Img variant="top" src={fileUrl} />
+          <Image
+            src={fileUrl}
+            square
+            height="250px"
+            width="250px"
+            display="center"
+            className="rounded mx-auto d-block"
+            margin="auto"
+          />
+          <br />
           <Card.Text class="text-center fs-3">
-            {firstName} {lastName} <BeneficiaryUpdateProfile />
+            <BeneficiaryUpdateProfile />
           </Card.Text>
           <Card.Text class="text-center fs-5">
             Total Number of Requests: {requestCounter}

@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../../contexts/AuthContext";
-import { Card, CardGroup } from "react-bootstrap";
+import { Card, CardGroup, Image } from "react-bootstrap";
 import VolunteerUpdateProfile from "./VolunteerUpdateProfile";
 
 export default function VolunteerProfile() {
@@ -21,15 +21,23 @@ export default function VolunteerProfile() {
 
   const numEvents = commitments.length;
   const totalPoints = numEvents * 3;
-  console.log(fileUrl);
 
   return (
     <>
       <Card style={{ width: "100%" }}>
         <Card.Body>
-          <Card.Img variant="top" src={fileUrl} />
+          <Image
+            src={fileUrl}
+            square
+            height="250px"
+            width="250px"
+            display="center"
+            className="rounded mx-auto d-block"
+            margin="auto"
+          />
+          <br />
           <Card.Text class="text-center fs-3">
-            {firstName} {lastName} <VolunteerUpdateProfile />
+            <VolunteerUpdateProfile />
           </Card.Text>
         </Card.Body>
       </Card>
