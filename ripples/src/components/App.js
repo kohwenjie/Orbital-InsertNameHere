@@ -9,6 +9,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import Login from "./Login";
+import LoginPage from "./LoginPage";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
 import VolunteerSignup from "./VolunteerSignup";
@@ -124,7 +125,7 @@ function App() {
                 component={BeneficiarySetting}
               />
 
-              <Route path="/login" component={Login} />
+              <Route path="/login" component={LoginPage} />
               <Route path="/forgotPassword" component={ForgotPassword} />
               <Route path="/signupDiversion" component={SignupDiversion} />
               <Route path="/volunteerSignup" component={VolunteerSignup} />
