@@ -7,7 +7,7 @@ import Footer from "../SharedComponent/Footer";
 import VolunteerProfile from "./VolunteerProfile";
 
 const mainFeaturedPost = {
-  title: "View Your Profile!",
+  title: "View and Edit Your Profile!",
   image:
     "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Profile.jpg?alt=media&token=979db10c-9e48-4283-a87f-ea29a003a542",
 };

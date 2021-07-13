@@ -7,7 +7,7 @@ import Footer from "../SharedComponent/Footer";
 import VolDisplayEvents from "./VolDisplayEvents";
 
 const mainFeaturedPost = {
-  title: "Search for an Event!",
+  title: "Search for an Event now!",
   image:
     "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Search.jpg?alt=media&token=01ade070-db0a-4566-bf55-9acfe4c66d0c",
 };
