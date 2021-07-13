@@ -55,7 +55,7 @@ export default function VolViewUpdates(props) {
           </Table>
           {updatesArr.length === 0 && (
             <div style={{ textAlign: "center", margin: "8rem" }}>
-              <h2>There are No Enquiries at the moment</h2>
+              <h2>There are No Updates at the moment</h2>
             </div>
           )}
         </Modal.Body>
