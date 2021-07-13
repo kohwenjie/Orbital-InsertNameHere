@@ -47,15 +47,26 @@ export default function VolunteerHome() {
         <Card>
           <Card.Body>
             <Card.Text class="text-center fs-5">
-              Number of Upcoming Events: {numEvents}
+              <blockquote class="blockquote text-center">
+                <p class="mb-0"> Number of Upcoming Events: </p>
+                <br></br>
+                <footer>
+                  <h3>{numEvents}</h3>
+                </footer>
+              </blockquote>
             </Card.Text>
           </Card.Body>
         </Card>
         <Card>
           <Card.Body>
-            <Card.Text class="text-center fs-5">Quote of the Day:</Card.Text>
-            <h5>{quote.text}</h5>
-            <h6>{quote.author}</h6>
+            <Card.Text class="text-center fs-5">Inspirational Quote</Card.Text>
+
+            <blockquote class="blockquote text-center">
+              <p class="mb-0">{quote.text}</p>
+              <footer class="blockquote-footer">
+                <cite title="Source Title">{quote.author || "unknown"}</cite>
+              </footer>
+            </blockquote>
           </Card.Body>
         </Card>
       </CardGroup>
