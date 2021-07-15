@@ -73,7 +73,13 @@ export default function VolDisplayFullEvent(props) {
       </Button>
       <Modal show={open} onHide={closeModal}>
         <Modal.Body>
-          <img class="img-fluid" src={image} alt="" />
+          <img
+            class="img-fluid"
+            src={image}
+            alt=""
+            width="500px"
+            height="400px"
+          />
           <h4>{eventName}</h4>
           <p>Event Date: {eventDate}</p>
           <p>Sign up before: {signupDeadline}</p>

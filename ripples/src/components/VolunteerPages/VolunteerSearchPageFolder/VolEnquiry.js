@@ -33,6 +33,8 @@ export default function VolEnquiry(props) {
     );
 
     setEnquiry("");
+    alert("Enquiry has been sent")
+    closeModal();
   }
 
   return (
@@ -54,7 +56,7 @@ export default function VolEnquiry(props) {
                 value={enquiry}
                 onChange={(e) => setEnquiry(e.target.value)}
                 required
-                placeholder="Description of Yourself"
+                placeholder="Enter enquiry here"
               />
             </Form.Group>
             <Button className="w-100 mb-2" type="submit">

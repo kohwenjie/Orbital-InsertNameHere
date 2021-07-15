@@ -12,15 +12,13 @@ const mainFeaturedPost = {
   description:
     "We hope to be able to help volunteers in making volunteering a much more convenient and meaningful experience!",
   image:
-    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Ripples%20Business%20Card.png?alt=media&token=548fd0e4-b9f9-44fc-b4c6-b62f84bfb938",
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/home.jpg?alt=media&token=316fbce5-3840-4303-a600-4161fcb46f43",
   imgText: "main image description",
 };
 
 export default function VolunteerHome() {
   const { dbUser } = useAuth();
-  const { commitments } = dbUser;
   const [quote, setQuote] = useState({ author: "", text: "" });
-  const numEvents = commitments.length;
 
   useEffect(() => {
     fetch("https://type.fit/api/quotes")
@@ -49,7 +47,7 @@ export default function VolunteerHome() {
               Number of Upcoming Events:
             </Card.Title>
             <Card.Text class="text-center fs-5">
-              <h3>{numEvents}</h3>
+              <h3>{dbUser.commitments.length}</h3>
             </Card.Text>
           </Card.Body>
         </Card>

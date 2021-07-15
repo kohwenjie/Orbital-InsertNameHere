@@ -12,7 +12,7 @@ const mainFeaturedPost = {
   description:
     "We hope that our services available will be able to aid you in helping the community.",
   image:
-    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Ripples%20Business%20Card.png?alt=media&token=548fd0e4-b9f9-44fc-b4c6-b62f84bfb938",
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/home.jpg?alt=media&token=316fbce5-3840-4303-a600-4161fcb46f43",
   imgText: "main image description",
 };
 

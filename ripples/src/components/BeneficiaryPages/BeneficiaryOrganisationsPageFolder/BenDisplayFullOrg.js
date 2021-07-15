@@ -46,19 +46,27 @@ export default function BenDisplayFullOrg(props) {
       </Button>
       <Modal show={open} onHide={closeModal}>
         <Modal.Body>
-          <img
-            className="img-fluid"
-            src={fileUrl || "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"}
-            alt="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
-          />
+          <div alignItems="center">
+            <img
+              className="img-fluid mx-auto d-block"
+              src={
+                fileUrl || "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+              }
+              alt="https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+              width="250px"
+              height="100px"
+            />
+          </div>
+          <br />
           <h4>{name}</h4>
           <br />
           <h5>Address: {address}</h5>
           <h5>Email: {email}</h5>
           <h5>Contact: {contact}</h5>
           <h5>Description: </h5>
-          <div alignText="center"><h5>{description}</h5></div>
-          
+          <div alignText="center">
+            <h5>{description}</h5>
+          </div>
         </Modal.Body>
         <ShowSignedUpMessage />
         <Modal.Footer>

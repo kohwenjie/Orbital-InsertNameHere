@@ -5,7 +5,8 @@ import OrganisationUpdateProfile from "./OrganisationUpdateProfile";
 
 export default function OrganisationProfile() {
   const { dbUser } = useAuth();
-  const { name, description, email, contact, fileUrl, userType } = dbUser;
+  const { name, description, email, address, contact, fileUrl, userType } =
+    dbUser;
   return (
     <>
       <Card style={{ width: "100%" }}>
@@ -29,13 +30,15 @@ export default function OrganisationProfile() {
             </h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Email: {email}</h4>
+            <h4>{email}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Contact: {contact}</h4>
+            <h4>{contact}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Description: </h4>
+            <h4>{address}</h4>
+          </Card.Text>
+          <Card.Text class="text-center fs-6">
             <h4>{description}</h4>
           </Card.Text>
         </Card.Body>

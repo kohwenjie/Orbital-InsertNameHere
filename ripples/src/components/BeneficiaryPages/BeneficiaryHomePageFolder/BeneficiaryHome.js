@@ -10,7 +10,7 @@ const mainFeaturedPost = {
   description:
     "Here at Ripples, we aim to improve your everyday with our services. Feel free to contact us for any assistance!",
   image:
-    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Ripples%20Business%20Card.png?alt=media&token=97927341-9bd8-40f2-90ed-57d297f687bc",
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/home.jpg?alt=media&token=316fbce5-3840-4303-a600-4161fcb46f43",
   imgText: "Welcome page introduction ",
 };
 

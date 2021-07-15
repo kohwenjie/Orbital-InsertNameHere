@@ -41,22 +41,22 @@ export default function BeneficiaryProfile() {
             </h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Email: {email}</h4>
+            <h4>{email}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Address: {address}</h4>
+            <h4>{address}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Contact: {contact}</h4>
+            <h4>{contact}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Date of Birth: {dob}</h4>
+            <h4>{dob}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Description: {description}</h4>
+            <h4>{description}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Restrictions: {restrictions}</h4>
+            <h4>{restrictions}</h4>
           </Card.Text>
         </Card.Body>
       </Card>

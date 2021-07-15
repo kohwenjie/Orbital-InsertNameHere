@@ -72,19 +72,19 @@ export default function VolunteerProfile() {
             </h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Email: {email}</h4>
+            <h4>{email}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Contact: {contact}</h4>
+            <h4>{contact}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Date of Birth: {dob}</h4>
+            <h4>{dob}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Description: {description}</h4>
+            <h4>{description}</h4>
           </Card.Text>
           <Card.Text class="text-center fs-6">
-            <h4>Certifications: {certification}</h4>
+            <h4>{certification}</h4>
           </Card.Text>
         </Card.Body>
       </Card>

@@ -41,11 +41,11 @@ export default function VolDisplayEvents() {
       {events &&
         events.map((event) => {
           const { eventName, eventDate, organisationName, fileUrl } = event;
-          var image
+          var image;
           if (fileUrl) {
-            image = fileUrl
+            image = fileUrl;
           } else {
-            image = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900"
+            image = "https://source.unsplash.com/cAtzHUz7Z8g/1600x900";
           }
           return (
             <>
@@ -59,10 +59,7 @@ export default function VolDisplayEvents() {
                 className="box m-4"
                 key={identity}
               >
-                <Card.Img
-                  variant="top"
-                  src={image}
-                />
+                <Card.Img variant="top" src={image} height="180px" />
                 <Card.Body>
                   <Card.Title>{eventName}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">

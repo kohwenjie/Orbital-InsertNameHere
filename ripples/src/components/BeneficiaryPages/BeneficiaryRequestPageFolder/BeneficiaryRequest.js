@@ -9,7 +9,7 @@ import BenDisplayOrg from "./BenDisplayOrg";
 const mainFeaturedPost = {
   title: "Create Request to Linked-Up Organisations Here!",
   image:
-    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Request.jpg?alt=media&token=a051391c-255a-4025-a5dc-48e7f7b7d00f",
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/benrequest.jpg?alt=media&token=22a258f2-707c-4f8f-b5d8-bb917ba100e6",
 };
 
 export default function BeneficiaryRequest() {

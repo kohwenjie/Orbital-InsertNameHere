@@ -111,16 +111,19 @@ export default function ViewSignedUpVolunteers(props) {
                       <td>{description}</td>
                       <td>{certification}</td>
                       <td>
-                        <Button onClick={() => handleReject(uid)}>
+                        <Button onClick={() => handleReject(uid)} padding="3px">
                           Reject
-                        </Button>{" "}
-                        <Button
-                          onClick={() => {
-                            handleAccept(uid);
-                          }}
-                        >
-                          Accept
                         </Button>
+
+                        <div className="mt-1">
+                          <Button
+                            onClick={() => {
+                              handleAccept(uid);
+                            }}
+                          >
+                            Accept
+                          </Button>
+                        </div>
                       </td>
                     </tr>
                   );

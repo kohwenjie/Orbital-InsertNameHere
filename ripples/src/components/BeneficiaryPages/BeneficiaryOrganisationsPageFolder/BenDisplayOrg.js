@@ -59,7 +59,7 @@ export default function BenDisplayOrg() {
                 <Card.Body>
                   <Card.Title>{name}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
-                    {description}
+                    {description.substring(0,200) + "..."}
                   </Card.Subtitle>
                   <Card.Text>Address: {address}</Card.Text>
                   <BenDisplayFullOrg o={organisation} />

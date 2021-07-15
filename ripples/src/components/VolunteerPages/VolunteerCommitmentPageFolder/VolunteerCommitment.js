@@ -11,7 +11,7 @@ import { Tab, Row, Col, Nav } from "react-bootstrap";
 const mainFeaturedPost = {
   title: "View Your Commitments here",
   image:
-    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/To-Do-List.jpg?alt=media&token=a124f86b-483b-4398-b1be-a27ffd0ac9f6",
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/volcommit.jfif?alt=media&token=3475c833-a97d-413e-9119-3f1dfe589412",
 };
 
 export default function VolunteerCommitment() {
@@ -25,7 +25,7 @@ export default function VolunteerCommitment() {
         </main>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
-            <Col sm={3}>
+            <Col sm={2}>
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
                   <Nav.Link eventKey="first">Signed Up Events</Nav.Link>
@@ -35,7 +35,7 @@ export default function VolunteerCommitment() {
                 </Nav.Item>
               </Nav>
             </Col>
-            <Col sm={9}>
+            <Col sm={10}>
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   <SignedUpComponent />

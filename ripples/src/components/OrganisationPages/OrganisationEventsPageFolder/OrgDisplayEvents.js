@@ -63,13 +63,13 @@ export default function OrgDisplayEvents() {
                 className="box m-4"
                 key={identity}
               >
-                <Card.Img variant="top" src={eventImage} />
+                <Card.Img variant="top" src={eventImage} height="180px" />
                 <Card.Body>
                   <Card.Title>{eventName}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     {organisationName}
                   </Card.Subtitle>
-                  <Card.Text>Event Date:{eventDate}</Card.Text>
+                  <Card.Text>Event Date: {eventDate}</Card.Text>
                   <OrgDisplayFullEvent e={event} />
                   <OrgViewEnquiries e={event} />
                   <ViewSignedUpVolunteers e={event} />

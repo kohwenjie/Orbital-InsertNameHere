@@ -12,7 +12,7 @@ import { Tab, Row, Col, Nav } from "react-bootstrap";
 const mainFeaturedPost = {
   title: "View Beneficiaries Under You",
   image:
-    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Helping%20Hand.jpg?alt=media&token=098b7fb6-f7b3-4ab2-b4f2-222cea089b59",
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/orgBen.jpg?alt=media&token=584deb53-1c22-4d0f-b413-5af840651eec",
 };
 
 export default function OrganisationBeneficiaries() {

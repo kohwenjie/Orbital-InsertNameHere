@@ -9,7 +9,7 @@ import VolDisplayEvents from "./VolDisplayEvents";
 const mainFeaturedPost = {
   title: "Search for an Event now!",
   image:
-    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Search.jpg?alt=media&token=01ade070-db0a-4566-bf55-9acfe4c66d0c",
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/volsearch.jpg?alt=media&token=312d8a79-579d-4f6f-aed1-e661783de523",
 };
 
 export default function VolunteerSearch() {

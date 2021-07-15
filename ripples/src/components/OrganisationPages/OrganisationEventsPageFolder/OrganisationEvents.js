@@ -11,7 +11,7 @@ import { Tab, Row, Col, Nav } from "react-bootstrap";
 const mainFeaturedPost = {
   title: "View or Create New Events Here!",
   image:
-    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/Events.jpg?alt=media&token=53f2fef5-04d1-4df5-ac44-326c392e2d1b",
+    "https://firebasestorage.googleapis.com/v0/b/orbital-insertnamehere.appspot.com/o/events.jfif?alt=media&token=b9c50872-8351-43b0-bd7f-dbb1f7c4336c",
 };
 
 export default function OrganisationEvents() {
