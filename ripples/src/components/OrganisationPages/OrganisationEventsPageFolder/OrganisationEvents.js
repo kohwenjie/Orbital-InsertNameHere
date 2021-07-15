@@ -25,17 +25,17 @@ export default function OrganisationEvents() {
         </main>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
-            <Col sm={2}>
+            <Col sm={1}>
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
-                  <Nav.Link eventKey="first">View Created Events</Nav.Link>
+                  <Nav.Link eventKey="first">Created Events</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="second">View Ongoing Events</Nav.Link>
+                  <Nav.Link eventKey="second">Ongoing Events</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Col>
-            <Col sm={10}>
+            <Col sm={11}>
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   <OrgDisplayEvents />
