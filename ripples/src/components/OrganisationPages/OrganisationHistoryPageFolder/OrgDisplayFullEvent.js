@@ -11,8 +11,8 @@ export default function OrgDisplayFullEvent(props) {
     eventDate,
     signupDeadline,
     organisationName,
-
     tags,
+    fileUrl,
   } = event;
 
   function openModal() {
@@ -32,7 +32,10 @@ export default function OrgDisplayFullEvent(props) {
         <Modal.Body>
           <img
             className="img-fluid"
-            src="https://ivhq.imgix.net/images/pages/volunteer-activity-ideas/volunteer-acitivty-ideascommunity-senior.png?w=850&fit=max&auto=compress%2Cformat"
+            src={
+              fileUrl ||
+              "https://ivhq.imgix.net/images/pages/volunteer-activity-ideas/volunteer-acitivty-ideascommunity-senior.png?w=850&fit=max&auto=compress%2Cformat"
+            }
             alt=""
           />
           <h4>{eventName}</h4>
