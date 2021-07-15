@@ -10,6 +10,7 @@ export default function OrgDisplayBenLinkRequest() {
     AddBeneficiaryRequestToOrganisationEvent,
     RemoveBeneficiaryRequestFromBeneficiaryPending,
     AddBeneficiaryRequestToBenficiaryConfirmed,
+    parseTags,
   } = useAuth();
   const [beneficiaryPendingList, setBeneficiaryPendingList] = useState([]);
   const [identity, setIdentity] = useState();
@@ -105,6 +106,7 @@ export default function OrgDisplayBenLinkRequest() {
                 requesterUID,
                 requestUID,
               } = request;
+              var displayTags = parseTags(tags);
               return (
                 <tr>
                   <td>{beneficiaryPendingList.indexOf(request) + 1}</td>
@@ -115,7 +117,7 @@ export default function OrgDisplayBenLinkRequest() {
                   <td>{requestLocation}</td>
                   <td>{requestDate}</td>
                   <td>{signupDeadline}</td>
-                  <td>{tags}</td>
+                  <td>{displayTags}</td>
                   <td>
                     <Button
                       className="mb-2"

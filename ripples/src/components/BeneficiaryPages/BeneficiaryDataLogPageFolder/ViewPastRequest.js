@@ -88,6 +88,7 @@ export default function ViewPastRequest() {
                               organisationUID: organisationUID,
                             },
                           }}
+                          style={{ textDecoration: "none", color: "white" }}
                         >
                           Repeat
                         </Link>
