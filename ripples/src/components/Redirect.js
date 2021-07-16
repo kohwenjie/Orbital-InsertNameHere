@@ -8,16 +8,19 @@ function Redirect() {
   const history = useHistory();
 
   useEffect(() => {
-    getUpdatedDBUser(currentUser.uid);
-    if (dbUser) {
-      if (dbUser.userType === "volunteer") {
-        history.push("/VolunteerHome");
-      } else if (dbUser.userType === "organisation") {
-        history.push("/OrganisationHome");
-      } else {
-        history.push("/BeneficiaryHome");
+    const interval = setInterval(() => {
+      getUpdatedDBUser(currentUser.uid);
+      if (dbUser) {
+        if (dbUser.userType === "volunteer") {
+          history.push("/VolunteerHome");
+        } else if (dbUser.userType === "organisation") {
+          history.push("/OrganisationHome");
+        } else {
+          history.push("/BeneficiaryHome");
+        }
       }
-    }
+    }, 1000);
+    return () => clearInterval(interval);
   });
 
   return (

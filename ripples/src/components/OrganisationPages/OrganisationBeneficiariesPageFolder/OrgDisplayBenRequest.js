@@ -82,7 +82,7 @@ export default function OrgDisplayBenLinkRequest() {
     <>
       <Table striped bordered hover size="sm">
         <thead>
-          <tr key={identity}>
+          <tr>
             <th>S/N</th>
             <th>Beneficiary Name</th>
             <th>Beneficiary Request Description</th>
@@ -108,7 +108,7 @@ export default function OrgDisplayBenLinkRequest() {
               } = request;
               var displayTags = parseTags(tags);
               return (
-                <tr>
+                <tr key={requestUID}>
                   <td>{beneficiaryPendingList.indexOf(request) + 1}</td>
                   <td>
                     {requesterFirstName} {requesterLastName}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { database } from "../../../firebase";
 import { useAuth } from "../../../contexts/AuthContext";
@@ -57,16 +57,19 @@ export default function SignedUpComponent() {
                   <td>{email}</td>
                   <td>{contact}</td>
                   <td>
-                    <Link
-                      to={{
-                        pathname: "/BeneficiaryRequestCreate",
-                        aboutProps: {
-                          organisationUID: uid,
-                        },
-                      }}
-                    >
-                      Make Request
-                    </Link>
+                    <Button className="mt-3">
+                      <Link
+                        to={{
+                          pathname: "/BeneficiaryRequestCreate",
+                          aboutProps: {
+                            organisationUID: uid,
+                          },
+                        }}
+                        style={{ textDecoration: "none", color: "white" }}
+                      >
+                        Request
+                      </Link>
+                    </Button>
                   </td>
                 </tr>
               );

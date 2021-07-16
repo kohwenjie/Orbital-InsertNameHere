@@ -36,6 +36,7 @@ export default function SignedUpComponent() {
             <th>S/N</th>
             <th>Beneficiary Name</th>
             <th>Beneficiary Description</th>
+            <th>Beneficiary Restriction</th>
             <th>Beneficiary Address</th>
             <th>Beneficiary Contact</th>
             <th>Beneficiary Email</th>
@@ -48,6 +49,7 @@ export default function SignedUpComponent() {
                 firstName,
                 lastName,
                 description,
+                restrictions,
                 address,
                 contact,
                 email,
@@ -55,8 +57,11 @@ export default function SignedUpComponent() {
               return (
                 <tr key={identity}>
                   <td>{beneficiaryList.indexOf(beneficiary) + 1}</td>
-                  <td>{firstName} {lastName}</td>
+                  <td>
+                    {firstName} {lastName}
+                  </td>
                   <td>{description}</td>
+                  <td>{restrictions}</td>
                   <td>{address}</td>
                   <td>{contact}</td>
                   <td>{email}</td>

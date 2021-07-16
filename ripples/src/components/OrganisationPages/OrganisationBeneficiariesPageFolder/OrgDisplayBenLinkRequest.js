@@ -32,6 +32,7 @@ export default function OrgDisplayBenLinkRequest() {
         })
         .then(setRequestingBeneficiaryList(arr));
     }
+    console.log(requestingBeneficiaryList);
   };
 
   console.log(requestingBeneficiaryList);
@@ -88,7 +89,7 @@ export default function OrgDisplayBenLinkRequest() {
                 uid,
               } = beneficiary;
               return (
-                <tr key={identity}>
+                <tr key={uid}>
                   <td>{requestingBeneficiaryList.indexOf(beneficiary) + 1}</td>
                   <td>
                     {firstName} {lastName}
