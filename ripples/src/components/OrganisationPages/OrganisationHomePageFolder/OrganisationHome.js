@@ -37,6 +37,7 @@ export default function OrganisationHome() {
           <Card.Body>
             <blockquote class="blockquote text-center">
               <p class="mb-0">Total Events YTD:</p>
+              <br />
               <footer class="blockquote-footer">
                 <cite title="Source Title">
                   (total number of events created)
@@ -50,6 +51,7 @@ export default function OrganisationHome() {
           <Card.Body>
             <blockquote class="blockquote text-center">
               <p class="mb-0">Number of Beneficiaries:</p>
+              <br />
               <footer class="blockquote-footer">
                 (current number of beneficiaries benefitting from you)
               </footer>

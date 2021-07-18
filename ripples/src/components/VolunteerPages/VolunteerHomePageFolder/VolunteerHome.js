@@ -58,9 +58,9 @@ export default function VolunteerHome() {
                 <h4>Inspirational Quote</h4>
               </p>
             </Card.Text>
-
             <blockquote class="blockquote text-center">
               <p class="mb-0">{quote.text}</p>
+              <br />
               <footer class="blockquote-footer">
                 <cite title="Source Title">{quote.author || "unknown"}</cite>
               </footer>
