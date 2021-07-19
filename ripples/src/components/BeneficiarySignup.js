@@ -131,7 +131,6 @@ export default function BeneficiarySignup() {
                 placeholder="Confirm Password"
               />
             </Form.Group>
-            <br></br>
             <Form.Row>
               <Col>
                 <Form.Group id="firstName" className="mt-3 mb-3">

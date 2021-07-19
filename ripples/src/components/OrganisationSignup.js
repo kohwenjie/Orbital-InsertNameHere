@@ -160,7 +160,10 @@ export default function OrganisationSignup() {
                 placeholder="Organisation Address"
               />
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className="mt-3 mb-3"
+            >
               <Form.Control
                 as="textarea"
                 rows={3}
