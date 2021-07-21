@@ -31,6 +31,7 @@ export default function OrgEditEvent(props) {
 
     if (updatesRef.current.value) {
       updates.push(updateUpdates(updatesRef.current.value, documentUID));
+      alert("Update has been posted");
     }
 
     Promise.all(updates)
@@ -43,6 +44,7 @@ export default function OrgEditEvent(props) {
       .finally(() => {
         setLoading(false);
       });
+    closeModal();
   }
 
   return (
@@ -66,7 +68,7 @@ export default function OrgEditEvent(props) {
                 value={updates}
                 onChange={(e) => setUpdates(e.target.value)}
                 required
-                placeholder="Desription of your Update"
+                placeholder="Description of your Update"
               />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
