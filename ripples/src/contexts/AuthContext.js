@@ -454,6 +454,7 @@ export function AuthProvider({ children }) {
         rejectedVolunteers: [],
         cancelledEvent: false,
         enquiries: [],
+        updates: [],
       });
   }
 

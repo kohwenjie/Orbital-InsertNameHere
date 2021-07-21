@@ -49,7 +49,7 @@ export default function SignedUpComponent() {
               const { name, description, address, contact, email, uid } =
                 organisation;
               return (
-                <tr key={identity}>
+                <tr key={uid}>
                   <td>{organisationList.indexOf(organisation) + 1}</td>
                   <td>{name}</td>
                   <td>{description}</td>

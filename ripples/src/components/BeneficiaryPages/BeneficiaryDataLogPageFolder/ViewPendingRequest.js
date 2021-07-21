@@ -54,10 +54,10 @@ export default function ViewPendingRequest() {
         <tbody>
           {pendingRequestsList &&
             pendingRequestsList.map((request) => {
-              const { requestDescription, requestLocation, requestDate, tags } =
+              const { requestDescription, requestLocation, requestDate, tags, requestUID } =
                 request;
               return (
-                <tr key={identity}>
+                <tr key={requestUID}>
                   <td>{pendingRequestsList.indexOf(request) + 1}</td>
                   <td>{requestDescription}</td>
                   <td>{requestLocation}</td>

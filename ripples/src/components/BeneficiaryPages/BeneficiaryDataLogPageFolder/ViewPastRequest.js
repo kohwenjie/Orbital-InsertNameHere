@@ -63,10 +63,11 @@ export default function ViewPastRequest() {
                 signupDeadline,
                 tags,
                 organisationUID,
+                requestUID,
               } = request;
               console.log(request);
               return (
-                <tr key={identity}>
+                <tr key={requestUID}>
                   <td>{confirmedRequestsList.indexOf(request) + 1}</td>
                   <td>{requestDescription}</td>
                   <td>{requestLocation}</td>
