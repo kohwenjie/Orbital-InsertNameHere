@@ -15,10 +15,11 @@ export default function OrgDisplayFullEvent(props) {
     eventLocation,
     eventDate,
     signupDeadline,
-    organisationName,
     tags,
     fileUrl,
   } = event;
+
+  console.log(tags);
 
   function openModal() {
     setOpen(true);
@@ -47,7 +48,6 @@ export default function OrgDisplayFullEvent(props) {
           <p>Event Date: {eventDate}</p>
           <p>Sign up before: {signupDeadline}</p>
           <p>Location: {eventLocation}</p>
-          <p>Brought to you by: {organisationName}</p>
           <p>Tags: {parseTags(tags)}</p>
           <h6>{eventDescription}</h6>
         </Modal.Body>

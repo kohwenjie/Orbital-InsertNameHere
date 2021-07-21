@@ -10,6 +10,7 @@ export default function OrgEditEvent(props) {
   const [open, setOpen] = useState(false);
   const event = props.e;
   const { eventName, tags, documentUID } = event;
+  console.log(tags);
   const {
     updateEventName,
     updateEventDescription,
@@ -69,17 +70,17 @@ export default function OrgEditEvent(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (eTags.length === 0) {
-      setETags(tags);
-    } else {
+    if (eTags.length !== 0 || eType !== "") {
       if (eType === "") {
         return setError("Please select an Event Type!");
       } else if (eTags.length === 0) {
         return setError("Please select at least 1 Tag");
       }
+    }
+    if (eTags.length !== 0 && eType !== "") {
       eTags.push(eType);
     }
-
+    console.log("final: " + eTags);
     const updates = [];
     setLoading(true);
     setError("");
@@ -105,7 +106,7 @@ export default function OrgEditEvent(props) {
         updateEventSignUpDeadline(sDeadlineRef.current.value, documentUID)
       );
     }
-    if (eTags) {
+    if (eTags.length > 0) {
       updates.push(updateEventTags(eTags, documentUID));
     }
 
